@@ -6,6 +6,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="content-heading mb-0 text-gray-800">Users</h1>
     </div>
+    <a href="/admin/user/add" class="btn btn-wild-watermelon btn-sm rounded-pill mb-3">Tambah User</a>
     <div class="table-responsive">
         <table class="table table-bordered" id="dataUsers" width="100%" cellspacing="0">
             <thead>

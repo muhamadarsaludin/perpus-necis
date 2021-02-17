@@ -18,7 +18,7 @@ class User extends BaseController
     public function index()
     {
         $data = [
-            'title'  => 'User List | RH Wedding Planner',
+            'title'  => 'User List | Perpustakaan Necis',
             'users'  => $this->userModel->getUser(),
         ];
         return view('admin/user/index', $data);
@@ -27,9 +27,18 @@ class User extends BaseController
     public function detail($username)
     {
         $data = [
-            'title'  => 'Detail User | RH Wedding Planner',
+            'title'  => 'Detail User | Perpustakaan Necis',
             'user'  => $this->userModel->getUser('username', $username),
         ];
         return view('admin/user/detail', $data);
+    }
+
+    public function add()
+    {
+        $data = [
+            'title'  => 'Tambah User | Perpustakaan Necis',
+            'validation' => \Config\Services::validation(),
+        ];
+        return view('admin/user/add', $data);
     }
 }
