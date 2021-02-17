@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-light topbar mb-4 static-to">
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-to">
 
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -6,7 +6,7 @@
     </button>
 
     <!-- Topbar Search -->
-    <form class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <!-- <form class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group relative">
             <input type="text" class="form-control border-0 rounded-pill pl-3" placeholder="Cari sesuatu..." aria-label="Search" aria-describedby="basic-addon2" style="height: 38px; border-color: none; z-index: 0; box-shadow: none;">
             <button class="btn btn-wild-watermelon rounded-pill position-absolute border-white" type="button" style="right: 0;">
@@ -14,7 +14,7 @@
                 <p class="d-inline ml-1 small">Search</p>
             </button>
         </div>
-    </form>
+    </form> -->
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">

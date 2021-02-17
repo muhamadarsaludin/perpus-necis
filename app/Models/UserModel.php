@@ -9,7 +9,7 @@ class UserModel extends Model
     protected $table = 'users';
     protected $useTimestamps = true;
     protected $allowedFields = ['username', 'password'];
-    
+
     public function getUser($type = 'id', $value = false)
     {
         if ($value == false) {
