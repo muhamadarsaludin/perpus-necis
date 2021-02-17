@@ -42,6 +42,7 @@ $routes->group('admin', function ($routes) {
 	$routes->add('vendors', 'Admin\Vendor::index');
 });
 
+$routes->delete('/admin/user/(:num)', 'Admin\User::delete/$1');
 
 /*
  * --------------------------------------------------------------------

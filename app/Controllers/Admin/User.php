@@ -41,4 +41,31 @@ class User extends BaseController
         ];
         return view('admin/user/add', $data);
     }
+
+    public function save()
+    {
+        if (!$this->validate([
+            'username' => 'required|is_unique[users.username]',
+            'password' => 'required|min_length[5]',
+            'name' => 'required',
+        ])) {
+            return redirect()->to('/admin/user/add')->withInput();
+        }
+        $this->userModel->save([
+            'username' => $this->request->getVar('username'),
+            'full_name' => $this->request->getVar('name'),
+            'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            'role_id' => 1,
+            'active' => 1,
+        ]);
+        session()->setFlashdata('message', 'User Berhasil ditambahkan');
+        return redirect()->to('/admin/users');
+    }
+
+    public function delete($id)
+    {
+        $this->userModel->delete($id);
+        session()->setFlashdata('message', 'User berhasil dihapus');
+        return redirect()->to('/admin/users');
+    }
 }

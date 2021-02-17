@@ -46,7 +46,7 @@
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>&copy; RH Wedding 2021</span>
+                <span>&copy; Perpustakaan SMP Negeri 1 Cisayong</span>
             </div>
         </div>
     </footer>
