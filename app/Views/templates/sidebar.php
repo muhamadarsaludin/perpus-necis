@@ -34,69 +34,47 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
             <div class="nav-icon">
-                <i class="fas fa-fw fa-users"></i>
+                <i class="fas fa-fw fa-user"></i>
             </div>
-            <span>Vendors</span>
+            <span>Data Anggota</span>
         </a>
+        <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a href="/admin/users" class="collapse-item" href="buttons.html">User List</a>
+                <a class="collapse-item" href="buttons.html">User Category</a>
+            </div>
+        </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
             <div class="nav-icon">
-                <i class="fas fa-fw fa-shopping-bag"></i>
+                <i class="fas fa-fw fa-user"></i>
             </div>
-            <span>Product</span>
+            <span>Data Petugas</span>
         </a>
+        <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a href="/admin/users" class="collapse-item" href="buttons.html">User List</a>
+                <a class="collapse-item" href="buttons.html">User Category</a>
+            </div>
+        </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
             <div class="nav-icon">
-                <i class="fas fa-fw fa-calendar"></i>
+                <i class="fas fa-fw fa-user"></i>
             </div>
-            <span>Calendar</span>
+            <span>Data Buku</span>
         </a>
-    </li>
-
-    <hr class="sidebar-divider">
-
-    <div class="sidebar-heading">
-        Transaction
-    </div>
-
-    <li class="nav-item">
-        <a class="nav-link" href="/">
-            <div class="nav-icon">
-                <i class="fas fa-fw fa-shopping-cart"></i>
+        <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a href="/admin/users" class="collapse-item" href="buttons.html">User List</a>
+                <a class="collapse-item" href="buttons.html">User Category</a>
             </div>
-            <span>Order & Shop</span>
-        </a>
+        </div>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/">
-            <div class="nav-icon">
-                <i class="fas fa-fw fa-percentage"></i>
-            </div>
-            <span>Discount</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/">
-            <div class="nav-icon">
-                <i class="fas fa-fw fa-chart-line"></i>
-            </div>
-            <span>Income</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/">
-            <div class="nav-icon">
-                <i class="fas fa-fw fa-file-alt"></i>
-            </div>
-            <span>Report</span>
-        </a>
-    </li>
-
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle sidebar-toggler" id="sidebarToggle"></button>

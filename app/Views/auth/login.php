@@ -16,8 +16,10 @@
                             <div class="row justify-content-center align-items-center h-100">
                                 <div class="col px-5">
                                     <div class="px-5">
-                                        <div class="text-center">
+                                        <div class="text-center mb-4">
                                             <img src="/img/logo.png" alt="RH Wedding Logo" class="mb-4" width="80px">
+                                            <h4 class="font-weight-bold">PERPUSTAKAAN</h4>
+                                            <h5 class="font-weight-bold">SMP NEGERI 1 CISAYONG</h5>
                                         </div>
                                         <form action="/auth/login" method="post" class="user">
                                             <?= csrf_field() ?>
@@ -37,7 +39,7 @@
                                             <button type="submit" class="btn btn-wild-watermelon btn-user btn-block">
                                                 Sign In
                                             </button>
-                                            <hr>            
+                                            <hr>
                                         </form>
                                     </div>
                                 </div>
