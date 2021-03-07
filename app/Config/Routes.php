@@ -35,10 +35,19 @@ $routes->get('/', 'Home::index');
 $routes->get('/login', 'Auth::login');
 $routes->get('/register', 'Auth::register');
 
+
+
 $routes->group('admin', function ($routes) {
 	$routes->add('/', 'Admin\Dashboard::index');
 	$routes->add('dashboard', 'Admin\Dashboard::index');
-	$routes->add('users', 'Admin\User::index');
+	$routes->group('user', function ($routes) {
+		$routes->add('/', 'Admin\User::index');
+	});
+
+
+
+
+	
 	$routes->add('vendors', 'Admin\Vendor::index');
 });
 
