@@ -40,7 +40,8 @@ $routes->get('/register', 'Auth::register');
 $routes->group('admin', function ($routes) {
 	$routes->add('/', 'Admin\Dashboard::index');
 	$routes->add('dashboard', 'Admin\Dashboard::index');
-	$routes->group('user', function ($routes) {
+	// admin/users
+	$routes->group('users', function ($routes) {
 		$routes->add('/', 'Admin\User::index');
 	});
 

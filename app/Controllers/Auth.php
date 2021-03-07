@@ -25,7 +25,7 @@ class Auth extends BaseController
         // validasi field username & password
         if (!$this->validate([
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required|min_length[3]'
         ])) {
             return redirect()->to('/auth')->withInput();
         }
@@ -38,7 +38,8 @@ class Auth extends BaseController
         // cek user ada atau tidak
         if ($user) {
             // cek password
-            if ($password == $user['password']) {
+            // if ($password == $user['password']) {
+            if (password_verify($password, $user['password'])) {
                 // jika username dan password benar
                 $data = [
                     'username' => $user['username'],
@@ -47,7 +48,7 @@ class Auth extends BaseController
                 session()->set($data);
                 return redirect()->to('/admin');
             } else {
-                session()->setFlashdata('message', 'Password Salah');
+                session()->setFlashdata('message', 'Password Salah!');
                 return redirect()->to('/auth');
             }
         } else {

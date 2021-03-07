@@ -8,11 +8,10 @@ use App\Models\UserModel;
 class User extends BaseController
 {
     protected $userModel;
-    protected $db;
+    // protected $db;
     public function __construct()
     {
         $this->userModel = new UserModel();
-        $this->db = \Config\Database::connect();
     }
 
     public function index()
@@ -23,6 +22,21 @@ class User extends BaseController
         ];
         return view('admin/user/index', $data);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function detail($username)
     {
@@ -47,13 +61,11 @@ class User extends BaseController
         if (!$this->validate([
             'username' => 'required|is_unique[users.username]',
             'password' => 'required|min_length[5]',
-            'name' => 'required',
         ])) {
             return redirect()->to('/admin/user/add')->withInput();
         }
         $this->userModel->save([
             'username' => $this->request->getVar('username'),
-            'full_name' => $this->request->getVar('name'),
             'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'role_id' => 1,
             'active' => 1,

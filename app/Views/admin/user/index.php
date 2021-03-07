@@ -18,7 +18,6 @@
                 <tr>
                     <th>No</th>
                     <th>Username</th>
-                    <th>Nama Lengkap</th>
                     <th>Active</th>
                     <th>Action</th>
                 </tr>
@@ -27,7 +26,6 @@
                 <tr>
                     <th>No</th>
                     <th>Username</th>
-                    <th>Nama Lengkap</th>
                     <th>Active</th>
                     <th>Action</th>
                 </tr>
@@ -38,11 +36,10 @@
                     <tr>
                         <td><?= $i++; ?></td>
                         <td><?= $user['username']; ?></td>
-                        <td><?= $user['full_name']; ?></td>
                         <td> <button type="button" class="btn <?= ($user['active'] == 1) ? 'btn-success' : 'btn-warning'; ?> btn-sm small"><?= ($user['active'] == 1) ? 'Active' : 'Disable'; ?></button></td>
                         <td class="text-center">
-                            <a href="/admin/user/detail/<?= $user['username']; ?>" class="btn btn-success btn-sm rounded-pill small">Detail</a>
-                            <a href="/admin/user/edit/<?= $user['username']; ?>" class="btn btn-info btn-sm rounded-pill small">Edit</a>
+                            <a href="/admin/user/detail/<?= $user['id']; ?>" class="btn btn-success btn-sm rounded-pill small">Detail</a>
+                            <a href="/admin/user/edit/<?= $user['id']; ?>" class="btn btn-info btn-sm rounded-pill small">Edit</a>
                             <form action="/admin/user/<?= $user['id']; ?>" method="POST" class="d-inline">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="DELETE">

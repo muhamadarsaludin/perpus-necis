@@ -29,42 +29,16 @@
         <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
             <div class="bg-light py-2 collapse-inner rounded">
                 <a href="/admin/users" class="collapse-item" href="buttons.html">List User</a>
-                <a class="collapse-item" href="/admin/">User Role</a>
-            </div>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAnggota" aria-expanded="true" aria-controls="collapseAnggota">
-            <div class="nav-icon">
-                <i class="fas fa-fw fa-user"></i>
-            </div>
-            <span>Data Anggota</span>
-        </a>
-        <div id="collapseAnggota" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
-            <div class="bg-light py-2 collapse-inner rounded">
-                <a href="/admin/users" class="collapse-item" href="buttons.html">User List</a>
-                <a class="collapse-item" href="buttons.html">User Category</a>
-            </div>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePetugas" aria-expanded="true" aria-controls="collapsePetugas">
-            <div class="nav-icon">
-                <i class="fas fa-fw fa-user"></i>
-            </div>
-            <span>Data Petugas</span>
-        </a>
-        <div id="collapsePetugas" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
-            <div class="bg-light py-2 collapse-inner rounded">
-                <a href="/admin/users" class="collapse-item" href="buttons.html">User List</a>
-                <a class="collapse-item" href="buttons.html">User Category</a>
+                <a class="collapse-item" href="/admin/users/role">User Role</a>
+                <a class="collapse-item" href="/admin/users/role">Data Petugas</a>
+                <a class="collapse-item" href="/admin/users/role">Data Anggota</a>
             </div>
         </div>
     </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBuku" aria-expanded="true" aria-controls="collapseBuku">
             <div class="nav-icon">
-                <i class="fas fa-fw fa-user"></i>
+                <i class="fas fa-fw fa-book"></i>
             </div>
             <span>Data Buku</span>
         </a>
@@ -81,11 +55,56 @@
         Siswa
     </div>
     <li class="nav-item">
-        <a class="nav-link active" href="/">
+        <a class="nav-link" href="/">
             <div class="nav-icon">
                 <i class="fas fa-fw fa-home"></i>
             </div>
             <span>Dashboard</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/">
+            <div class="nav-icon">
+                <i class="fas fa-fw fa-user"></i>
+            </div>
+            <span>Profile Saya</span>
+        </a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBukuUser" aria-expanded="true" aria-controls="collapseBukuUser">
+            <div class="nav-icon">
+                <i class="fas fa-fw fa-book"></i>
+            </div>
+            <span>Data Buku</span>
+        </a>
+        <div id="collapseBukuUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a href="/admin/users" class="collapse-item" href="buttons.html">User List</a>
+                <a class="collapse-item" href="buttons.html">User Category</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransUser" aria-expanded="true" aria-controls="collapseTransUser">
+            <div class="nav-icon">
+                <i class="fas fa-fw fa-clipboard-list"></i>
+            </div>
+            <span>Data Peminjaman</span>
+        </a>
+        <div id="collapseTransUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a href="/admin/users" class="collapse-item" href="buttons.html">User List</a>
+                <a class="collapse-item" href="buttons.html">User Category</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/">
+            <div class="nav-icon">
+                <i class="fas fa-fw fa-id-card"></i>               
+            </div>
+            <span>Kartu Anggota</span>
         </a>
     </li>
     <!-- Sidebar Toggler (Sidebar) -->
