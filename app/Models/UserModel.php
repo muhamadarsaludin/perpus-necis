@@ -10,12 +10,28 @@ class UserModel extends Model
     protected $useTimestamps = true;
     protected $allowedFields = ['username', 'password', 'role_id', 'active'];
 
-    public function getUser($type = 'id', $value = false)
+    public function getUsers()
     {
-        if ($value == false) {
-            return $this->findAll();
-        } else {
-            return $this->where([$type => $value])->first();
-        }
+        $query = "SELECT `u`.`id`,`u`.`username`,`u`.`active`,`ur`.`role` as `role_name`, `up`.`full_name`, `up`.`user_image`, `up`.`gender`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`
+        FROM `users` AS `u`
+        JOIN `users_profile` AS `up`
+        ON `u`.id = `up`.`user_id`
+        JOIN `users_role` AS `ur`
+        ON `u`.`role_id` = `ur`.`id`
+    ";
+    return $this->db->query($query)->getResultArray();    
+    }
+
+    public function getUserBy($id)
+    {
+        $query = "SELECT `u`.`id`,`u`.`username`,`u`.`active`,`ur`.`role` as `role_name`, `up`.`full_name`, `up`.`user_image`, `up`.`gender`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`
+        FROM `users` AS `u`
+        JOIN `users_profile` AS `up`
+        ON `u`.id = `up`.`user_id`
+        JOIN `users_role` AS `ur`
+        ON `u`.`role_id` = `ur`.`id`
+        WHERE `u`.`id` = $id
+        ";
+        return $this->db->query($query)->getRowArray();
     }
 }

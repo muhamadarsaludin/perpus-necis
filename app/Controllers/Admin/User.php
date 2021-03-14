@@ -18,18 +18,21 @@ class User extends BaseController
     {
         $data = [
             'title'  => 'User List | Perpustakaan Necis',
-            'users'  => $this->userModel->getUser(),
+            'users'  => $this->userModel->getUsers(),
         ];
+        // dd($data);
         return view('admin/user/index', $data);
     }
 
-
-
-
-
-
-
-
+    public function profile($id)    
+    {
+        $data = [
+            'title'  => 'Profile | RH Wedding Planner',
+            'user'  => $this->userModel->getUserBy($id),
+        ];
+        // dd($data['user']);
+        return view('admin/user/profile/profile', $data);
+    }
 
 
 

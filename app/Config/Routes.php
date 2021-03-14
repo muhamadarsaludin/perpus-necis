@@ -43,13 +43,8 @@ $routes->group('admin', function ($routes) {
 	// admin/users
 	$routes->group('users', function ($routes) {
 		$routes->add('/', 'Admin\User::index');
+		$routes->add('profile/(:num)', 'Admin\User::profile/$1');
 	});
-
-
-
-
-	
-	$routes->add('vendors', 'Admin\Vendor::index');
 });
 
 $routes->delete('/admin/user/(:num)', 'Admin\User::delete/$1');
