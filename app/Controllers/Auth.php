@@ -33,7 +33,7 @@ class Auth extends BaseController
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
 
-        $user = $this->userModel->getUser('username', $username);
+        $user = $this->userModel->getUserbyUsername($username);
         // dd($user);
         // cek user ada atau tidak
         if ($user) {

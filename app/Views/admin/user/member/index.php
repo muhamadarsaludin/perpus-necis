@@ -4,16 +4,17 @@
 <div class="container-fluid content-frame mb-5">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="content-heading mb-0 text-gray-800">Users</h1>
+        <h1 class="content-heading mb-0 text-gray-800">Data Anggota</h1>
+        <a href="/admin/members/add" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-plus-square mr-1"></i> Tambah Anggota</a>
     </div>
     <div class="table-responsive">
     <table class="table table-bordered" id="dataUsers" width="100%" cellspacing="0">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Role</th>
+                    <th>Nama Lengkap</th>
+                    <th>NIP</th>
+                    <th>Kelas</th>
                     <th>Active</th>
                     <th>Action</th>
                 </tr>
@@ -21,9 +22,9 @@
             <tfoot>
                 <tr>
                     <th>No</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Role</th>
+                    <th>Nama Lengkap</th>
+                    <th>NIP</th>
+                    <th>Kelas</th>
                     <th>Active</th>
                     <th>Action</th>
                 </tr>
@@ -33,9 +34,9 @@
                 <?php foreach ($users as $user) : ?>
                     <tr>
                         <td><?= $i++; ?></td>
-                        <td><?= $user['username']; ?></td>
-                        <td><?= $user['email']; ?></td>
-                        <td><?= $user['role']; ?></td>
+                        <td><?= $user['full_name']; ?></td>
+                        <td><?= $user['nis']; ?></td>
+                        <td><?= $user['class']; ?> <?= $user['rombel']; ?></td>
                         <td> <button type="button" class="btn <?= ($user['active'] == 1) ? 'btn-success' : 'btn-warning'; ?> btn-sm small"><?= ($user['active'] == 1) ? 'Active' : 'Disable'; ?></button></td>
                         <td class="text-center">
                             <a href="/admin/users/profile/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>

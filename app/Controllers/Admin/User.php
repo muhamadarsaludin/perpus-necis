@@ -34,11 +34,15 @@ class User extends BaseController
         return view('admin/user/profile/profile', $data);
     }
 
-
-
-
-
-
+    public function officers()
+    {
+        $data = [
+            'title'  => 'Data Petugas',
+            'users'  => $this->userModel->getUsersOfficer(),
+        ];
+        // dd($data);
+        return view('admin/user/officer/index', $data);
+    }
 
 
     public function detail($username)

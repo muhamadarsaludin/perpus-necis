@@ -45,6 +45,19 @@ $routes->group('admin', function ($routes) {
 		$routes->add('/', 'Admin\User::index');
 		$routes->add('profile/(:num)', 'Admin\User::profile/$1');
 	});
+	// admin/member
+	$routes->group('members', function ($routes) {
+		$routes->add('/', 'Admin\Member::index');
+		$routes->add('add', 'Admin\Member::add');
+	});
+	$routes->group('officers', function ($routes) {
+		$routes->add('/', 'Admin\Officer::index');
+		$routes->add('add', 'Admin\Officer::add');
+	});
+	$routes->group('book', function ($routes) {
+		$routes->add('/', 'Admin\Book::index');
+		$routes->add('add', 'Admin\Book::add');
+	});
 });
 
 $routes->delete('/admin/user/(:num)', 'Admin\User::delete/$1');
