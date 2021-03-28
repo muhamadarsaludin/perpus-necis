@@ -63,7 +63,7 @@ class UserModel extends Model
         ON `u`.`role_id` = `ur`.`id`
         JOIN `officer` AS `o`
         ON `u`.`id` = `o`.`user_id`
-        WHERE `ur`.`role` = 'Admin' OR `ur`.`role` = 'Admin'
+        WHERE `ur`.`role` = 'Admin' OR `ur`.`role` = 'Petugas'
     ";
     return $this->db->query($query)->getResultArray(); 
     }

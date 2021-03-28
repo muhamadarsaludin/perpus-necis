@@ -7,6 +7,14 @@
         <h1 class="content-heading mb-0 text-gray-800">Data Petugas</h1>
         <a href="/admin/officers/add" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-plus-square mr-1"></i> Tambah Petugas</a>
     </div>
+    <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+
+<?php if (session()->getFlashdata('message')) : ?>
+    <div class="alert alert-success" role="alert">
+        <?= session()->getFlashdata('message'); ?>
+    </div>
+<?php endif; ?>
+
     <div class="table-responsive">
     <table class="table table-bordered" id="dataUsers" width="100%" cellspacing="0">
             <thead>

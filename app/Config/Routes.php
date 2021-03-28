@@ -53,6 +53,7 @@ $routes->group('admin', function ($routes) {
 	$routes->group('officers', function ($routes) {
 		$routes->add('/', 'Admin\Officer::index');
 		$routes->add('add', 'Admin\Officer::add');
+		$routes->add('save', 'Admin\Officer::save');
 	});
 	$routes->group('book', function ($routes) {
 		$routes->add('/', 'Admin\Book::index');
