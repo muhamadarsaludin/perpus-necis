@@ -12,7 +12,7 @@ class UserModel extends Model
 
     public function getUsers()
     {
-        $query = "SELECT `u`.`id`,`u`.`username`,`u`.`active`,`ur`.`role`, `up`.`full_name`, `up`.`user_image`, `up`.`sex`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`
+        $query = "SELECT `u`.`id`,`u`.`username`,`u`.`password`,`u`.`active`,`ur`.`role`, `up`.`full_name`, `up`.`user_image`, `up`.`sex`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`
         FROM `users` AS `u`
         JOIN `users_profile` AS `up`
         ON `u`.id = `up`.`user_id`
@@ -24,7 +24,7 @@ class UserModel extends Model
 
     public function getUserBy($id)
     {
-        $query = "SELECT `u`.`id`,`u`.`username`,`u`.`active`,`ur`.`role`, `up`.`full_name`, `up`.`user_image`, `up`.`sex`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`
+        $query = "SELECT `u`.`id`,`u`.`username`,`u`.`password`,`u`.`active`,`ur`.`role`, `up`.`full_name`, `up`.`user_image`, `up`.`sex`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`
         FROM `users` AS `u`
         JOIN `users_profile` AS `up`
         ON `u`.id = `up`.`user_id`

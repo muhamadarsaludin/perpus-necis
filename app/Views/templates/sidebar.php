@@ -29,7 +29,6 @@
         <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
             <div class="bg-light py-2 collapse-inner rounded">
                 <a href="/admin/users" class="collapse-item" href="buttons.html">Data User</a>
-                <a href="/admin/" class="collapse-item">Data Role</a>
                 <a href="/admin/officers" class="collapse-item">Data Petugas</a>
                 <a href="/admin/members" class="collapse-item" href="/admin/users/role">Data Anggota</a>
             </div>

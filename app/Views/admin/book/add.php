@@ -4,105 +4,74 @@
 <div class="container-fluid content-frame mb-5 shadow">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="content-heading mb-0 text-gray-800">Tambah Buku</h1>
+        <h1 class="content-heading mb-0 text-gray-800">Tambah Petugas</h1>
     </div>
-
-    <form action="/admin/users/roles/save" method="post" class="user">
+    <form action="/admin/officers/save" method="post" class="user" enctype="multipart/form-data">
     <?= csrf_field(); ?>
-        <!-- Kode Buku -->
-        <div class="form-group row">
-            <label for="" class="col-sm-2 col-form-label">Judul Buku</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user" id="" name="">
-                <div class="invalid-feedback">
-                    
+    <!-- image -->
+    <div class="form-group row">
+            <label for="image" class="col-sm-2 col-form-label">Image</label>
+            <div class="col-3">
+                <img src="/img/users/profile/default.svg" class="img-thumbnail img-preview w-100" alt="">
+                <div class="custom-file mt-2">
+                    <input type="file" class="custom-file-input <?= ($validation->hasError('image') ? 'is-invalid' : ''); ?>" id="image" name="image" onchange="previewImg()">
+                    <div class="invalid-feedback">
+                        <?= $validation->getError('image'); ?>
+                    </div>
+                    <label class="custom-file-label image-label" for="image">Upload File</label>
                 </div>
             </div>
         </div>
-        <!-- Sampul Buku -->
+        <!-- Title -->
         <div class="form-group row">
-            <label for="role" class="col-sm-2 col-form-label">NIP</label>
+            <label for="title" class="col-sm-2 col-form-label">Judul Buku</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user" id="nip" name="nip">
+                <input type="text" class="form-control form-control-user <?= ($validation->hasError('title') ? 'is-invalid' : ''); ?>" id="title" name="title" value="<?= old('title'); ?>">
                 <div class="invalid-feedback">
-                    
+                <?= $validation->getError('title'); ?>
                 </div>
             </div>
         </div>
-        <!-- Password -->
+        
+        <!-- Author -->
         <div class="form-group row">
-            <label for="role" class="col-sm-2 col-form-label">Password</label>
+            <label for="author" class="col-sm-2 col-form-label">Author</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control form-control-user" id="password" name="password">
+                <input type="text" class="form-control form-control-user <?= ($validation->hasError('author') ? 'is-invalid' : ''); ?>" id="author" name="author" value="<?= old('author'); ?>">
                 <div class="invalid-feedback">
-                    
+                <?= $validation->getError('author'); ?>
                 </div>
             </div>
         </div>
-        <!-- Email -->
+        <!-- publisher -->
         <div class="form-group row">
-            <label for="role" class="col-sm-2 col-form-label">Email</label>
+            <label for="publisher" class="col-sm-2 col-form-label">Publisher</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user" id="email" name="email">
+                <input type="text" class="form-control form-control-user <?= ($validation->hasError('publisher') ? 'is-invalid' : ''); ?>" id="publisher" name="publisher" value="<?= old('publisher'); ?>">
                 <div class="invalid-feedback">
-                    
+                <?= $validation->getError('publisher'); ?>
                 </div>
             </div>
         </div>
-        <!-- Status Petugas -->
+        
+        <!-- year -->
         <div class="form-group row">
-            <label for="role" class="col-sm-2 col-form-label">Status Petugas</label>
+            <label for="year" class="col-sm-2 col-form-label">Tahun Terbit</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user" id="officer_status" name="officer_status">
+                <input type="year" class="form-control form-control-user <?= ($validation->hasError('year') ? 'is-invalid' : ''); ?>" id="year" name="year" value="<?= old('year'); ?>">
                 <div class="invalid-feedback">
-                    
-                </div>
-            </div>
-        </div>
-        <!-- Tempat Lahir -->
-        <div class="form-group row">
-            <label for="role" class="col-sm-2 col-form-label">Tempat Lahir</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user" id="tempat_lahir" name="tempat_lahir">
-                <div class="invalid-feedback">
-                    
-                </div>
-            </div>
-        </div>
-        <!-- Tanggal Lahir -->
-        <div class="form-group row">
-            <label for="role" class="col-sm-2 col-form-label">Tanggal Lahir</label>
-            <div class="col-sm-10">
-                <input type="date" class="form-control form-control-user" id="tanggal_lahir" name="tanggal_lahir">
-                <div class="invalid-feedback">
-                    
+                <?= $validation->getError('year'); ?>
                 </div>
             </div>
         </div>  
-        <!-- Jenis Kelamin -->
+        <!-- price -->
         <div class="form-group row">
-            <label for="role" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+            <label for="price" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
-                <select class="custom-select">
-                    <option selected>Jenis Kelamin</option>
-                    <option value="1">Laki-Laki</option>
-                    <option value="2">Perempuan</option>
-                </select>
+                <input type="text" class="form-control form-control-user <?= ($validation->hasError('price') ? 'is-invalid' : ''); ?>" id="price" name="price" value="<?= old('price'); ?>">
                 <div class="invalid-feedback">
-                    
+                <?= $validation->getError('price'); ?>
                 </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="description" class="col-sm-2 col-form-label">Alamat</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" id="alamat" name="alamat" rows="4"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="custom-control custom-checkbox small">
-                <input type="checkbox" class="custom-control-input" id="active" name="active" checked >
-                <label class="custom-control-label" for="active">Active?</label>
             </div>
         </div>
         <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>

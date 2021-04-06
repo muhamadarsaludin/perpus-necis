@@ -49,11 +49,16 @@ $routes->group('admin', function ($routes) {
 	$routes->group('members', function ($routes) {
 		$routes->add('/', 'Admin\Member::index');
 		$routes->add('add', 'Admin\Member::add');
+		$routes->add('save', 'Admin\Member::save');
+		$routes->add('edit/(:num)', 'Admin\Member::edit/$1');
+		$routes->add('update', 'Admin\Member::update');
 	});
 	$routes->group('officers', function ($routes) {
 		$routes->add('/', 'Admin\Officer::index');
 		$routes->add('add', 'Admin\Officer::add');
 		$routes->add('save', 'Admin\Officer::save');
+		$routes->add('edit/(:num)', 'Admin\Officer::edit/$1');
+		$routes->add('update', 'Admin\Officer::update');
 	});
 	$routes->group('book', function ($routes) {
 		$routes->add('/', 'Admin\Book::index');
@@ -61,8 +66,8 @@ $routes->group('admin', function ($routes) {
 	});
 });
 
-$routes->delete('/admin/user/(:num)', 'Admin\User::delete/$1');
-
+// $routes->delete('/admin/user/(:num)', 'Admin\User::delete/$1');
+$routes->delete('/officer/(:num)', 'Admin\Officer::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

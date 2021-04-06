@@ -32,23 +32,26 @@
                 </tr>
             </tfoot>
             <tbody>
+            <?php $i=1; ?>
+            <?php foreach($books as $book): ?>
                 <tr>
-                    <td>1</td>
-                    <td><img src="/img/logo.png" alt="" class="w-100"></td>
-                    <td>Negeri 5 Menara</td>
-                    <td>Novel</td>
-                    <td>Cetak</td>
-                    <td>Andrea Hirata</td>
+                    <td><?= $i++; ?></td>
+                    <td><img src="/img/books/<?= $book['book_cover']; ?>" alt="" class="w-100"></td>
+                    <td><?= $book['book_title']; ?></td>
+                    <td><?= $book['category']; ?></td>
+                    <td><?= $book['type']; ?></td>
+                    <td><?= $book['author']; ?></td>
                     <td class="text-center">
-                        <a href="/admin/vendors/detail/" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
-                        <a href="/admin/vendors/edit/" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
-                        <form action="/admin/vendors/" method="POST" class="d-inline form-delete">
+                        <a href="/admin/book/detail/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
+                        <a href="/admin/book/edit/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
+                        <form action="/admin/book/" method="POST" class="d-inline form-delete">
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class="btn btn-action btn-sm small mb-1 btn-delete"><span class="d-lg-none fa fa-trash"></span><span class="d-sm-none d-lg-inline">Delete</span></span></button>
                         </form>
                     </td>
                 </tr>
+            <?php endforeach; ?>    
             </tbody>
         </table>
     </div>

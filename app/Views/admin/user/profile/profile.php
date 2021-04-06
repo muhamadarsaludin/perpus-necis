@@ -5,29 +5,15 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="content-heading mb-0 text-gray-800">User Profile</h1>
     </div>
-    <div class="row">
-        <div class="col-3">
-            <ul class="navbar-nav bg-white sidebar accordion border-right pt-4 no-toggled" id="accordionSidebar">
-                <li class="nav-item">
-                    <a class="nav-link active"  href="/admin/users/profile/<?= $user['id']; ?>">
-                        <div class="nav-icon">
-                            <i class="fas fa-fw fa-user"></i>
-                        </div>
-                        <span>Profile</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/users/vendor/<?= $user['id']; ?>">
-                        <div class="nav-icon">
-                            <i class="fas fa-fw fa-store"></i>
-                        </div>
-                        <span class="">Vendor</span>
-                    </a>
-                </li>
+    <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
 
-            </ul>
+    <?php if (session()->getFlashdata('message')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashdata('message'); ?>
         </div>
-        <div class="col pt-4">
+    <?php endif; ?>
+    <div class="row">
+        <div class="col-12">
         <form>
             <div class="row mb-5 align-items-center">
                 <div class="col-2">
@@ -36,7 +22,6 @@
                 <div class="col">
                     <h4 class="font-weight-bold mb-1"><?= $user['full_name']; ?></h4>
                     <p><?= $user['email']; ?></p>
-                    <span class="badge badge-geyser p-2"><?= $user['role_name']; ?></span>
                 </div>
             </div>
             <div class="row">

@@ -7,6 +7,13 @@
         <h1 class="content-heading mb-0 text-gray-800">Data Anggota</h1>
         <a href="/admin/members/add" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-plus-square mr-1"></i> Tambah Anggota</a>
     </div>
+    <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+
+    <?php if (session()->getFlashdata('message')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashdata('message'); ?>
+        </div>
+    <?php endif; ?>
     <div class="table-responsive">
     <table class="table table-bordered" id="dataUsers" width="100%" cellspacing="0">
             <thead>
@@ -40,7 +47,7 @@
                         <td> <button type="button" class="btn <?= ($user['active'] == 1) ? 'btn-success' : 'btn-warning'; ?> btn-sm small"><?= ($user['active'] == 1) ? 'Active' : 'Disable'; ?></button></td>
                         <td class="text-center">
                             <a href="/admin/users/profile/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
-                            <a href="/admin/users/edit/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
+                            <a href="/admin/members/edit/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
                             <form action="/user/<?= $user['id']; ?>" method="POST" class="d-inline form-delete">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="DELETE">

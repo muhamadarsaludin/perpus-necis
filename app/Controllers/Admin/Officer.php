@@ -30,7 +30,6 @@ class Officer extends BaseController
             'title'  => 'Data Petugas',
             'users'  => $this->userModel->getUsersOfficer(),
         ];
-        // dd($data);
         return view('admin/user/officer/index', $data);
     }
 
@@ -105,6 +104,101 @@ class Officer extends BaseController
         session()->setFlashdata('message', 'Petugas baru berhasil ditambahkan');
         return redirect()->to('/admin/officers/');
     }
+ 
+    public function edit($id)
+    {
+        $data = [
+            'officer' => $this->userModel->getUserBy($id),
+            'title'  => 'Ubah Petugas',
+            'role' => $this->userRoleModel->getWhere(['role' => 'Petugas'])->getRowArray(),
+            'validation' => \Config\Services::validation(),
+        ];
+        // dd($data);
+        return view('admin/user/officer/edit', $data);
+    }
 
+    public function update()
+    {
+        $oldUsername = $this->request->getVar('old_username');
+        $nip = $this->request->getVar('nip');
+        $userId = $this->request->getVar('user_id');
 
+        if($oldUsername == $nip){
+            $nipRules = 'required';
+        }else{
+            $nipRules = 'required|is_unique[users.username]';
+        }
+        if (!$this->validate([
+            'full_name' => 'required',
+            'nip' => $nipRules,
+            'email' => 'required|valid_email',
+            'kontak' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required'
+        ])) {
+            return redirect()->to('/admin/officers/edit/' . $userId )->withInput();
+        }
+        
+        $image = $this->request->getFile('image');
+        if ($image->getError() == 4) {
+            $imageName = $this->request->getFile('old-image');
+        } else {   
+            // pindahkan file 
+            $image->move('img/users/profile');
+            $imageName = $image->getName();
+            // hapus file lama
+            $oldImage = $this->request->getVar('old_image');
+            if($oldImage != 'default.svg'){
+                unlink('img/users/profile/' . $oldImage);
+            }
+        }
+        $passwordHash = $this->request->getVar('old_password');
+        $password = $this->request->getVar('password');
+        if($password == ''){
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        }
+        $this->userModel->save([
+            'id' => $userId,
+            'username' => $this->request->getVar('nip'),
+            'password' => $passwordHash,            
+            'active' => 1,
+        ]);
+        $profile = $this->userProfileModel->getWhere(['user_id' => $userId])->getRowArray();
+        $this->userProfileModel->save([
+            'id' => $profile['id'],
+            'user_id' => $userId,
+            'full_name' => $this->request->getVar('full_name'),
+            'user_image' => $imageName,
+            'sex' => $this->request->getVar('jenis_kelamin'),
+            'place_of_birth' => $this->request->getVar('tempat_lahir'),
+            'date_of_birth' => $this->request->getVar('tanggal_lahir'),
+            'contact' => $this->request->getVar('kontak'),
+            'email' => $this->request->getVar('email'),
+            'address' => $this->request->getVar('alamat'),
+        ]);
+        $officer =$this->officerModel->getWhere(['user_id' => $userId])->getRowArray();
+        $this->officerModel->save([
+            'id' => $officer['id'],
+            'user_id' => $userId,
+            'nip' => $this->request->getVar('nip'),
+            'officer_status' => $this->request->getVar('officer_status'),
+        ]);
+        
+        session()->setFlashdata('message', 'Data Petugas berhasil diedit');
+        return redirect()->to('/admin/users/profile/'.$userId);
+    }
+
+    public function delete($id)
+    {
+        $profile = $this->userProfileModel->getWhere(['user_id' => $id])->getRowArray();
+        if($profile['user_image'] != 'default.svg'){
+            unlink('img/users/profile/' . $profile['user_image']);
+        }
+         // cari role berdasarkan id
+         $this->userModel->delete($id);
+         session()->setFlashdata('message', 'Petugas berhasil dihapus!');
+         return redirect()->to('/admin/officers');
+    }
 }

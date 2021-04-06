@@ -4,20 +4,24 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use App\Models\BookDataModel;
 
 class Book extends BaseController
 {
     protected $userModel;
+    protected $bookDataModel;
     // protected $db;
     public function __construct()
     {
         $this->userModel = new UserModel();
+        $this->bookDataModel = new BookDataModel();
     }
 
     public function index()
     {
         $data = [
             'title'  => 'Data Buku',
+            'books'  => $this->bookDataModel->getBooksData(),
             'users'  => $this->userModel->getUsersMember(),
         ];
         // dd($data);
