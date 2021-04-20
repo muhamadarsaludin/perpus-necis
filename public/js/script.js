@@ -41,3 +41,17 @@ $(".btn-delete").on("click", function (e) {
     }
   });
 });
+
+function previewPdf() {
+  const uploadFile = document.querySelector("#upload");
+  const labelUpload = document.querySelector(".pdf-label");
+  const previewPdf = document.querySelector(".preview-pdf");
+  previewPdf.classList.remove("d-none");
+  labelUpload.textContent = uploadFile.files[0].name;
+  const content = new FileReader();
+  content.readAsDataURL(uploadFile.files[0]);
+
+  content.onload = function (e) {
+    previewPdf.src = e.target.result;
+  };
+}

@@ -31,7 +31,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Auth::login');
 $routes->get('/login', 'Auth::login');
 $routes->get('/register', 'Auth::register');
 
@@ -63,11 +63,43 @@ $routes->group('admin', function ($routes) {
 	$routes->group('book', function ($routes) {
 		$routes->add('/', 'Admin\Book::index');
 		$routes->add('add', 'Admin\Book::add');
+		$routes->add('save', 'Admin\Book::save');
+		$routes->add('detail/(:num)', 'Admin\Book::detail/$1');
+		$routes->add('edit/(:num)', 'Admin\Book::edit/$1');
+		$routes->add('update', 'Admin\Book::update');
+	});
+	$routes->group('ebook', function ($routes) {
+		$routes->add('/', 'Admin\Ebook::index');
+		$routes->add('add', 'Admin\Ebook::add');
+		$routes->add('save', 'Admin\Ebook::save');
+		$routes->add('detail/(:num)', 'Admin\Ebook::detail/$1');
+		$routes->add('edit/(:num)', 'Admin\Ebook::edit/$1');
+		$routes->add('update', 'Admin\Ebook::update');
 	});
 });
 
+$routes->group('user', function ($routes) {
+	$routes->add('/', 'User\Dashboard::index');
+	$routes->group('book', function ($routes) {
+		$routes->add('/', 'User\Book::index');
+		$routes->add('detail/(:num)', 'User\Book::detail/$1');
+	});
+	$routes->group('ebook', function ($routes) {
+		$routes->add('/', 'User\Ebook::index');
+		$routes->add('detail/(:num)', 'User\Ebook::detail/$1');
+	});
+
+	$routes->group('request', function ($routes) {
+		$routes->add('', 'User\request::index');
+		$routes->add('save', 'User\request::save');
+	});
+});
+
+
 // $routes->delete('/admin/user/(:num)', 'Admin\User::delete/$1');
 $routes->delete('/officer/(:num)', 'Admin\Officer::delete/$1');
+$routes->delete('/book/(:num)', 'Admin\Book::delete/$1');
+$routes->delete('/ebook/(:num)', 'Admin\Ebook::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

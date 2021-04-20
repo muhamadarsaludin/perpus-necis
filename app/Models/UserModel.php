@@ -22,7 +22,7 @@ class UserModel extends Model
     return $this->db->query($query)->getResultArray();    
     }
 
-    public function getUserBy($id)
+    public function getUserById($id)
     {
         $query = "SELECT `u`.`id`,`u`.`username`,`u`.`password`,`u`.`active`,`ur`.`role`, `up`.`full_name`, `up`.`user_image`, `up`.`sex`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`
         FROM `users` AS `u`

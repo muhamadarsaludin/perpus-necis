@@ -4,9 +4,9 @@
 <div class="container-fluid content-frame mb-5 shadow">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="content-heading mb-0 text-gray-800">Tambah Buku</h1>
+        <h1 class="content-heading mb-0 text-gray-800">Tambah Ebook</h1>
     </div>
-    <form action="/admin/book/save" method="post" class="user" enctype="multipart/form-data">
+    <form action="/admin/ebook/save" method="post" class="user" enctype="multipart/form-data">
     <?= csrf_field(); ?>
     <!-- image -->
     <div class="form-group row">
@@ -80,24 +80,22 @@
                 </div>
             </div>
         </div>
-        <!-- jumlah buku -->
-        <div class="form-group row">
-            <label for="jumlah_buku" class="col-sm-2 col-form-label">Banyak Buku</label>
+       <!-- pdf -->
+       <div class="form-group row">
+            <label for="upload" class="col-sm-2 col-form-label text-white">Upload File</label>
+
             <div class="col-sm-10">
-                <input type="jumlah_buku" class="form-control form-control-user <?= ($validation->hasError('jumlah_buku') ? 'is-invalid' : ''); ?>" id="jumlah_buku" name="jumlah_buku" value="<?= old('jumlah_buku'); ?>">
-                <div class="invalid-feedback">
-                <?= $validation->getError('jumlah_buku'); ?>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input <?= ($validation->hasError('upload') ? 'is-invalid' : ''); ?>" id="upload" name="upload" onchange="previewPdf()">
+                    <div class="invalid-feedback">
+                        <?= $validation->getError('upload'); ?>
+                    </div>
+                    <label class="custom-file-label pdf-label" for="upload">Upload File</label>
                 </div>
-            </div>
-        </div>  
-        <!-- price -->
-        <div class="form-group row">
-            <label for="price" class="col-sm-2 col-form-label">Price</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user <?= ($validation->hasError('price') ? 'is-invalid' : ''); ?>" id="price" name="price" value="<?= old('price'); ?>">
                 <div class="invalid-feedback">
-                <?= $validation->getError('price'); ?>
+                    <?= $validation->getError('upload'); ?>
                 </div>
+                <iframe src="" height="300" class="mt-2 w-100 d-none preview-pdf" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" frameborder="0"></iframe>
             </div>
         </div>
         <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>

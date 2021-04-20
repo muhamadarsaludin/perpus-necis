@@ -43,34 +43,32 @@
         </a>
         <div id="collapseBuku" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
             <div class="bg-light py-2 collapse-inner rounded">
-                <a href="/admin/book" class="collapse-item" href="buttons.html">Data Buku</a>
+                <a href="/admin/book" class="collapse-item" href="buttons.html">Daftar Buku</a>
+                <a href="/admin/ebook" class="collapse-item" href="buttons.html">Daftar eBook</a>
                 <a class="collapse-item" href="buttons.html">Kategori Buku</a>
-                <a class="collapse-item" href="buttons.html">Tipe Buku</a>
             </div>
         </div>
     </li>
-
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/request">
+            <div class="nav-icon">
+                <i class="fas fa-fw fa-comment-alt"></i>               
+            </div>
+            <span>Request Buku</span>
+        </a>
+    </li>
     <!-- Heading -->
     <div class="sidebar-heading">
         Siswa
     </div>
     <li class="nav-item">
-        <a class="nav-link" href="/">
+        <a class="nav-link" href="/user">
             <div class="nav-icon">
                 <i class="fas fa-fw fa-home"></i>
             </div>
             <span>Dashboard</span>
         </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/">
-            <div class="nav-icon">
-                <i class="fas fa-fw fa-user"></i>
-            </div>
-            <span>Profile Saya</span>
-        </a>
-    </li>
-    
+    </li>    
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBukuUser" aria-expanded="true" aria-controls="collapseBukuUser">
             <div class="nav-icon">
@@ -80,8 +78,8 @@
         </a>
         <div id="collapseBukuUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
             <div class="bg-light py-2 collapse-inner rounded">
-                <a href="/admin/users" class="collapse-item" href="buttons.html">User List</a>
-                <a class="collapse-item" href="buttons.html">User Category</a>
+                <a href="/user/book" class="collapse-item" href="buttons.html">Daftar Buku</a>
+                <a href="/user/ebook" class="collapse-item" href="buttons.html">Daftar eBook</a>
             </div>
         </div>
     </li>
@@ -94,7 +92,7 @@
         </a>
         <div id="collapseTransUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
             <div class="bg-light py-2 collapse-inner rounded">
-                <a href="/admin/users" class="collapse-item" href="buttons.html">User List</a>
+                <a href="" class="collapse-item" >User List</a>
                 <a class="collapse-item" href="buttons.html">User Category</a>
             </div>
         </div>
@@ -105,6 +103,14 @@
                 <i class="fas fa-fw fa-id-card"></i>               
             </div>
             <span>Kartu Anggota</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/user/request">
+            <div class="nav-icon">
+                <i class="fas fa-fw fa-comment-alt"></i>               
+            </div>
+            <span>Request Buku</span>
         </a>
     </li>
     <!-- Sidebar Toggler (Sidebar) -->

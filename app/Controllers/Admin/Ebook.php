@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Controllers\Admin;
+
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\BookDataModel;
 use App\Models\BooksModel;
 use App\Models\CategoryModel;
 
-class Book extends BaseController
+class Ebook extends BaseController
 {
     protected $userModel;
     protected $bookDataModel;
@@ -25,22 +26,22 @@ class Book extends BaseController
     public function index()
     {
         $data = [
-            'title'  => 'Daftar Buku',
-            'books'  => $this->bookDataModel->getBooksData(),
+            'title'  => 'Daftar Ebook',
+            'books'  => $this->bookDataModel->getEbooksData(),
         ];
         // dd($data);
-        return view('admin/book/index', $data);
+        return view('admin/ebook/index', $data);
     }
     
     public function add()
     {
         $data = [
-            'title'  => 'Tambah Buku',
+            'title'  => 'Tambah Ebook',
             'category' => $this->categoryModel->get()->getResultArray(),
             'validation' => \Config\Services::validation(),
         ];
         // dd($data);
-        return view('admin/book/add', $data);   
+        return view('admin/ebook/add', $data);   
     }
 
     public function save()
@@ -50,11 +51,16 @@ class Book extends BaseController
             'author' => 'required',
             'publisher' => 'required',
             'year' => 'required',
-            'jumlah_buku' => 'required|integer',
-            'price' => 'required',
             'category' => 'required',
+            'upload' => [
+                'rules'  => 'uploaded[upload]|max_size[upload,30240]|ext_in[upload,pdf]',
+                'errors' => [
+                    'ext_in' => "Extension must pdf",
+
+                ]
+            ]
         ])) {
-            return redirect()->to('/admin/book/add')->withInput();
+            return redirect()->to('/admin/ebook/add')->withInput();
         }
 
         $image = $this->request->getFile('image');
@@ -65,40 +71,33 @@ class Book extends BaseController
             $image->move('img/books');
             $imageName = $image->getName();
         }
+        $file = $this->request->getFile('upload');
+        // dd($file);
+        $file->move('ebook');
+        $fileName = $file->getName();
 
         $this->bookDataModel->save([
             'book_title' => $this->request->getVar('title'),
             'book_cover' => $imageName,
             'book_category_id' => $this->request->getVar('category'),
-            'book_type_id' => 1,
+            'book_type_id' => 2,
             'author' => $this->request->getVar('author'),
             'publisher' => $this->request->getVar('publisher'),
             'publication_year' => $this->request->getVar('year'),
-            'price' => $this->request->getVar('price'),
+            'file_name' => $fileName,
         ]);
         
-        $book = $this->bookDataModel->getWhere(['book_title' => $this->request->getVar('title')])->getRowArray();
-        $jumlahBuku = $this->request->getVar('jumlah_buku');
-        for ($i=0; $i < $jumlahBuku; $i++) { 
-            $code = strtoupper(uniqid('BK-'));
-            $this->booksModel->save([
-                'book_data_id' => $book['id'],
-                'book_code'  => $code,
-                'quality' => 'Baik'
-            ]);
-        }
-        session()->setFlashdata('message', 'Buku berhasil ditambahkan');
-        return redirect()->to('/admin/book/');
+        session()->setFlashdata('message', 'Ebook berhasil ditambahkan');
+        return redirect()->to('/admin/ebook/');
     }
     public function detail($id)
     {
         $data = [
             'title'  => 'Detail Buku',
             'bookData'  => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
-            'books'  => $this->booksModel->getWhere(['book_data_id' => $id])->getResultArray(),
         ];
         // dd($data);
-        return view('admin/book/detail', $data);
+        return view('admin/ebook/detail', $data);
     }
 
     public function edit($id)
@@ -109,7 +108,7 @@ class Book extends BaseController
             'category' => $this->categoryModel->get()->getResultArray(),
             'validation' => \Config\Services::validation(),
         ];
-        return view('admin/book/edit', $data);
+        return view('admin/ebook/edit', $data);
     }
 
     public function update()
@@ -127,10 +126,16 @@ class Book extends BaseController
             'author' => 'required',
             'publisher' => 'required',
             'year' => 'required',
-            'price' => 'required',
             'category' => 'required',
+            'upload' => [
+                'rules'  => 'max_size[upload,30240]|ext_in[upload,pdf]',
+                'errors' => [
+                    'ext_in' => "Extension must pdf",
+
+                ]
+            ]
         ])) {
-            return redirect()->to('/admin/book/edit/' . $id )->withInput();
+            return redirect()->to('/admin/ebook/edit/' . $id )->withInput();
         }
 
         $image = $this->request->getFile('image');
@@ -146,20 +151,33 @@ class Book extends BaseController
                 unlink('img/books/' . $oldImage);
             }
         }
+        $file = $this->request->getFile('upload');
+        if ($file->getError() == 4) {
+            $fileName = $this->request->getVar('old_file');
+        } else {   
+            // pindahkan file 
+            $file->move('ebook');
+            $fileName = $file->getName();
+            // hapus file lama
+            $oldFile = $this->request->getVar('old_file');
+            if($oldFile != 'default.png'){
+                unlink('ebook/' . $oldFile);
+            }
+        }
         $this->bookDataModel->save([
             'id' => $id,
             'book_title' => $this->request->getVar('title'),
             'book_cover' => $imageName,
             'book_category_id' => $this->request->getVar('category'),
-            'book_type_id' => 1,
+            'book_type_id' => 2,
             'author' => $this->request->getVar('author'),
             'publisher' => $this->request->getVar('publisher'),
             'publication_year' => $this->request->getVar('year'),
-            'price' => $this->request->getVar('price'),
+            'file_name' => $fileName,
         ]);   
 
-        session()->setFlashdata('message', 'Data buku berhasil diedit');
-        return redirect()->to('/admin/book');
+        session()->setFlashdata('message', 'Data ebook berhasil diedit');
+        return redirect()->to('/admin/ebook');
     }
 
     public function delete($id)
@@ -168,9 +186,10 @@ class Book extends BaseController
         if($book['book_cover'] != 'default.png'){
             unlink('img/books/' . $book['book_cover']);
         }
+        unlink('ebook/' . $book['file_name']);
         $this->bookDataModel->delete($id);
-        session()->setFlashdata('message', 'Data buku berhasil dihapus!');
-        return redirect()->to('/admin/book');
+        session()->setFlashdata('message', 'Data ebuku berhasil dihapus!');
+        return redirect()->to('/admin/ebook');
         
     }
 }

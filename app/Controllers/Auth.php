@@ -33,7 +33,7 @@ class Auth extends BaseController
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
 
-        $user = $this->userModel->getUserbyUsername($username);
+        $user = $this->userModel->getWhere(['username' => $username])->getRowArray();
         // dd($user);
         // cek user ada atau tidak
         if ($user) {
@@ -42,8 +42,10 @@ class Auth extends BaseController
             if (password_verify($password, $user['password'])) {
                 // jika username dan password benar
                 $data = [
+                    'user' => $this->userModel->getUserById($user['id']),
                     'username' => $user['username'],
-                    'role_id' => $user['role_id']
+                    'role_id' => $user['role_id'],
+                    'logged_in'     => TRUE
                 ];
                 session()->set($data);
                 return redirect()->to('/admin');
@@ -55,5 +57,12 @@ class Auth extends BaseController
             session()->setFlashdata('message', 'User tidak ditemukan!');
             return redirect()->to('/auth');
         }
+    }
+
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return redirect()->to('/login');
     }
 }

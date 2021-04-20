@@ -6,13 +6,17 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="content-heading mb-0 text-gray-800">Tambah Buku</h1>
     </div>
-    <form action="/admin/book/save" method="post" class="user" enctype="multipart/form-data">
+    <form action="/admin/ebook/update" method="post" class="user" enctype="multipart/form-data">
     <?= csrf_field(); ?>
+    <input type="hidden" name='book_id' value='<?= $book['id']; ?>'>
+    <input type="hidden" name='old_book_cover' value='<?= $book['book_cover']; ?>'>
+    <input type="hidden" name='old_file' value='<?= $book['file_name']; ?>'>
+    <input type="hidden" name='old_book_title' value='<?= $book['book_title']; ?>'>
     <!-- image -->
     <div class="form-group row">
             <label for="image" class="col-sm-2 col-form-label">Image</label>
             <div class="col-3">
-                <img src="/img/books/default.png" class="img-thumbnail img-preview w-100" alt="">
+                <img src="/img/books/<?= $book['book_cover']; ?>" class="img-thumbnail img-preview w-100" alt="">
                 <div class="custom-file mt-2">
                     <input type="file" class="custom-file-input <?= ($validation->hasError('image') ? 'is-invalid' : ''); ?>" id="image" name="image" onchange="previewImg()">
                     <div class="invalid-feedback">
@@ -26,7 +30,7 @@
         <div class="form-group row">
             <label for="title" class="col-sm-2 col-form-label">Judul Buku</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user <?= ($validation->hasError('title') ? 'is-invalid' : ''); ?>" id="title" name="title" value="<?= old('title'); ?>">
+                <input type="text" class="form-control form-control-user <?= ($validation->hasError('title') ? 'is-invalid' : ''); ?>" id="title" name="title" value="<?= (old('title'))? old('title'):$book['book_title']; ?>">
                 <div class="invalid-feedback">
                 <?= $validation->getError('title'); ?>
                 </div>
@@ -37,7 +41,7 @@
         <div class="form-group row">
             <label for="author" class="col-sm-2 col-form-label">Author</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user <?= ($validation->hasError('author') ? 'is-invalid' : ''); ?>" id="author" name="author" value="<?= old('author'); ?>">
+                <input type="text" class="form-control form-control-user <?= ($validation->hasError('author') ? 'is-invalid' : ''); ?>" id="author" name="author" value="<?= (old('author'))? old('author'):$book['author']; ?>">
                 <div class="invalid-feedback">
                 <?= $validation->getError('author'); ?>
                 </div>
@@ -47,7 +51,7 @@
         <div class="form-group row">
             <label for="publisher" class="col-sm-2 col-form-label">Publisher</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user <?= ($validation->hasError('publisher') ? 'is-invalid' : ''); ?>" id="publisher" name="publisher" value="<?= old('publisher'); ?>">
+                <input type="text" class="form-control form-control-user <?= ($validation->hasError('publisher') ? 'is-invalid' : ''); ?>" id="publisher" name="publisher" value="<?= (old('publisher'))? old('publisher'):$book['publisher']; ?>">
                 <div class="invalid-feedback">
                 <?= $validation->getError('publisher'); ?>
                 </div>
@@ -58,7 +62,7 @@
         <div class="form-group row">
             <label for="year" class="col-sm-2 col-form-label">Tahun Terbit</label>
             <div class="col-sm-10">
-                <input type="year" class="form-control form-control-user <?= ($validation->hasError('year') ? 'is-invalid' : ''); ?>" id="year" name="year" value="<?= old('year'); ?>">
+                <input type="year" class="form-control form-control-user <?= ($validation->hasError('year') ? 'is-invalid' : ''); ?>" id="year" name="year" value="<?= (old('year'))? old('year'):$book['publication_year']; ?>">
                 <div class="invalid-feedback">
                 <?= $validation->getError('year'); ?>
                 </div>
@@ -69,9 +73,8 @@
             <label for="category" class="col-sm-2 col-form-label">Kategori Buku</label>
             <div class="col-sm-10">
                 <select class="custom-select <?= ($validation->hasError('category') ? 'is-invalid' : ''); ?>" name="category">
-                    <option>Pilih Kategori</option>
                     <?php foreach($category as $c) : ?>
-                    <option value="<?= $c['id']; ?>"><?= $c['category']; ?></option>
+                    <option value="<?= $c['id']; ?>" <?= ($c['id']==$book['book_category_id'])?'selected':''; ?>><?= $c['category']; ?></option>
                     <?php endforeach; ?>
                     
                 </select>
@@ -80,24 +83,24 @@
                 </div>
             </div>
         </div>
-        <!-- jumlah buku -->
-        <div class="form-group row">
-            <label for="jumlah_buku" class="col-sm-2 col-form-label">Banyak Buku</label>
+       <!-- pdf -->
+       <div class="form-group row">
+            <label for="upload" class="col-sm-2 col-form-label text-white">Upload File</label>
+
             <div class="col-sm-10">
-                <input type="jumlah_buku" class="form-control form-control-user <?= ($validation->hasError('jumlah_buku') ? 'is-invalid' : ''); ?>" id="jumlah_buku" name="jumlah_buku" value="<?= old('jumlah_buku'); ?>">
-                <div class="invalid-feedback">
-                <?= $validation->getError('jumlah_buku'); ?>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input <?= ($validation->hasError('upload') ? 'is-invalid' : ''); ?>" id="upload" name="upload" onchange="previewPdf()">
+                    <div class="invalid-feedback">
+                        <?= $validation->getError('upload'); ?>
+                    </div>
+                    <label class="custom-file-label pdf-label" for="upload"><?= $book['file_name']; ?></label>
                 </div>
-            </div>
-        </div>  
-        <!-- price -->
-        <div class="form-group row">
-            <label for="price" class="col-sm-2 col-form-label">Price</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user <?= ($validation->hasError('price') ? 'is-invalid' : ''); ?>" id="price" name="price" value="<?= old('price'); ?>">
                 <div class="invalid-feedback">
-                <?= $validation->getError('price'); ?>
+                    <?= $validation->getError('upload'); ?>
                 </div>
+
+
+                <iframe src="/ebook/<?= $book['file_name']; ?>" height="300" class="mt-2 w-100 preview-pdf" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" frameborder="0"></iframe>
             </div>
         </div>
         <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>

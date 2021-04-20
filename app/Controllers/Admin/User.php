@@ -27,8 +27,8 @@ class User extends BaseController
     public function profile($id)    
     {
         $data = [
-            'title'  => 'Profile | RH Wedding Planner',
-            'user'  => $this->userModel->getUserBy($id),
+            'title'  => 'Profile',
+            'user'  => $this->userModel->getUserById($id),
         ];
         // dd($data['user']);
         return view('admin/user/profile/profile', $data);

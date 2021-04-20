@@ -121,7 +121,7 @@ class Member extends BaseController
     public function edit($id)
     {
         $data = [
-            'member' => $this->userModel->getUserBy($id),
+            'member' => $this->userModel->getUserById($id),
             'memberInfo' => $this->memberModel->getWhere(['user_id' => $id])->getRowArray(),
             'class' => $this->classModel->get()->getResultArray(),
             'rombel' => $this->rombelModel->get()->getResultArray(),

@@ -108,7 +108,7 @@ class Officer extends BaseController
     public function edit($id)
     {
         $data = [
-            'officer' => $this->userModel->getUserBy($id),
+            'officer' => $this->userModel->getUserById($id),
             'title'  => 'Ubah Petugas',
             'role' => $this->userRoleModel->getWhere(['role' => 'Petugas'])->getRowArray(),
             'validation' => \Config\Services::validation(),
