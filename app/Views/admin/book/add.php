@@ -80,16 +80,7 @@
                 </div>
             </div>
         </div>
-        <!-- jumlah buku -->
-        <div class="form-group row">
-            <label for="jumlah_buku" class="col-sm-2 col-form-label">Banyak Buku</label>
-            <div class="col-sm-10">
-                <input type="jumlah_buku" class="form-control form-control-user <?= ($validation->hasError('jumlah_buku') ? 'is-invalid' : ''); ?>" id="jumlah_buku" name="jumlah_buku" value="<?= old('jumlah_buku'); ?>">
-                <div class="invalid-feedback">
-                <?= $validation->getError('jumlah_buku'); ?>
-                </div>
-            </div>
-        </div>  
+
         <!-- price -->
         <div class="form-group row">
             <label for="price" class="col-sm-2 col-form-label">Price</label>

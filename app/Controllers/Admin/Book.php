@@ -35,7 +35,7 @@ class Book extends BaseController
     public function add()
     {
         $data = [
-            'title'  => 'Tambah Buku',
+            'title'  => 'Tambah Data Buku',
             'category' => $this->categoryModel->get()->getResultArray(),
             'validation' => \Config\Services::validation(),
         ];
@@ -50,7 +50,6 @@ class Book extends BaseController
             'author' => 'required',
             'publisher' => 'required',
             'year' => 'required',
-            'jumlah_buku' => 'required|integer',
             'price' => 'required',
             'category' => 'required',
         ])) {
@@ -78,22 +77,14 @@ class Book extends BaseController
         ]);
         
         $book = $this->bookDataModel->getWhere(['book_title' => $this->request->getVar('title')])->getRowArray();
-        $jumlahBuku = $this->request->getVar('jumlah_buku');
-        for ($i=0; $i < $jumlahBuku; $i++) { 
-            $code = strtoupper(substr(uniqid('BK-'),0,10));
-            $this->booksModel->save([
-                'book_data_id' => $book['id'],
-                'book_code'  => $code,
-                'quality' => 'Baik'
-            ]);
-        }
+       
         session()->setFlashdata('message', 'Buku berhasil ditambahkan');
-        return redirect()->to('/admin/book/');
+        return redirect()->to('/admin/book/detail/'. $book['id']);
     }
     public function detail($id)
     {
         $data = [
-            'title'  => 'Detail Buku',
+            'title'  => 'Detail Data Buku',
             'bookData'  => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
             'books'  => $this->booksModel->getWhere(['book_data_id' => $id])->getResultArray(),
         ];
@@ -170,7 +161,48 @@ class Book extends BaseController
         }
         $this->bookDataModel->delete($id);
         session()->setFlashdata('message', 'Data buku berhasil dihapus!');
-        return redirect()->to('/admin/book');
-        
+        return redirect()->to('/admin/book');  
+    }
+
+    public function addItem($id)
+    {
+        $data = [
+            'title'  => 'Tambah Buku',
+            'bookData'  => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
+            'validation' => \Config\Services::validation(),
+        ];
+        // dd($data);
+        return view('admin/book/item/add', $data);  
+    }
+
+    public function saveItem()
+    {
+        $bookDataId = $this->request->getVar('book_data_id');
+        if (!$this->validate([
+            'book_amount' => 'required|integer|greater_than[0]',
+            'source' => 'required',
+            'quality' => 'required',
+        ])) {
+            return redirect()->to('/admin/book/item/add/' . $bookDataId )->withInput();
+        }
+        $bookAmount = $this->request->getVar('book_amount');
+        for ($i=0; $i < $bookAmount ; $i++) { 
+            $this->booksModel->save([
+                'book_data_id' => $bookDataId,
+                'book_code' => strtoupper(substr(uniqid('BK-'),-10)),
+                'source_book' => $this->request->getVar('source'),
+                'quality' => $this->request->getVar('quality'),
+            ]);
+        }
+        session()->setFlashdata('message', 'Item buku berhasil ditambahkan!');
+        return redirect()->to('/admin/book/detail/'. $bookDataId);  
+    }
+    public function deleteItem($id)
+    {
+        $book = $this->booksModel->getWhere(['id'=> $id])->getRowArray();
+        $bookData = $this->bookDataModel->getWhere(['id' => $book['book_data_id']])->getRowArray();
+        $this->booksModel->delete($id);
+        session()->setFlashdata('message', 'Item buku berhasil dihapus!');
+        return redirect()->to('/admin/book/detail/'. $bookData['id']);  
     }
 }

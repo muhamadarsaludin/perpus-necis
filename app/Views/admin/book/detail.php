@@ -1,8 +1,9 @@
 <?= $this->extend('templates/admin'); ?>
 
 <?= $this->section('content'); ?>
-<div class="row">
-    <div class="col-md-2">
+
+<div class="row mb-3">
+    <div class="col-md-3">
         <img src="/img/books/<?= $bookData['book_cover']; ?>" alt="" height="200px">
     </div>
     <div class="col-md-6">
@@ -28,8 +29,16 @@
         <a href="/book" class="btn btn-secondary">Back</a>
     </div>
 </div>
+
+<div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+
+<?php if (session()->getFlashdata('message')) : ?>
+    <div class="alert alert-success" role="alert">
+        <?= session()->getFlashdata('message'); ?>
+    </div>
+<?php endif; ?>
     <div class="d-flex">
-        <a href="/admin/book/add" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon ml-auto my-3"><i class="fas fa-plus-square mr-1"></i>Tambah Buku</a>
+        <a href="/admin/book/item/add/<?= $bookData['id']; ?>" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon ml-auto my-3"><i class="fas fa-plus-square mr-1"></i>Tambah Buku</a>
     </div>
     <div class="table-responsive">
         <table class="table table-bordered td-align-middle" id="dataVendors" width="100%" cellspacing="0">
@@ -37,7 +46,9 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Buku</th>
+                    <th>Sumber</th>
                     <th>kualitas</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -45,7 +56,9 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Buku</th>
+                    <th>Sumber</th>
                     <th>kualitas</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </tfoot>
@@ -55,11 +68,18 @@
                 <tr>
                     <td><?= $i++; ?></td>
                     <td><?= $book['book_code']; ?></td>
+                    <td><?= $book['source_book']; ?></td>
                     <td><?= $book['quality']; ?></td>
+                    <?php if($book['can_borrow'] == 1){
+                        $color = "success";
+                    } else{
+                        $color = "danger";
+                    }
+                    ?>
+                    <td><span class="badge badge-<?= $color; ?>"><?= ($book['can_borrow']==1?'Dapat Dipinjam':"Tidak Dapat Dipinjam"); ?></span></td>
                     <td class="text-center">
-                        <a href="/admin/book/detail/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
-                        <a href="/admin/book/edit/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
-                        <form action="/admin/book/" method="POST" class="d-inline form-delete">
+                        <a href="/admin/book/item/edit/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
+                        <form action="/book/item/<?= $book['id']; ?>" method="POST" class="d-inline form-delete">
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class="btn btn-action btn-sm small mb-1 btn-delete"><span class="d-lg-none fa fa-trash"></span><span class="d-sm-none d-lg-inline">Delete</span></span></button>

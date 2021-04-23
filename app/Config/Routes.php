@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Auth::login');
 $routes->get('/login', 'Auth::login');
 $routes->get('/register', 'Auth::register');
+$routes->get('/logout', 'Auth::logout');
 
 
 
@@ -67,6 +68,10 @@ $routes->group('admin', function ($routes) {
 		$routes->add('detail/(:num)', 'Admin\Book::detail/$1');
 		$routes->add('edit/(:num)', 'Admin\Book::edit/$1');
 		$routes->add('update', 'Admin\Book::update');
+		$routes->group('item', function ($routes) {
+			$routes->add('add/(:num)', 'Admin\Book::addItem/$1');
+			$routes->add('save', 'Admin\Book::saveItem');
+		});
 	});
 	$routes->group('ebook', function ($routes) {
 		$routes->add('/', 'Admin\Ebook::index');
@@ -111,6 +116,7 @@ $routes->group('user', function ($routes) {
 $routes->delete('/officer/(:num)', 'Admin\Officer::delete/$1');
 $routes->delete('/member/(:num)', 'Admin\Member::delete/$1');
 $routes->delete('/book/(:num)', 'Admin\Book::delete/$1');
+$routes->delete('/book/item/(:num)', 'Admin\Book::deleteItem/$1');
 $routes->delete('/ebook/(:num)', 'Admin\Ebook::delete/$1');
 /*
  * --------------------------------------------------------------------
