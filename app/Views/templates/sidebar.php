@@ -50,11 +50,33 @@
         </div>
     </li>
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKelas" aria-expanded="true" aria-controls="collapseKelas">
+            <div class="nav-icon">
+                <i class="fas fa-fw fa-school"></i>
+            </div>
+            <span>Data Kelas</span>
+        </a>
+        <div id="collapseKelas" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+            <div class="bg-light py-2 collapse-inner rounded">
+                <a href="/admin/kelas" class="collapse-item" href="buttons.html">Data Kelas</a>
+                <a href="/admin/rombel" class="collapse-item" href="buttons.html">Data Rombel</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="/admin/request">
             <div class="nav-icon">
                 <i class="fas fa-fw fa-comment-alt"></i>               
             </div>
             <span>Request Buku</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/borrowing">
+            <div class="nav-icon">
+                <i class="fas fa-fw fa-cash-register"></i>               
+            </div>
+            <span>Peminjaman</span>
         </a>
     </li>
     <!-- Heading -->

@@ -209,6 +209,19 @@ class Member extends BaseController
         return redirect()->to('/admin/users/profile/'.$userId);
     }
 
+    public function delete($id)
+    {
+        $profile = $this->userProfileModel->getWhere(['user_id' => $id])->getRowArray();
+        if($profile['user_image'] != 'default.svg'){
+            unlink('img/users/profile/' . $profile['user_image']);
+        }
+        // cari role berdasarkan id
+        $this->userModel->delete($id);
+        session()->setFlashdata('message', 'Petugas berhasil dihapus!');
+        return redirect()->to('/admin/members');
+
+    }
+
 
 
 }

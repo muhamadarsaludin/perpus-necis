@@ -20,7 +20,6 @@
                                             <img src="/img/logo.png" alt="SMP Negeri 1 Cisayong" class="mb-4" width="80px">
                                             <h4 class="font-weight-bold">PERPUSTAKAAN</h4>
                                             <h5 class="font-weight-bold">SMP NEGERI 1 CISAYONG</h5>
-                                            <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
                                             <?php if (session()->getFlashdata('message')) : ?>
                                                 <div class="alert alert-danger text-left" role="alert">
                                                     <?= session()->getFlashdata('message'); ?>
@@ -30,15 +29,15 @@
                                         <form action="/auth/login" method="post" class="user">
                                             <?= csrf_field() ?>
                                             <div class="form-group">
-                                                <input type="username" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="username" placeholder="Username">
+                                                <input type="username" class="form-control form-control-user <?= ($validation->hasError('username') ? 'is-invalid' : ''); ?>" name="username" placeholder="Username">
                                                 <div class="invalid-feedback">
-                                                    <?= session('errors.login') ?>
+                                                 <?= $validation->getError('username'); ?>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" name="password" placeholder="Password">
+                                                <input type="password" class="form-control form-control-user <?= ($validation->hasError('password') ? 'is-invalid' : ''); ?>" name="password" placeholder="Password">
                                                 <div class="invalid-feedback">
-                                                    <?= session('errors.password') ?>
+                                                <?= $validation->getError('password'); ?>
                                                 </div>
                                             </div>
 

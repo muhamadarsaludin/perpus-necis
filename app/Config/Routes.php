@@ -76,6 +76,17 @@ $routes->group('admin', function ($routes) {
 		$routes->add('edit/(:num)', 'Admin\Ebook::edit/$1');
 		$routes->add('update', 'Admin\Ebook::update');
 	});
+
+	$routes->group('kelas', function ($routes) {
+		$routes->add('/', 'Admin\Kelas::index');
+	});
+	$routes->group('rombel', function ($routes) {
+		$routes->add('/', 'Admin\Rombel::index');
+	});
+	$routes->group('borrowing', function ($routes) {
+		$routes->add('/', 'Admin\Borrowing::index');
+		$routes->add('detail/(:any)', 'Admin\Borrowing::detail/$1');
+	});
 });
 
 $routes->group('user', function ($routes) {
@@ -98,6 +109,7 @@ $routes->group('user', function ($routes) {
 
 // $routes->delete('/admin/user/(:num)', 'Admin\User::delete/$1');
 $routes->delete('/officer/(:num)', 'Admin\Officer::delete/$1');
+$routes->delete('/member/(:num)', 'Admin\Member::delete/$1');
 $routes->delete('/book/(:num)', 'Admin\Book::delete/$1');
 $routes->delete('/ebook/(:num)', 'Admin\Ebook::delete/$1');
 /*

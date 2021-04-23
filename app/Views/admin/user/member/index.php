@@ -48,7 +48,7 @@
                         <td class="text-center">
                             <a href="/admin/users/profile/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
                             <a href="/admin/members/edit/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
-                            <form action="/user/<?= $user['id']; ?>" method="POST" class="d-inline form-delete">
+                            <form action="/member/<?= $user['id']; ?>" method="POST" class="d-inline form-delete">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-action btn-sm small mb-1 btn-delete"><span class="d-lg-none fa fa-trash"></span><span class="d-sm-none d-lg-inline">Delete</span></span></button>

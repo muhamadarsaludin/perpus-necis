@@ -4,7 +4,7 @@
 <div class="container-fluid content-frame mb-5 shadow">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="content-heading mb-0 text-gray-800">Tambah Buku</h1>
+        <h1 class="content-heading mb-0 text-gray-800">Request Buku</h1>
     </div>
     <form action="/user/request/save" method="post" class="user">
     <?= csrf_field(); ?>

@@ -80,7 +80,7 @@ class Book extends BaseController
         $book = $this->bookDataModel->getWhere(['book_title' => $this->request->getVar('title')])->getRowArray();
         $jumlahBuku = $this->request->getVar('jumlah_buku');
         for ($i=0; $i < $jumlahBuku; $i++) { 
-            $code = strtoupper(uniqid('BK-'));
+            $code = strtoupper(substr(uniqid('BK-'),0,10));
             $this->booksModel->save([
                 'book_data_id' => $book['id'],
                 'book_code'  => $code,

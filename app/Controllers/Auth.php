@@ -14,7 +14,8 @@ class Auth extends BaseController
     public function index()
     {
         $data = [
-            'title' => "Login | Perpus SMPN 1 Cisayong"
+            'title' => "Login | Perpus SMPN 1 Cisayong",
+            'validation' => \Config\Services::validation(),
         ];
         return view('auth/login', $data);
     }
