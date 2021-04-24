@@ -6,6 +6,7 @@ use App\Models\UserModel;
 use App\Models\BookDataModel;
 use App\Models\BooksModel;
 use App\Models\CategoryModel;
+use App\Models\TransDetailModel;
 
 class Book extends BaseController
 {
@@ -13,6 +14,7 @@ class Book extends BaseController
     protected $bookDataModel;
     protected $booksModel;
     protected $categoryModel;
+    protected $transDetailModel;
     // protected $db;
     public function __construct()
     {
@@ -20,6 +22,7 @@ class Book extends BaseController
         $this->bookDataModel = new BookDataModel();
         $this->booksModel = new BooksModel();
         $this->categoryModel = new CategoryModel();
+        $this->transDetailModel = new TransDetailModel();
     }
 
     public function index()
@@ -86,7 +89,7 @@ class Book extends BaseController
         $data = [
             'title'  => 'Detail Data Buku',
             'bookData'  => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
-            'books'  => $this->booksModel->getWhere(['book_data_id' => $id])->getResultArray(),
+            'books'  => $this->booksModel->getBookByBookDataId($id),
         ];
         // dd($data);
         return view('admin/book/detail', $data);
@@ -201,8 +204,46 @@ class Book extends BaseController
     {
         $book = $this->booksModel->getWhere(['id'=> $id])->getRowArray();
         $bookData = $this->bookDataModel->getWhere(['id' => $book['book_data_id']])->getRowArray();
+        $borrowing = $this->transDetailModel->getWhere(['book_id' => $id, 'status'=> 'Dipinjam']);
+        if($borrowing){
+            session()->setFlashdata('failed', 'Item buku sedang dipinjam (Tidak dapat dihapus)');
+            return redirect()->to('/admin/book/detail/'. $bookData['id']);  
+        }
         $this->booksModel->delete($id);
         session()->setFlashdata('message', 'Item buku berhasil dihapus!');
         return redirect()->to('/admin/book/detail/'. $bookData['id']);  
+    }
+
+    public function editItem($id)
+    {
+        $data = [
+            'title'  => 'Tambah Buku',
+            'book' => $this->booksModel->getWhere(['id' => $id])->getRowArray(),
+            'validation' => \Config\Services::validation(),
+        ];
+        $data['bookData'] = $this->bookDataModel->getWhere(['id' => $data['book']['book_data_id']])->getRowArray();
+        // dd($data);
+        return view('admin/book/item/edit', $data); 
+    }
+
+    public function updateItem()
+    {
+        $bookDataId = $this->request->getVar('book_data_id');
+        $bookId = $this->request->getVar('id');
+        if (!$this->validate([
+            'source' => 'required',
+            'quality' => 'required',
+        ])) {
+            return redirect()->to('/admin/book/item/edit/' . $bookId )->withInput();
+        }
+        $this->booksModel->save([
+            'id' => $bookId,
+            'source_book' => $this->request->getVar('source'),
+            'quality' => $this->request->getVar('quality'),
+            'can_borrow' => $this->request->getVar('can_borrow')
+        ]);
+        session()->setFlashdata('message', 'Item buku berhasil diedit!');
+        return redirect()->to('/admin/book/detail/'. $bookDataId);  
+
     }
 }

@@ -42,6 +42,17 @@ $(".btn-delete").on("click", function (e) {
   });
 });
 
+$(".check-can-borrow").on("click", () => {
+  console.log("ok");
+  if ($(".check-can-borrow").val() == "1") {
+    $(".check-can-borrow").val("0");
+    console.log($(".check-can-borrow").val());
+  } else {
+    $(".check-can-borrow").val("1");
+    console.log($(".check-can-borrow").val());
+  }
+});
+
 function previewPdf() {
   const uploadFile = document.querySelector("#upload");
   const labelUpload = document.querySelector(".pdf-label");

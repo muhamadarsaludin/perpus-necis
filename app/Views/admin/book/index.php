@@ -24,6 +24,8 @@
                     <th>Kategori</th>
                     <th>Tipe</th>
                     <th>Penulis</th>
+                    <th>Banyak Buku</th>
+                    <th>Tersedia</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -35,6 +37,8 @@
                     <th>Kategori</th>
                     <th>Tipe</th>
                     <th>Penulis</th>
+                    <th>Banyak Buku</th>
+                    <th>Tersedia</th>
                     <th>Action</th>
                 </tr>
             </tfoot>
@@ -48,6 +52,8 @@
                     <td><?= $book['category']; ?></td>
                     <td><?= $book['type']; ?></td>
                     <td><?= $book['author']; ?></td>
+                    <td><?= $book['amount']; ?> Buku</td>
+                    <td><?= $book['amount_borrowing']; ?> Buku</td>
                     <td class="text-center">
                         <a href="/admin/book/detail/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
                         <a href="/admin/book/edit/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>

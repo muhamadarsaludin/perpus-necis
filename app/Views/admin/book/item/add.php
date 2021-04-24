@@ -32,7 +32,7 @@
             </table>
         </div>
     </div>
-    <form action="/admin/book/item/save" method="post" class="user" enctype="multipart/form-data">
+    <form action="/admin/book/item/save" method="post" class="user">
     <?= csrf_field(); ?>
         <input type="hidden" name="book_data_id" value="<?= $bookData['id']; ?>">
         <!-- book amount -->
@@ -72,7 +72,10 @@
         </div>
 
         <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>
-        <a href="/admin/book" class="btn btn-secondary btn-user btn-sm">Cancel</a>
+        <a href="/admin/book/detail/<?= $bookData['id']; ?>" class="btn btn-secondary btn-user btn-sm">Cancel</a>
     </form>
 </div>
 <?= $this->endSection(); ?>
+
+
+

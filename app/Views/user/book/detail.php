@@ -51,20 +51,16 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Buku</th>
-                    <th>Sumber</th>
                     <th>kualitas</th>
                     <th>Status</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>No</th>
                     <th>Kode Buku</th>
-                    <th>Sumber</th>
                     <th>kualitas</th>
                     <th>Status</th>
-                    <th>Action</th>
                 </tr>
             </tfoot>
             <tbody>
@@ -73,9 +69,7 @@
                 <tr>
                     <td><?= $i++; ?></td>
                     <td><?= $book['book_code']; ?></td>
-                    <td><?= $book['source_book']; ?></td>
                     <td><?= $book['quality']; ?></td>
-                    
                     <?php
                     if($book['borrowing']){
                         $status ='<span class="badge badge-primary">Dipinjam</span>';
@@ -88,14 +82,6 @@
                     }
                     ?>
                     <td><?= $status; ?></td>
-                    <td class="text-center">
-                        <a href="/admin/book/item/edit/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
-                        <form action="/book/item/<?= $book['id']; ?>" method="POST" class="d-inline form-delete">
-                            <?= csrf_field(); ?>
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-action btn-sm small mb-1 btn-delete"><span class="d-lg-none fa fa-trash"></span><span class="d-sm-none d-lg-inline">Delete</span></span></button>
-                        </form>
-                    </td>
                 </tr>
             <?php endforeach; ?>    
             </tbody>

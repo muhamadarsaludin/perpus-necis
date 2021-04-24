@@ -29,7 +29,19 @@ class Book extends BaseController
             'title'  => 'Daftar Buku',
             'books'  => $this->bookDataModel->getBooksData(),
         ];
+        // dd($data);
         return view('user/book/index', $data);
+    }
+
+    public function detail($id)
+    {
+        $data = [
+            'title'  => 'Detail Buku',
+            'bookData'  => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
+            'books'  => $this->booksModel->getBookByBookDataId($id),
+        ];
+        // dd($data);
+        return view('user/book/detail', $data);
     }
 
 

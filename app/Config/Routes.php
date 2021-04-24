@@ -71,6 +71,8 @@ $routes->group('admin', function ($routes) {
 		$routes->group('item', function ($routes) {
 			$routes->add('add/(:num)', 'Admin\Book::addItem/$1');
 			$routes->add('save', 'Admin\Book::saveItem');
+			$routes->add('edit/(:num)', 'Admin\Book::editItem/$1');
+			$routes->add('update', 'Admin\Book::updateItem');
 		});
 	});
 	$routes->group('ebook', function ($routes) {
