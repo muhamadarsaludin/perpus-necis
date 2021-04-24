@@ -11,7 +11,7 @@ $userData = $session->get('user');
     </a>
 
 
-    <?php if($userData['role'] == 'Admin'): ?>
+    <?php if($userData['role'] != 'Anggota'): ?>
     <!-- Heading -->
     <div class="sidebar-heading">
         Admin

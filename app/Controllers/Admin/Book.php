@@ -197,7 +197,7 @@ class Book extends BaseController
         for ($i=0; $i < $bookAmount ; $i++) { 
             $this->booksModel->save([
                 'book_data_id' => $bookDataId,
-                'book_code' => strtoupper(substr(uniqid('BK-'),-10)),
+                'book_code' => strtoupper(substr(uniqid('BK-'),0,10)),
                 'source_book' => $this->request->getVar('source'),
                 'quality' => $this->request->getVar('quality'),
             ]);
@@ -209,7 +209,7 @@ class Book extends BaseController
     {
         $book = $this->booksModel->getWhere(['id'=> $id])->getRowArray();
         $bookData = $this->bookDataModel->getWhere(['id' => $book['book_data_id']])->getRowArray();
-        $borrowing = $this->transDetailModel->getWhere(['book_id' => $id, 'status'=> 'Dipinjam']);
+        $borrowing = $this->transDetailModel->getWhere(['book_id' => $id, 'status'=> 'Dipinjam'])->getRowArray();
         if($borrowing){
             session()->setFlashdata('failed', 'Item buku sedang dipinjam (Tidak dapat dihapus)');
             return redirect()->to('/admin/book/detail/'. $bookData['id']);  

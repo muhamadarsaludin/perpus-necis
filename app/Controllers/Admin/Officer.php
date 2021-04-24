@@ -7,6 +7,7 @@ use App\Models\UserModel;
 use App\Models\UserRoleModel;
 use App\Models\UserProfileModel;
 use App\Models\OfficerModel;
+use App\Models\TransactionModel;
 
 class Officer extends BaseController
 {
@@ -14,6 +15,7 @@ class Officer extends BaseController
     protected $userRoleModel;
     protected $userProfileModel;
     protected $officerModel;
+    protected $transactionModel;
 
 
     public function __construct()
@@ -22,6 +24,7 @@ class Officer extends BaseController
         $this->userRoleModel = new UserRoleModel();
         $this->userProfileModel = new UserProfileModel();
         $this->officerModel = new OfficerModel();
+        $this->transactionModel = new TransactionModel();
     }
 
     public function index()
@@ -29,8 +32,10 @@ class Officer extends BaseController
         $data = [
             'title'  => 'Data Petugas',
             'users'  => $this->userModel->getUsersOfficer(),
+            'userData' => session()->get('user'),
             'menuActive' => 'admin user'
         ];
+        // dd($data);
         return view('admin/user/officer/index', $data);
     }
 
@@ -38,8 +43,8 @@ class Officer extends BaseController
     {
         $data = [
             'title'  => 'Tambah Petugas',
-            'role' => $this->userRoleModel->getWhere(['role' => 'Petugas'])->getRowArray(),
             'validation' => \Config\Services::validation(),
+            'roles' => $this->userRoleModel->getWhere(['role !=' => "Anggota"])->getResultArray(),
             'menuActive' => 'admin user'
         ];
         return view('admin/user/officer/add', $data);   
@@ -54,6 +59,7 @@ class Officer extends BaseController
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
+            'role' => 'required',
             'alamat' => 'required'
         ])) {
             return redirect()->to('/admin/officers/add')->withInput();
@@ -77,7 +83,7 @@ class Officer extends BaseController
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     // input tabel user
         $this->userModel->save([
-            'role_id' => $this->request->getVar('role_id'),
+            'role_id' => $this->request->getVar('role'),
             'username' => $this->request->getVar('nip'),
             'password' => $passwordHash,            
             'active' => 1,
@@ -103,6 +109,10 @@ class Officer extends BaseController
             'nip' => $this->request->getVar('nip'),
             'officer_status' => $this->request->getVar('officer_status'),
         ]);
+        $this->transactionModel->save([
+            'user_id' => $user['id'],
+            'transaction_code' =>strtoupper(substr(uniqid('TRA-'),0,12))
+        ]);
         session()->setFlashdata('message', 'Petugas baru berhasil ditambahkan');
         return redirect()->to('/admin/officers/');
     }
@@ -112,7 +122,7 @@ class Officer extends BaseController
         $data = [
             'officer' => $this->userModel->getUserById($id),
             'title'  => 'Ubah Petugas',
-            'role' => $this->userRoleModel->getWhere(['role' => 'Petugas'])->getRowArray(),
+            'roles' => $this->userRoleModel->getWhere(['role !=' => "Anggota"])->getResultArray(),
             'validation' => \Config\Services::validation(),
             'menuActive' => 'admin user'
         ];
@@ -139,6 +149,7 @@ class Officer extends BaseController
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
+            'role' => 'required',
             'alamat' => 'required'
         ])) {
             return redirect()->to('/admin/officers/edit/' . $userId )->withInput();
@@ -162,10 +173,13 @@ class Officer extends BaseController
         if($password == ''){
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         }
+
+        // dd($this->request->getVar('role'));
         $this->userModel->save([
             'id' => $userId,
             'username' => $this->request->getVar('nip'),
-            'password' => $passwordHash,            
+            'password' => $passwordHash, 
+            'role_id' => $this->request->getVar('role'),           
             'active' => 1,
         ]);
         $profile = $this->userProfileModel->getWhere(['user_id' => $userId])->getRowArray();

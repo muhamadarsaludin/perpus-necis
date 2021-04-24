@@ -8,7 +8,6 @@
     </div>
     <form action="/admin/officers/save" method="post" class="user" enctype="multipart/form-data">
     <?= csrf_field(); ?>
-    <input type="hidden" name="role_id" value="<?= $role['id']; ?>">
     <!-- image -->
     <div class="form-group row">
             <label for="image" class="col-sm-2 col-form-label">Image</label>
@@ -71,6 +70,21 @@
                 <input type="email" class="form-control form-control-user <?= ($validation->hasError('email') ? 'is-invalid' : ''); ?>" id="email" name="email" value="<?= old('email'); ?>">
                 <div class="invalid-feedback">
                 <?= $validation->getError('email'); ?>
+                </div>
+            </div>
+        </div>
+        <!-- role Petugas -->
+        <div class="form-group row">
+            <label for="role" class="col-sm-2 col-form-label">Role Petugas</label>
+            <div class="col-sm-10">
+                <select class="custom-select <?= ($validation->hasError('role') ? 'is-invalid' : ''); ?>" name="role">
+                    <option selected>Pilih Role</option>
+                    <?php foreach ($roles as $role) : ?>
+                    <option value="<?= $role['id']; ?>"><?= $role['role']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="invalid-feedback">
+                <?= $validation->getError('role'); ?>
                 </div>
             </div>
         </div>

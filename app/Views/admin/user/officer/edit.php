@@ -77,6 +77,20 @@
                 </div>
             </div>
         </div>
+        <!-- Role -->
+        <div class="form-group row">
+            <label for="role" class="col-sm-2 col-form-label">Role Petugas</label>
+            <div class="col-sm-10">
+                <select class="custom-select <?= ($validation->hasError('role') ? 'is-invalid' : ''); ?>" name="role">
+                <?php foreach($roles as $role) :?>
+                    <option value="<?= $role['id']; ?>" <?= ($role['role'] == $officer['role'])?'selected':''; ?>><?= $role['role']; ?></option>
+                <?php endforeach; ?>
+                </select>
+                <div class="invalid-feedback">
+                <?= $validation->getError('role'); ?>
+                </div>
+            </div>
+        </div>
         <!-- Status Petugas -->
         <div class="form-group row">
             <label for="officer_status" class="col-sm-2 col-form-label">Status Petugas</label>

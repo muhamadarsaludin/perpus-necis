@@ -9,6 +9,7 @@ use App\Models\RombelModel;
 use App\Models\UserRoleModel;
 use App\Models\UserProfileModel;
 use App\Models\MemberModel;
+use App\Models\TransactionModel;
 
 class Member extends BaseController
 {
@@ -18,6 +19,7 @@ class Member extends BaseController
     protected $userRoleModel;
     protected $userProfileModel;
     protected $memberModel;
+    protected $transactionModel;
     // protected $db;
     public function __construct()
     {
@@ -27,6 +29,7 @@ class Member extends BaseController
         $this->userRoleModel = new UserRoleModel();
         $this->userProfileModel = new UserProfileModel();
         $this->memberModel = new MemberModel();
+        $this->transactionModel = new TransactionModel();
     }
 
     public function index()
@@ -85,6 +88,8 @@ class Member extends BaseController
             $password = $this->request->getVar('nis');
         }
 
+        // dd($password);
+
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     // input tabel user
         $this->userModel->save([
@@ -114,6 +119,10 @@ class Member extends BaseController
             'nis' => $this->request->getVar('nis'),
             'class_id' => $this->request->getVar('class'),
             'rombel_id' => $this->request->getVar('rombel'),
+        ]);
+        $this->transactionModel->save([
+            'user_id' => $user['id'],
+            'transaction_code' => strtoupper(substr(uniqid('TRA-'),0,12)),
         ]);
         session()->setFlashdata('message', 'Anggota baru berhasil ditambahkan');
         return redirect()->to('/admin/members/');

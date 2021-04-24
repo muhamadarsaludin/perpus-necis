@@ -49,7 +49,12 @@ class Auth extends BaseController
                     'logged_in'     => TRUE
                 ];
                 session()->set($data);
-                return redirect()->to('/admin');
+                if($data['user']['role'] == "Admin" ||$data['user']['role'] == "Petugas"){
+                    return redirect()->to('/admin');
+                }else{
+                    return redirect()->to('/user');
+                }
+               
             } else {
                 session()->setFlashdata('message', 'Password Salah!');
                 return redirect()->to('/auth');

@@ -5,7 +5,9 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="content-heading mb-0 text-gray-800">Data Petugas</h1>
+        <?php if($userData['role'] == "Admin") : ?>
         <a href="/admin/officers/add" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-plus-square mr-1"></i> Tambah Petugas</a>
+        <?php endif; ?>
     </div>
     <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
 
@@ -48,12 +50,14 @@
                         <td> <button type="button" class="btn <?= ($user['active'] == 1) ? 'btn-success' : 'btn-warning'; ?> btn-sm small"><?= ($user['active'] == 1) ? 'Active' : 'Disable'; ?></button></td>
                         <td class="text-center">
                             <a href="/admin/users/profile/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
+                            <?php if($userData['role'] == "Admin") : ?>
                             <a href="/admin/officers/edit/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
                             <form action="/officer/<?= $user['id']; ?>" method="POST" class="d-inline form-delete">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-action btn-sm small mb-1 btn-delete"><span class="d-lg-none fa fa-trash"></span><span class="d-sm-none d-lg-inline">Delete</span></span></button>
                             </form>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
