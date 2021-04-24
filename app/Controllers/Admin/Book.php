@@ -30,6 +30,7 @@ class Book extends BaseController
         $data = [
             'title'  => 'Daftar Buku',
             'books'  => $this->bookDataModel->getBooksData(),
+            'menuActive' => 'admin book'
         ];
         // dd($data);
         return view('admin/book/index', $data);
@@ -41,6 +42,7 @@ class Book extends BaseController
             'title'  => 'Tambah Data Buku',
             'category' => $this->categoryModel->get()->getResultArray(),
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'admin book'
         ];
         // dd($data);
         return view('admin/book/add', $data);   
@@ -90,6 +92,7 @@ class Book extends BaseController
             'title'  => 'Detail Data Buku',
             'bookData'  => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
             'books'  => $this->booksModel->getBookByBookDataId($id),
+            'menuActive' => 'admin book'
         ];
         // dd($data);
         return view('admin/book/detail', $data);
@@ -102,6 +105,7 @@ class Book extends BaseController
             'book' => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
             'category' => $this->categoryModel->get()->getResultArray(),
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'admin book'
         ];
         return view('admin/book/edit', $data);
     }
@@ -173,6 +177,7 @@ class Book extends BaseController
             'title'  => 'Tambah Buku',
             'bookData'  => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'admin book'
         ];
         // dd($data);
         return view('admin/book/item/add', $data);  
@@ -220,6 +225,7 @@ class Book extends BaseController
             'title'  => 'Tambah Buku',
             'book' => $this->booksModel->getWhere(['id' => $id])->getRowArray(),
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'admin book'
         ];
         $data['bookData'] = $this->bookDataModel->getWhere(['id' => $data['book']['book_data_id']])->getRowArray();
         // dd($data);

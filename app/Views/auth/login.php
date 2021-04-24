@@ -34,7 +34,8 @@
                                                  <?= $validation->getError('username'); ?>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group password-wrapper">
+                                                <i class="visible fas fa-eye-slash"></i>
                                                 <input type="password" class="form-control form-control-user <?= ($validation->hasError('password') ? 'is-invalid' : ''); ?>" name="password" placeholder="Password">
                                                 <div class="invalid-feedback">
                                                 <?= $validation->getError('password'); ?>

@@ -28,6 +28,7 @@ class Ebook extends BaseController
         $data = [
             'title'  => 'Daftar Ebook',
             'books'  => $this->bookDataModel->getEbooksData(),
+            'menuActive' => 'admin book'
         ];
         // dd($data);
         return view('admin/ebook/index', $data);
@@ -39,6 +40,7 @@ class Ebook extends BaseController
             'title'  => 'Tambah Ebook',
             'category' => $this->categoryModel->get()->getResultArray(),
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'admin book'
         ];
         // dd($data);
         return view('admin/ebook/add', $data);   
@@ -95,6 +97,7 @@ class Ebook extends BaseController
         $data = [
             'title'  => 'Detail Buku',
             'bookData'  => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
+            'menuActive' => 'admin book'
         ];
         // dd($data);
         return view('admin/ebook/detail', $data);
@@ -107,6 +110,7 @@ class Ebook extends BaseController
             'book' => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
             'category' => $this->categoryModel->get()->getResultArray(),
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'admin book'
         ];
         return view('admin/ebook/edit', $data);
     }

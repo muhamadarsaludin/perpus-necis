@@ -34,6 +34,7 @@ class Member extends BaseController
         $data = [
             'title'  => 'Data Anggota',
             'users'  => $this->userModel->getUsersMember(),
+            'menuActive' => 'admin user'
         ];
         // dd($data);
         return view('admin/user/member/index', $data);
@@ -47,6 +48,7 @@ class Member extends BaseController
             'class' => $this->classModel->get()->getResultArray(),
             'rombel' => $this->rombelModel->get()->getResultArray(),
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'admin user'
         ];
         return view('admin/user/member/add', $data);   
     }
@@ -127,6 +129,7 @@ class Member extends BaseController
             'rombel' => $this->rombelModel->get()->getResultArray(),
             'title'  => 'Ubah Anggota',
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'admin user'
         ];
         // dd($data);
         return view('admin/user/member/edit', $data);

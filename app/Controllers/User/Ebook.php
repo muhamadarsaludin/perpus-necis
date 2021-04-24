@@ -28,6 +28,7 @@ class Ebook extends BaseController
         $data = [
             'title'  => 'Daftar Ebook',
             'books'  => $this->bookDataModel->getEbooksData(),
+            'menuActive' => 'user book'
         ];
         return view('user/ebook/index', $data);
     }
@@ -36,6 +37,7 @@ class Ebook extends BaseController
         $data = [
             'title'  => 'Detail Buku',
             'bookData'  => $this->bookDataModel->getWhere(['id' => $id])->getRowArray(),
+            'menuActive' => 'user book'
         ];
         // dd($data);
         return view('user/ebook/detail', $data);

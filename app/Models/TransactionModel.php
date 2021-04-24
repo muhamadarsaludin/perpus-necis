@@ -14,7 +14,7 @@ class TransactionModel extends Model
 
     public function getAllBorrowingData()
     {
-        $query = "SELECT  `t`.`id`,`t`.`transaction_code`,`up`.`full_name`, COUNT(IF(`td`.`status` = 'Dipinjam', `td`.`id`, null)) AS `borrowing_amount`
+        $query = "SELECT  `t`.`id`,`t`.`transaction_code`,`up`.`full_name`, `u`.`username`, COUNT(IF(`td`.`status` = 'Dipinjam', `td`.`id`, null)) AS `borrowing_amount`
         FROM `transaction` AS `t`
         JOIN `transaction_detail` AS `td`
         ON `t`.`id` = `td`.`transaction_id`

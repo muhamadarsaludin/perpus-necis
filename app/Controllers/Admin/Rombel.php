@@ -27,6 +27,7 @@ class Rombel extends BaseController
         $data = [
             'title'  => 'Data Rombel',
             'rombel'  => $this->rombelModel->get()->getResultArray(),
+            'menuActive' => 'admin kelas'
         ];
         // dd($data);
         return view('admin/rombel/index', $data);

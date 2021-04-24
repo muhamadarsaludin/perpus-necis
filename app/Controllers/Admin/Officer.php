@@ -29,6 +29,7 @@ class Officer extends BaseController
         $data = [
             'title'  => 'Data Petugas',
             'users'  => $this->userModel->getUsersOfficer(),
+            'menuActive' => 'admin user'
         ];
         return view('admin/user/officer/index', $data);
     }
@@ -39,6 +40,7 @@ class Officer extends BaseController
             'title'  => 'Tambah Petugas',
             'role' => $this->userRoleModel->getWhere(['role' => 'Petugas'])->getRowArray(),
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'admin user'
         ];
         return view('admin/user/officer/add', $data);   
     }
@@ -112,6 +114,7 @@ class Officer extends BaseController
             'title'  => 'Ubah Petugas',
             'role' => $this->userRoleModel->getWhere(['role' => 'Petugas'])->getRowArray(),
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'admin user'
         ];
         // dd($data);
         return view('admin/user/officer/edit', $data);

@@ -189,3 +189,13 @@ body,
 .td-align-middle td {
   vertical-align: middle;
 }
+
+.password-wrapper {
+  position: relative;
+}
+
+.visible {
+  position: absolute;
+  top: 1em;
+  right: 1.5em;
+}

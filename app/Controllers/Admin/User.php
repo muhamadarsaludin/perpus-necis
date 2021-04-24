@@ -19,6 +19,7 @@ class User extends BaseController
         $data = [
             'title'  => 'User List | Perpustakaan Necis',
             'users'  => $this->userModel->getUsers(),
+            'menuActive' => 'admin user'
         ];
         // dd($data);
         return view('admin/user/index', $data);
@@ -29,21 +30,11 @@ class User extends BaseController
         $data = [
             'title'  => 'Profile',
             'user'  => $this->userModel->getUserById($id),
+            'menuActive' => 'admin user'
         ];
         // dd($data['user']);
         return view('admin/user/profile/profile', $data);
     }
-
-    public function officers()
-    {
-        $data = [
-            'title'  => 'Data Petugas',
-            'users'  => $this->userModel->getUsersOfficer(),
-        ];
-        // dd($data);
-        return view('admin/user/officer/index', $data);
-    }
-
 
     public function detail($username)
     {

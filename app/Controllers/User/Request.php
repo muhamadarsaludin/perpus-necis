@@ -21,6 +21,7 @@ class Request extends BaseController
         $data = [
             'title'  => 'Request Buku',
             'validation' => \Config\Services::validation(),
+            'menuActive' => 'user request'
         ];
         // dd($data);
         return view('user/book/request', $data);   

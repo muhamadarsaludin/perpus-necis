@@ -5,7 +5,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="content-heading mb-0 text-gray-800">Data Kelas</h1>
-        <a href="/admin/borrowing/add" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-plus-square mr-1"></i>Tambah Kelas</a>
+        <a href="" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-history"></i> Riwayat Transaksi</a>
     </div>
     <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
 
@@ -20,6 +20,7 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Peminjaman</th>
+                    <th>Username</th>
                     <th>Nama Lengkap</th>
                     <th>Jumlah Pinjaman</th>
                     <th>Action</th>
@@ -29,6 +30,7 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Peminjaman</th>
+                    <th>Username</th>
                     <th>Nama Lengkap</th>
                     <th>Jumlah Pinjaman</th>
                     <th>Action</th>
@@ -40,6 +42,7 @@
                 <tr>
                     <td><?= $i++; ?></td>
                     <td><?= $b['transaction_code']; ?></td>
+                    <td><?= $b['username']; ?></td>
                     <td><?= $b['full_name']; ?></td>
                     <td><?= $b['borrowing_amount']; ?></td>
                     <td class="text-center">

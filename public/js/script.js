@@ -66,3 +66,19 @@ function previewPdf() {
     previewPdf.src = e.target.result;
   };
 }
+
+// hide & unhide
+let visible = document.querySelectorAll(".visible");
+// console.log(visible);
+visible.forEach((e) => {
+  e.addEventListener("click", () => {
+    e.classList.toggle("fa-eye");
+    e.classList.toggle("fa-eye-slash");
+    let password = e.nextElementSibling;
+    if (password.getAttribute("type") == "password") {
+      password.setAttribute("type", "text");
+    } else {
+      password.setAttribute("type", "password");
+    }
+  });
+});

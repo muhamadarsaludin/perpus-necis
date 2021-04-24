@@ -27,6 +27,7 @@ class Kelas extends BaseController
         $data = [
             'title'  => 'Data Kelas',
             'class'  => $this->classModel->get()->getResultArray(),
+            'menuActive' => 'admin kelas'
         ];
         // dd($data);
         return view('admin/kelas/index', $data);

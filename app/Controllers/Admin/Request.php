@@ -21,6 +21,7 @@ class Request extends BaseController
         $data = [
             'title'  => 'Data Request Buku',
             'requests'  => $this->requestModel->getRequests(),
+            'menuActive' => 'admin request'
         ];
         // dd($data);
         return view('admin/request/index', $data);

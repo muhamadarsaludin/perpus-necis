@@ -23,7 +23,8 @@ class Borrowing extends BaseController
     {
         $data = [
             'title'  => 'Data Peminjaman',
-            'borrowing'  => $this->transactionModel->getAllBorrowingData()
+            'borrowing'  => $this->transactionModel->getAllBorrowingData(),
+            'menuActive' => 'admin borrowing'
         ];
         // dd($data);
         return view('admin/borrow/index', $data);
@@ -35,7 +36,8 @@ class Borrowing extends BaseController
         $data = [
             'title'  => 'Detail Peminjaman',
             'borrowing'  => $this->transactionModel->getBorrowingDataByCode($code),
-            'detail'  => $this->transDetailModel->getDetailBorrowByCode($code)
+            'detail'  => $this->transDetailModel->getDetailBorrowByCode($code),
+            'menuActive' => 'admin borrowing'
         ];
         return view('admin/borrow/detail', $data);
     }
