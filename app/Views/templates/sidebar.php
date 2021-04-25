@@ -80,7 +80,7 @@ $userData = $session->get('user');
         <div id="collapsePinjam" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
             <div class="bg-light py-2 collapse-inner rounded">
                 <a href="/admin/borrowing" class="collapse-item" href="buttons.html">Data Peminjaman</a>
-                <a href="/admin/rombel" class="collapse-item" href="buttons.html">Transaksi Peminjaman</a>
+                <a href="/admin/transaction" class="collapse-item" href="buttons.html">Transaksi Peminjaman</a>
             </div>
         </div>
     </li>

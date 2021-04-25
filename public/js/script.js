@@ -18,7 +18,7 @@ const flashData = $(".flash-data").data("flashdata");
 if (flashData) {
   Swal.fire({
     icon: "success",
-    title: "RH Wedding Planner",
+    title: "SMP Negeri 1 Cisayong",
     text: flashData,
     showConfirmButton: false,
     timer: 1500,

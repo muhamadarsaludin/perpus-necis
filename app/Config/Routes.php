@@ -93,6 +93,10 @@ $routes->group('admin', function ($routes) {
 	$routes->group('borrowing', function ($routes) {
 		$routes->add('/', 'Admin\Borrowing::index');
 		$routes->add('detail/(:any)', 'Admin\Borrowing::detail/$1');
+		$routes->add('history', 'Admin\Borrowing::history');
+	});
+	$routes->group('transaction', function ($routes) {
+		$routes->add('/', 'Admin\Transaction::index');
 	});
 });
 

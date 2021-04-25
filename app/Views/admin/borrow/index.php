@@ -4,8 +4,8 @@
 <div class="container-fluid content-frame mb-5 shadow">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="content-heading mb-0 text-gray-800">Data Kelas</h1>
-        <a href="" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-history"></i> Riwayat Transaksi</a>
+        <h1 class="content-heading mb-0 text-gray-800">Data Peminjaman</h1>
+        <a href="/admin/borrowing/history" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-history"></i> Riwayat Transaksi</a>
     </div>
     <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
 

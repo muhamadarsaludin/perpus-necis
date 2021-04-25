@@ -79,6 +79,7 @@ class Officer extends BaseController
         if($password == ''){
             $password = $this->request->getVar('nip');
         }
+        // dd($imageName);
 
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     // input tabel user

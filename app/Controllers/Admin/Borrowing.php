@@ -41,4 +41,15 @@ class Borrowing extends BaseController
         ];
         return view('admin/borrow/detail', $data);
     }
+
+    public function history()
+    {
+        $data = [
+            'title'  => 'Data Peminjaman',
+            'detail'  => $this->transDetailModel->getAllDetailBorrowing(),
+            'menuActive' => 'admin borrowing'
+        ];
+        // dd($data);
+        return view('admin/borrow/history', $data); 
+    }
 }
