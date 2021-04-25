@@ -97,6 +97,7 @@ $routes->group('admin', function ($routes) {
 	});
 	$routes->group('transaction', function ($routes) {
 		$routes->add('/', 'Admin\Transaction::index');
+		$routes->add('save', 'Admin\Transaction::save');
 	});
 });
 

@@ -28,6 +28,15 @@
     <div class="d-flex">
         <!-- <a href="/admin/book/add" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon ml-auto my-3"><i class="fas fa-plus-square mr-1"></i>Tambah Buku</a> -->
     </div>
+
+    <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+
+    <?php if (session()->getFlashdata('message')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashdata('message'); ?>
+        </div>
+    <?php endif; ?>
+    
     <div class="table-responsive">
         <table class="table table-bordered td-align-middle" id="dataVendors" width="100%" cellspacing="0">
             <thead>

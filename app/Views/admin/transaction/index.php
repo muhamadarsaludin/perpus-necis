@@ -13,24 +13,35 @@
             <?= session()->getFlashdata('message'); ?>
         </div>
     <?php endif; ?>
+    <?php if (session()->getFlashdata('danger')) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?= session()->getFlashdata('danger'); ?>
+        </div>
+    <?php endif; ?>
 
 
-    <div class="row card p-4">
-     <!-- Title -->
-        <form action="/admin/book/save" method="post" class="user" enctype="multipart/form-data">
-            <?= csrf_field(); ?>
-            <!-- Title -->
-            <div class="form-group row">
-                <label for="title" class="col-sm-2 col-form-label">Judul Buku</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control form-control-user " id="title" name="title" value="<?= old('title'); ?>">
-                    <div class="invalid-feedback">
-                    </div>
+    
+    <form action="/admin/transaction/save" method="post" class="user">
+        <?= csrf_field(); ?>
+        <!-- username -->
+        <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-user " id="username" name="username" value="<?= old('username'); ?>">
+                <div class="invalid-feedback">
                 </div>
-                <button type="submit" class="btn btn-wild-watermelon btn-user col-sm-1">Cari</button>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="form-group row">
+            <label for="book_code" class="col-sm-2 col-form-label">Kode Buku</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-user " id="book_code" name="book_code" value="<?= old('book_code'); ?>">
+                <div class="invalid-feedback">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>
+    </form>
 </div>
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
