@@ -4,7 +4,7 @@
 <div class="container-fluid content-frame mb-5 shadow">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="content-heading mb-0 text-gray-800">Tambah Buku</h1>
+        <h1 class="content-heading mb-0 text-gray-800">Edit Buku</h1>
     </div>
     <form action="/admin/book/update" method="post" class="user" enctype="multipart/form-data">
     <?= csrf_field(); ?>
@@ -79,6 +79,20 @@
                 </select>
                 <div class="invalid-feedback">
                 <?= $validation->getError('category'); ?>
+                </div>
+            </div>
+        </div>
+        <!-- paket -->
+        <div class="form-group row">
+            <label for="paket" class="col-sm-2 col-form-label">Jenis Buku</label>
+            <div class="col-sm-10">
+                <select class="custom-select <?= ($validation->hasError('paket') ? 'is-invalid' : ''); ?>" name="paket">
+                    <option>Pilih Jenis Buku</option>
+                    <option value="0" <?= ($book['buku_paket']==0)?'selected':''; ?>>Buku Regular</option>
+                    <option value="1" <?= ($book['buku_paket']==1)?'selected':''; ?>>Buku Paket</option>
+                </select>
+                <div class="invalid-feedback">
+                <?= $validation->getError('paket'); ?>
                 </div>
             </div>
         </div>

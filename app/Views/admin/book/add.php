@@ -81,6 +81,20 @@
             </div>
         </div>
 
+        <!-- paket -->
+        <div class="form-group row">
+            <label for="paket" class="col-sm-2 col-form-label">Jenis Buku</label>
+            <div class="col-sm-10">
+                <select class="custom-select <?= ($validation->hasError('paket') ? 'is-invalid' : ''); ?>" name="paket">
+                    <option>Pilih Jenis Buku</option>
+                    <option value="0">Buku Regular</option>
+                    <option value="1">Buku Paket</option>
+                </select>
+                <div class="invalid-feedback">
+                <?= $validation->getError('paket'); ?>
+                </div>
+            </div>
+        </div>
         <!-- price -->
         <div class="form-group row">
             <label for="price" class="col-sm-2 col-form-label">Price</label>

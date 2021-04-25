@@ -57,6 +57,7 @@ class Book extends BaseController
             'year' => 'required',
             'price' => 'required',
             'category' => 'required',
+            'paket' => 'required',
         ])) {
             return redirect()->to('/admin/book/add')->withInput();
         }
@@ -74,6 +75,7 @@ class Book extends BaseController
             'book_title' => $this->request->getVar('title'),
             'book_cover' => $imageName,
             'book_category_id' => $this->request->getVar('category'),
+            'buku_paket' => $this->request->getVar('paket'),
             'book_type_id' => 1,
             'author' => $this->request->getVar('author'),
             'publisher' => $this->request->getVar('publisher'),
@@ -114,7 +116,7 @@ class Book extends BaseController
     {
         $oldTitle = $this->request->getVar('old_book_title');
         $id = $this->request->getVar('book_id');
-        $title = $this->request->getVar('book_id');
+        $title = $this->request->getVar('title');
         if($oldTitle == $title){
             $titleRules = 'required';
         }else{
@@ -127,6 +129,7 @@ class Book extends BaseController
             'year' => 'required',
             'price' => 'required',
             'category' => 'required',
+            'paket' => 'required',
         ])) {
             return redirect()->to('/admin/book/edit/' . $id )->withInput();
         }
@@ -154,6 +157,7 @@ class Book extends BaseController
             'publisher' => $this->request->getVar('publisher'),
             'publication_year' => $this->request->getVar('year'),
             'price' => $this->request->getVar('price'),
+            'buku_paket' => $this->request->getVar('paket'),
         ]);   
 
         session()->setFlashdata('message', 'Data buku berhasil diedit');

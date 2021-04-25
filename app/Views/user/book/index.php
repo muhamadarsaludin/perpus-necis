@@ -53,7 +53,7 @@
                     <td><?= $book['type']; ?></td>
                     <td><?= $book['author']; ?></td>
                     <td><?= $book['amount']; ?> Buku</td>
-                    <td><?= $book['amount_borrowing']; ?> Buku</td>
+                    <td><?= $book['available']; ?> Buku</td>
                     <td>
                     <a href="/user/book/detail/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
                     </td>

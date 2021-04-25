@@ -50,10 +50,10 @@
                     <td><img src="/img/books/<?= $book['book_cover']; ?>" alt="" class="w-100"></td>
                     <td><?= $book['book_title']; ?></td>
                     <td><?= $book['category']; ?></td>
-                    <td><?= $book['type']; ?></td>
+                    <td><?= ($book['buku_paket'] ==1)?'Buku Paket':'Buku Regular'; ?></td>
                     <td><?= $book['author']; ?></td>
                     <td><?= $book['amount']; ?> Buku</td>
-                    <td><?= $book['amount_borrowing']; ?> Buku</td>
+                    <td><?= $book['available']; ?> Buku</td>
                     <td class="text-center">
                         <a href="/admin/book/detail/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
                         <a href="/admin/book/edit/<?= $book['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>

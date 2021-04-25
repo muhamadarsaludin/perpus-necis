@@ -8,12 +8,12 @@ class BookDataModel extends Model
 {
     protected $table = 'books_data';
     protected $useTimestamps = true;
-    protected $allowedFields = ['book_title','book_cover','book_category_id','book_type_id','author','publisher','publication_year','file_name','price'];
+    protected $allowedFields = ['book_title','book_cover','book_category_id','book_type_id','buku_paket','author','publisher','publication_year','file_name','price'];
 
      // User Role
      public function getBooksData()
      {
-         $query = "SELECT `bd`.*,`bc`.`category`,`bt`.`type`, `b`.`book_data_id`, COUNT(`b`.`book_data_id`) AS amount, COUNT(IF(`td`.`status` = 'Dipinjam', 1,null)) AS amount_borrowing
+         $query = "SELECT `bd`.*,`bc`.`category`,`bt`.`type`, COUNT(`b`.`book_data_id`) AS amount, COUNT(IF(`td`.`status` = 'Dipinjam', 1,null)) AS amount_borrowing, COUNT(IF(`b`.`can_borrow` = 1, 1,null)) AS available
              FROM `books_data` AS `bd`
              LEFT JOIN `books` AS `b`
              ON `bd`.`id` = `b`.`book_data_id`
