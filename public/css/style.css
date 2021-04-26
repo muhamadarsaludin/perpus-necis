@@ -122,9 +122,19 @@ body,
   background-color: #62959c;
   color: white;
 }
+.btn-outline-wild-watermelon {
+  background-color: #fff;
+  border: 1px solid #62959c;
+  color: #62959c;
+}
+.btn-outline-wild-watermelon:hover {
+  background-color: #62959c;
+  border: 1px solid #62959c;
+  color: white;
+}
 
 .btn-wild-watermelon:hover {
-  background-color: #62959c;
+  background-color: #466d74;
   color: white;
 }
 

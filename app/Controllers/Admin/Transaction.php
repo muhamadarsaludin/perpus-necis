@@ -42,6 +42,60 @@ class Transaction extends BaseController
         return view('admin/transaction/index', $data);
     }
 
+    public function return()
+    {
+        $data = [
+            'title' => 'Transaksi Pengembalian',
+            'menuActive' => 'admin borrowing',
+            'validation' => \Config\Services::validation(),
+        ];
+        return view('admin/transaction/return', $data);
+    }
+
+    public function returnResult()
+    {
+        if (!$this->validate([
+            'username' => 'required',
+            'book_code' => 'required',
+        ])) {
+            return redirect()->to('/admin/transaction/return')->withInput();
+        }
+        $username = $this->request->getVar('username');
+        $bookCode = $this->request->getVar('book_code');
+        $user = $this->userModel->getWhere(['username' => $username])->getRowArray();
+        $book = $this->booksModel->getBookByCode($bookCode);
+        // cek ada user 
+        if(!$user){
+            // jika tidak ada user
+            session()->setFlashdata('danger', 'User tidak ditemukan!');
+            return redirect()->to('/admin/transaction/return');
+        }
+        // cek ada buku
+        if(!$book){
+            // jika tidak ada buku
+            session()->setFlashdata('danger', 'Buku tidak ditemukan!');
+            return redirect()->to('/admin/transaction/return');
+        }
+
+        // cek ada detail transaksi atas buku dan user itu
+        $transaction = $this->transactionModel->getWhere(['user_id' => $user['id']])->getRowArray();
+        $detailTrans = $this->transDetailModel->getWhere(['transaction_id' => $transaction['id'], 'book_id'=> $book['id'], 'status' =>'Dipinjam'])->getRowArray();
+        if(!$detailTrans){
+            session()->setFlashdata('danger', 'Transaksi peminjaman tidak ditemukan!');
+            return redirect()->to('/admin/transaction/return');
+        }
+        $data = [
+            'title' => 'Transaksi Pengembalian',
+            'bookData' => $book,
+            'detail' => $this->transDetailModel->getDetailBorrowById($detailTrans['id']),
+            'userBorrowing' => $this->userModel->getUserById($user['id']),
+            'menuActive' => 'admin borrowing',
+            'validation' => \Config\Services::validation(),
+
+        ];
+        return view('admin/transaction/returnResult', $data);
+    }
+
     public function save()
     {
         if (!$this->validate([
@@ -112,20 +166,6 @@ class Transaction extends BaseController
         return redirect()->to('/admin/borrowing/detail/'.$trans['transaction_code']);
     }
 
-    // public function return($id)
-    // {
-    //     $data = [
-    //         'title'  => 'Pengembalian Buku',
-    //         'detailBorrow'  => $this->transDetailModel->getDetailBorrowById($id),
-    //         'validation' => \Config\Services::validation(),
-    //         'menuActive' => 'admin transaction',
-    //     ];
-    //     $data['bookData']  = $this->booksModel->getBookByCode($data['detailBorrow']['book_code']);
-    //     // dd($data);
-    //     return view('admin/transaction/return', $data);
-        
-    // }
-
 
     public function returnBook($id)
     {
@@ -183,4 +223,7 @@ class Transaction extends BaseController
         session()->setFlashdata('message', 'Tengat pinjaman buku berhasil diperpanjang!');
         return redirect()->to('/admin/borrowing/detail/'.$detailBorrow['transaction_code']);
     }
+
+
+
 }
