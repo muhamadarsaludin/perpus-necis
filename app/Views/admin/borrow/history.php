@@ -15,7 +15,7 @@
         </div>
     <?php endif; ?>
     <div class="table-responsive">
-    <table class="table table-bordered td-align-middle" id="dataVendors" width="100%" cellspacing="0">
+    <table class="table table-bordered td-align-middle" id="dataBorrow" width="100%" cellspacing="0">
             <thead>
                 <tr>
                 <th>No</th>
@@ -24,8 +24,9 @@
                     <th>judul Buku</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Kembali</th>
+                    <th>Terlambat</th>
+                    <th>Denda</th>
                     <th>Status</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tfoot>
@@ -36,8 +37,10 @@
                     <th>judul Buku</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Kembali</th>
+                    <th>Telat</th>
+                    <th>Denda</th>
                     <th>Status</th>
-                    <th>Action</th>
+                  
                 </tr>
             </tfoot>
             <tbody>
@@ -50,6 +53,8 @@
                     <td><?= $d['book_title']; ?></td>
                     <td><?= $d['borrow_date']; ?></td>
                     <td><?= $d['return_date']; ?></td>
+                    <td><?= $d['amount_late']; ?> Hari</td>
+                    <td>Rp<?= number_format($d['fine'], 0, ',', '.'); ?>,-</td>
                     <?php if($d['status'] == "Dipinjam"){
                         $color = "primary";
                     } else if($d['status'] == "Dikembalikan"){
@@ -59,15 +64,7 @@
                     }
                     ?>
                     <td><span class="badge badge-<?= $color; ?>"><?= $d['status']; ?></span></td>
-                    <td class="text-center">
-                        <a href="/admin/borrow/history/detail/<?= $d['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
-                        <a href="/admin/borrow/history/edit/<?= $d['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
-                        <form action="/admin/borrow/" method="POST" class="d-inline form-delete">
-                            <?= csrf_field(); ?>
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-action btn-sm small mb-1 btn-delete"><span class="d-lg-none fa fa-trash"></span><span class="d-sm-none d-lg-inline">Delete</span></span></button>
-                        </form>
-                    </td>
+                    
                 </tr>
             <?php endforeach; ?>    
             </tbody>

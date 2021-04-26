@@ -81,6 +81,7 @@ $userData = $session->get('user');
             <div class="bg-light py-2 collapse-inner rounded">
                 <a href="/admin/borrowing" class="collapse-item" href="buttons.html">Data Peminjaman</a>
                 <a href="/admin/transaction" class="collapse-item" href="buttons.html">Transaksi Peminjaman</a>
+                <a href="/admin/transaction/return" class="collapse-item" href="buttons.html">Transaksi Pengembalian</a>
             </div>
         </div>
     </li>

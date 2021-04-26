@@ -7,6 +7,8 @@ use App\Models\TransactionModel;
 use App\Models\TransDetailModel;
 use App\Models\UserModel;
 use App\Models\BooksModel;
+use App\Models\BookDataModel;
+use App\Models\FineModel;
 
 class Transaction extends BaseController
 {
@@ -15,6 +17,8 @@ class Transaction extends BaseController
     protected $transDetailModel;
     protected $userModel;
     protected $booksModel;
+    protected $bookDataModel;
+    protected $fineModel;
 
     public function __construct()
     {
@@ -22,6 +26,8 @@ class Transaction extends BaseController
         $this->transDetailModel = new TransDetailModel();
         $this->userModel = new UserModel();
         $this->booksModel = new BooksModel();
+        $this->bookDataModel = new BookDataModel();
+        $this->fineModel = new FineModel();
     }
 
 
@@ -29,7 +35,8 @@ class Transaction extends BaseController
     {
         $data = [
             'title'  => 'Data Peminjaman',
-            'menuActive' => 'admin borrowing'
+            'menuActive' => 'admin borrowing',
+            'validation' => \Config\Services::validation(),
         ];
         // dd($data);
         return view('admin/transaction/index', $data);
@@ -73,16 +80,87 @@ class Transaction extends BaseController
         
         // input transaksi
         $trans = $this->transactionModel->getWhere(['user_id' => $user['id']])->getRowArray();
-        
+        date_default_timezone_set("Asia/Bangkok");
         $this->transDetailModel->save([
             'transaction_id' => $trans['id'],
             'book_id' => $book['id'],
             'status' => 'Dipinjam',
             'borrow_date' => date("Y-m-d"),
-            'return_date' => date("Y-m-d",strtotime("+8 day"))
+            'return_date' => date("Y-m-d",strtotime("+7 day"))
         ]);
         session()->setFlashdata('message', 'Buku berhasil dipinjam!');
         return redirect()->to('/admin/borrowing/detail/'.$trans['transaction_code']);
+    }
+
+    // public function return($id)
+    // {
+    //     $data = [
+    //         'title'  => 'Pengembalian Buku',
+    //         'detailBorrow'  => $this->transDetailModel->getDetailBorrowById($id),
+    //         'validation' => \Config\Services::validation(),
+    //         'menuActive' => 'admin transaction',
+    //     ];
+    //     $data['bookData']  = $this->booksModel->getBookByCode($data['detailBorrow']['book_code']);
+    //     // dd($data);
+    //     return view('admin/transaction/return', $data);
         
+    // }
+
+
+    public function returnBook($id)
+    {
+        $detailBorrow = $this->transDetailModel->getDetailBorrowById($id);
+        date_default_timezone_set("Asia/Bangkok");
+        $today = strtotime(date("Y-m-d"));
+        $returnDate = strtotime($detailBorrow['return_date']);
+        $calculate = ($today - $returnDate)/(60 * 60 * 24);
+        if($calculate>=0){
+            $late = $calculate;
+        }else{
+            $late = 0;
+        }
+        $fine = $this->fineModel->get()->getRowArray();
+        $amount_fine = $late * $fine['fine'];
+        $this->transDetailModel->save([
+            'id' => $id,
+            'status' => 'Dikembalikan',
+            'return_date' => date("Y-m-d"),
+            'amount_late' => $late,
+            'fine' => $amount_fine,
+        ]);
+        $book = $this->booksModel->getWhere(['book_code' => $detailBorrow['book_code']])->getRowArray();
+        $this->booksModel->save([
+            'id' => $book['id'],
+            'can_borrow' => 1
+        ]);
+
+        // berhasil dikembalikan
+        session()->setFlashdata('message', 'Buku berhasil dikembalikan!');
+        return redirect()->to('/admin/borrowing/detail/'.$detailBorrow['transaction_code']);
+    }
+
+    public function extend($id)
+    {
+        $detailBorrow = $this->transDetailModel->getDetailBorrowById($id);
+        date_default_timezone_set("Asia/Bangkok");
+        $today = strtotime(date("Y-m-d"));
+        $returnDate = strtotime($detailBorrow['return_date']);
+        $calculate = ($today - $returnDate)/(60 * 60 * 24);
+        if($calculate>=0){
+            $late = $calculate;
+        }else{
+            $late = 0;
+        }
+        $fine = $this->fineModel->get()->getRowArray();
+        $amount_fine = $late * $fine['fine'];
+        $this->transDetailModel->save([
+            'id' => $id,
+            'return_date' => date("Y-m-d",strtotime("+7 day")),
+            'amount_late' => $late,
+            'fine' => $amount_fine,
+        ]);
+        // berhasil dikembalikan
+        session()->setFlashdata('message', 'Tengat pinjaman buku berhasil diperpanjang!');
+        return redirect()->to('/admin/borrowing/detail/'.$detailBorrow['transaction_code']);
     }
 }

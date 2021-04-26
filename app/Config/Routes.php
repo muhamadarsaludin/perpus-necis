@@ -98,6 +98,8 @@ $routes->group('admin', function ($routes) {
 	$routes->group('transaction', function ($routes) {
 		$routes->add('/', 'Admin\Transaction::index');
 		$routes->add('save', 'Admin\Transaction::save');
+		$routes->add('returnbook/(:num)', 'Admin\Transaction::returnBook/$1');
+		$routes->add('extend/(:num)', 'Admin\Transaction::extend/$1');
 	});
 });
 

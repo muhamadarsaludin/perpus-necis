@@ -38,15 +38,17 @@
     <?php endif; ?>
     
     <div class="table-responsive">
-        <table class="table table-bordered td-align-middle" id="dataVendors" width="100%" cellspacing="0">
+        <table class="table table-bordered td-align-middle" id="dataBorrow" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                <th>No</th>
+                    <th>No</th>
                     <th>Cover</th>
                     <th>Kode Buku</th>
                     <th>judul Buku</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Kembali</th>
+                    <th>Terlambat</th>
+                    <th>Denda</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -54,11 +56,13 @@
             <tfoot>
                 <tr>
                     <th>No</th>
-                    <th>Cover Buku</th>
+                    <th>Cover</th>
                     <th>Kode Buku</th>
                     <th>judul Buku</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Kembali</th>
+                    <th>Terlambat</th>
+                    <th>Denda</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -73,6 +77,21 @@
                     <td><?= $d['book_title']; ?></td>
                     <td><?= $d['borrow_date']; ?></td>
                     <td><?= $d['return_date']; ?></td>
+
+                    <?php 
+                     date_default_timezone_set("Asia/Bangkok");
+                     $today = strtotime(date("Y-m-d"));
+                     $returnDate = strtotime($d['return_date']);
+                     $calculate = ($today - $returnDate)/(60 * 60 * 24);
+                     if($calculate>=0){
+                         $late = $calculate;
+                     }else{
+                         $late = 0;
+                     }
+
+                    ?>
+                    <td><?=  $late; ?></td>
+                    <td>Rp<?= number_format($late*500, 0, ',', '.'); ?>,-</td>
                     <?php if($d['status'] == "Dipinjam"){
                         $color = "primary";
                     } else if($d['status'] == "Dikembalikan"){
@@ -83,13 +102,9 @@
                     ?>
                     <td><span class="badge badge-<?= $color; ?>"><?= $d['status']; ?></span></td>
                     <td class="text-center">
-                        <a href="/admin/borrowing/detail/detail/<?= $d['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
-                        <a href="/admin/borrowing/detail/edit/<?= $d['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
-                        <form action="/admin/borrowing/" method="POST" class="d-inline form-delete">
-                            <?= csrf_field(); ?>
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-action btn-sm small mb-1 btn-delete"><span class="d-lg-none fa fa-trash"></span><span class="d-sm-none d-lg-inline">Delete</span></span></button>
-                        </form>
+                        <a href="/admin/transaction/returnbook/<?= $d['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Kembalikan</span></a>
+                        <a href="/admin/transaction/extend/<?= $d['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Perpanjang</span></a>
+                        <a href="/admin/transaction/lost/<?= $d['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Kehilangan</span></a>
                     </td>
                 </tr>
             <?php endforeach; ?>    
@@ -101,7 +116,7 @@
 <?= $this->section('script'); ?>
 <script>
     $(document).ready(function() {
-        $('#dataVendors').DataTable();
+        $('#dataBorrow').DataTable();
     });
 </script>
 <?= $this->endSection(); ?>

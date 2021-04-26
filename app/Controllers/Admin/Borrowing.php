@@ -36,7 +36,7 @@ class Borrowing extends BaseController
         $data = [
             'title'  => 'Detail Peminjaman',
             'borrowing'  => $this->transactionModel->getBorrowingDataByCode($code),
-            'detail'  => $this->transDetailModel->getDetailBorrowByCode($code),
+            'detail'  => $this->transDetailModel->getDetailBorrowByTransCode($code),
             'menuActive' => 'admin borrowing'
         ];
         return view('admin/borrow/detail', $data);

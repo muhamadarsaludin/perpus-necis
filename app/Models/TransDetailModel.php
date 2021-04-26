@@ -23,10 +23,28 @@ class TransDetailModel extends Model
         ON `bd`.`id` = `b`.`book_data_id`
         ";
         return $this->db->query($query)->getResultArray();
-        
     }
 
-    public function getDetailBorrowByCode($code)
+    public function getDetailBorrowById($id)
+    {
+        $query = "SELECT  `td`.`id`,`t`.`transaction_code`,`b`.`book_code`,`bd`.`book_title`,`bd`.`book_cover`,`td`.`borrow_date`,`td`.`status`,`td`.`return_date`,`td`.`amount_late`,`td`.`fine`,`u`.`username`,`up`.`full_name`,`up`.`email`
+        FROM `transaction` AS `t`
+        JOIN `transaction_detail` AS `td`
+        ON `t`.`id` = `td`.`transaction_id`
+        JOIN `books` AS `b`
+        ON `td`.`book_id` = `b`.`id`
+        JOIN `books_data` AS `bd`
+        ON `bd`.`id` = `b`.`book_data_id`
+        JOIN `users` AS `u`
+        ON `t`.`user_id`= `u`.`id`
+        JOIN `users_profile` AS `up`
+        ON `u`.`id` = `up`.`user_id`
+        WHERE `td`.id = $id
+       ";
+       return $this->db->query($query)->getRowArray();
+    }
+
+    public function getDetailBorrowByTransCode($code)
     {
         $query = "SELECT  `td`.`id`,`t`.`transaction_code`,`b`.`book_code`,`bd`.`book_title`,`bd`.`book_cover`,`td`.`borrow_date`,`td`.`status`,`td`.`return_date`,`td`.`amount_late`,`td`.`fine`
         FROM `transaction` AS `t`
@@ -36,7 +54,7 @@ class TransDetailModel extends Model
         ON `td`.`book_id` = `b`.`id`
         JOIN `books_data` AS `bd`
         ON `bd`.`id` = `b`.`book_data_id`
-        WHERE `t`.`transaction_code` = '$code'
+        WHERE `t`.`transaction_code` = '$code' AND `td`.`status` ='Dipinjam'
         ";
         return $this->db->query($query)->getResultArray();
     }
