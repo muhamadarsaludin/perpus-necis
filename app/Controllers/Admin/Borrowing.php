@@ -39,6 +39,7 @@ class Borrowing extends BaseController
             'detail'  => $this->transDetailModel->getDetailBorrowByTransCode($code),
             'menuActive' => 'admin borrowing'
         ];
+        // dd($data);
         return view('admin/borrow/detail', $data);
     }
 
