@@ -27,16 +27,18 @@
         <div class="form-group row">
             <label for="username" class="col-sm-2 col-form-label">Username</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user " id="username" name="username" value="<?= old('username'); ?>">
+                <input type="text" class="form-control form-control-user <?= ($validation->hasError('username') ? 'is-invalid' : ''); ?>" id="username" name="username" value="<?= old('username'); ?>">
                 <div class="invalid-feedback">
+                <?= $validation->getError('username'); ?>
                 </div>
             </div>
         </div>
         <div class="form-group row">
             <label for="book_code" class="col-sm-2 col-form-label">Kode Buku</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-user " id="book_code" name="book_code" value="<?= old('book_code'); ?>">
+                <input type="text" class="form-control form-control-user <?= ($validation->hasError('book_code') ? 'is-invalid' : ''); ?>" id="book_code" name="book_code" value="<?= old('book_code'); ?>">
                 <div class="invalid-feedback">
+                 <?= $validation->getError('book_code'); ?>
                 </div>
             </div>
         </div>

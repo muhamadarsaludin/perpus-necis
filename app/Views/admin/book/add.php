@@ -91,7 +91,7 @@
                     <option value="1">Buku Paket</option>
                 </select>
                 <div class="invalid-feedback">
-                <?= $validation->getError('paket'); ?>
+                    <?= $validation->getError('paket'); ?>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
             <div class="col-sm-10">
                 <input type="text" class="form-control form-control-user <?= ($validation->hasError('price') ? 'is-invalid' : ''); ?>" id="price" name="price" value="<?= old('price'); ?>">
                 <div class="invalid-feedback">
-                <?= $validation->getError('price'); ?>
+                    <?= $validation->getError('price'); ?>
                 </div>
             </div>
         </div>

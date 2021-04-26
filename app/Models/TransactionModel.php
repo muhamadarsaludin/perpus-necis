@@ -42,4 +42,21 @@ class TransactionModel extends Model
         ";
         return $this->db->query($query)->getRowArray();
     }
+
+
+
+    public function getAmountRegularBookByTransCode($code)
+    {
+        $query = "SELECT  COUNT(IF(`bd`.`buku_paket` = 0, 1, null)) AS `amount_regular`
+        FROM `transaction` AS `t`
+        JOIN `transaction_detail` AS `td`
+        ON `t`.`id` = `td`.`transaction_id`
+        JOIN `books` AS `b`
+        ON `td`.`book_id` = `b`.`id`
+        JOIN `books_data` AS `bd`
+        ON `b`.`book_data_id` = `bd`.`id`
+        WHERE `t`.`transaction_code` = '$code' AND `td`.`status` = 'Dipinjam'
+        ";
+        return $this->db->query($query)->getRowArray();
+    }
 }

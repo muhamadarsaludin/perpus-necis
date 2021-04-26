@@ -44,6 +44,12 @@ class Transaction extends BaseController
 
     public function save()
     {
+        if (!$this->validate([
+            'username' => 'required',
+            'book_code' => 'required',
+        ])) {
+            return redirect()->to('/admin/transaction')->withInput();
+        }
         $username = $this->request->getVar('username');
         $bookCode = $this->request->getVar('book_code');
 
@@ -51,14 +57,17 @@ class Transaction extends BaseController
         $book = $this->booksModel->getBookByCode($bookCode);
         // cek ada user 
         if(!$user){
+            // jika tidak ada user
             session()->setFlashdata('danger', 'User tidak ditemukan!');
             return redirect()->to('/admin/transaction/');
         }
+        // cek ada buku
         if(!$book){
+            // jika tidak ada buku
             session()->setFlashdata('danger', 'Buku tidak ditemukan!');
             return redirect()->to('/admin/transaction/');
         }
-        // cek ada buku
+        
         $transaction = $this->transactionModel->getWhere(['user_id' => $user['id']])->getRowArray();
         // cek sudah ada transaksi?
         if(!$transaction){
@@ -71,15 +80,26 @@ class Transaction extends BaseController
         // cek buku buku bisa dipinjam
         if($book['can_borrow'] == 0){
             if($book['status']){
-                session()->setFlashdata('danger', 'Maaf Buku '.$book['status']);
+                session()->setFlashdata('danger', 'Maaf Buku Ini'.$book['status']);
                 return redirect()->to('/admin/transaction/');
             }
                 session()->setFlashdata('danger', 'Maaf buku tidak dapat dipinjam!');
                 return redirect()->to('/admin/transaction/');
         }
         
+        
         // input transaksi
         $trans = $this->transactionModel->getWhere(['user_id' => $user['id']])->getRowArray();
+
+        // cek buku regular?
+        if($book['buku_paket'] == 0){
+            // Cek jumlah pinjaman buku regular
+            $amountBorrow = $this->transactionModel->getAmountRegularBookByTransCode($trans['transaction_code']);
+            if($amountBorrow['amount_regular'] >= 2){
+                session()->setFlashdata('danger', 'Maaf anda telah melebihi jumlah maksimal peminjaman!');
+                return redirect()->to('/admin/transaction/');
+            }
+        }
         date_default_timezone_set("Asia/Bangkok");
         $this->transDetailModel->save([
             'transaction_id' => $trans['id'],
