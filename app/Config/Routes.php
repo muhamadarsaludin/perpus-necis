@@ -90,6 +90,10 @@ $routes->group('admin', function ($routes) {
 	$routes->group('rombel', function ($routes) {
 		$routes->add('/', 'Admin\Rombel::index');
 	});
+	$routes->group('fine', function ($routes) {
+		$routes->add('/', 'Admin\Fine::index');
+		$routes->add('update', 'Admin\Fine::update');
+	});
 	$routes->group('borrowing', function ($routes) {
 		$routes->add('/', 'Admin\Borrowing::index');
 		$routes->add('detail/(:any)', 'Admin\Borrowing::detail/$1');

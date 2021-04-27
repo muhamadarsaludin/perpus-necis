@@ -99,7 +99,7 @@
             <div class="form-group row">
                 <label for="fine" class="col-sm-2 col-form-label">Denda</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control form-control-user" id="fine" name="fine" value="<?= $late*500; ?>" readonly>
+                    <input type="text" class="form-control form-control-user" id="fine" name="fine" value="<?= $late*$fine['fine']; ?>" readonly>
                     <div class="invalid-feedback">
                     
                     </div>

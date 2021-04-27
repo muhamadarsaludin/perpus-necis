@@ -91,7 +91,7 @@
 
                     ?>
                     <td><?=  $late; ?></td>
-                    <td>Rp<?= number_format($late*500, 0, ',', '.'); ?>,-</td>
+                    <td>Rp<?= number_format($late*$fine['fine'], 0, ',', '.'); ?>,-</td>
                     <?php if($d['status'] == "Dipinjam"){
                         $color = "primary";
                     } else if($d['status'] == "Dikembalikan"){

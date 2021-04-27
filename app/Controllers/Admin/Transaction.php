@@ -89,6 +89,7 @@ class Transaction extends BaseController
             'bookData' => $book,
             'detail' => $this->transDetailModel->getDetailBorrowById($detailTrans['id']),
             'userBorrowing' => $this->userModel->getUserById($user['id']),
+             'fine' => $this->fineModel->get()->getRowArray(),
             'menuActive' => 'admin borrowing',
             'validation' => \Config\Services::validation(),
 
@@ -162,6 +163,13 @@ class Transaction extends BaseController
             'borrow_date' => date("Y-m-d"),
             'return_date' => date("Y-m-d",strtotime("+7 day"))
         ]);
+
+        // ubah can borrow book
+        $this->booksModel->save([
+            'id' => $book['id'],
+            'can_borrow' => 0
+        ]);
+
         session()->setFlashdata('message', 'Buku berhasil dipinjam!');
         return redirect()->to('/admin/borrowing/detail/'.$trans['transaction_code']);
     }
@@ -219,7 +227,7 @@ class Transaction extends BaseController
             'amount_late' => $late,
             'fine' => $amount_fine,
         ]);
-        // berhasil dikembalikan
+        // berhasil diperpanjang
         session()->setFlashdata('message', 'Tengat pinjaman buku berhasil diperpanjang!');
         return redirect()->to('/admin/borrowing/detail/'.$detailBorrow['transaction_code']);
     }

@@ -75,13 +75,14 @@ $userData = $session->get('user');
             <div class="nav-icon">
                 <i class="fas fa-fw fa-cash-register"></i>
             </div>
-            <span>Peminjaman</span>
+            <span>Transaksi</span>
         </a>
         <div id="collapsePinjam" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
             <div class="bg-light py-2 collapse-inner rounded">
-                <a href="/admin/borrowing" class="collapse-item" href="buttons.html">Data Peminjaman</a>
+                <a href="/admin/borrowing" class="collapse-item" href="buttons.html">Data Transaksi</a>
                 <a href="/admin/transaction" class="collapse-item" href="buttons.html">Transaksi Peminjaman</a>
                 <a href="/admin/transaction/return" class="collapse-item" href="buttons.html">Transaksi Pengembalian</a>
+                <a href="/admin/fine" class="collapse-item" href="buttons.html">Denda Keterlambatan</a>
             </div>
         </div>
     </li>
