@@ -75,6 +75,13 @@ $routes->group('admin', function ($routes) {
 			$routes->add('edit/(:num)', 'Admin\Book::editItem/$1');
 			$routes->add('update', 'Admin\Book::updateItem');
 		});
+		$routes->group('category', function ($routes) {
+			$routes->add('/', 'Admin\Category::index');
+			$routes->add('add', 'Admin\Category::add');
+			$routes->add('edit/(:num)', 'Admin\Category::edit/$1');
+			$routes->add('save', 'Admin\Category::save');
+			$routes->add('update', 'Admin\Category::update');
+		});
 	});
 	$routes->group('ebook', function ($routes) {
 		$routes->add('/', 'Admin\Ebook::index');
@@ -142,6 +149,7 @@ $routes->delete('/member/(:num)', 'Admin\Member::delete/$1');
 $routes->delete('/book/(:num)', 'Admin\Book::delete/$1');
 $routes->delete('/book/item/(:num)', 'Admin\Book::deleteItem/$1');
 $routes->delete('/ebook/(:num)', 'Admin\Ebook::delete/$1');
+$routes->delete('/admin/book/category/(:num)', 'Admin\Category::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

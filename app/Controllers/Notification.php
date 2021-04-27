@@ -26,7 +26,8 @@ class Notification extends BaseController
 
     public function getItemInUserNotification()
     {
-        return $this->notificationModel->getWhere(['user_id' => user()->id])->getResultArray();
+       $user = session()->get('user');
+        return $this->notificationModel->getWhere(['user_id' => $user['id']])->getResultArray();
     }
 
     public function getJsonItemInUserNotification()

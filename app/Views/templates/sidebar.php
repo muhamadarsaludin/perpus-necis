@@ -49,9 +49,9 @@ $userData = $session->get('user');
         </a>
         <div id="collapseBuku" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
             <div class="bg-light py-2 collapse-inner rounded">
-                <a href="/admin/book" class="collapse-item" href="buttons.html">Daftar Buku</a>
-                <a href="/admin/ebook" class="collapse-item" href="buttons.html">Daftar eBook</a>
-                <a class="collapse-item" href="buttons.html">Kategori Buku</a>
+                <a href="/admin/book" class="collapse-item">Daftar Buku</a>
+                <a href="/admin/ebook" class="collapse-item">Daftar Ebook</a>
+                <a href="/admin/book/category" class="collapse-item" >Kategori Buku</a>
             </div>
         </div>
     </li>
