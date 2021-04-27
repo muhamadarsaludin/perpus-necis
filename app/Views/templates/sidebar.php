@@ -122,19 +122,14 @@ $userData = $session->get('user');
             </div>
         </div>
     </li>
+   
     <li class="nav-item">
-        <a class="nav-link collapsed <?= ($menuActive == 'user borrowing') ? 'active' : ''; ?>" href="#" data-toggle="collapse" data-target="#collapseTransUser" aria-expanded="true" aria-controls="collapseTransUser">
+        <a class="nav-link <?= ($menuActive == 'user borrowing') ? 'active' : ''; ?>" href="/user/transaction">
             <div class="nav-icon">
-                <i class="fas fa-fw fa-clipboard-list"></i>
+                <i class="fas fa-fw fa-clipboard-list"></i>               
             </div>
             <span>Data Peminjaman</span>
         </a>
-        <div id="collapseTransUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
-            <div class="bg-light py-2 collapse-inner rounded">
-                <a href="" class="collapse-item" >User List</a>
-                <a class="collapse-item" href="buttons.html">User Category</a>
-            </div>
-        </div>
     </li>
     <!-- <li class="nav-item">
         <a class="nav-link" href="/">

@@ -124,8 +124,11 @@ $routes->group('user', function ($routes) {
 	});
 
 	$routes->group('request', function ($routes) {
-		$routes->add('', 'User\request::index');
-		$routes->add('save', 'User\request::save');
+		$routes->add('', 'User\Request::index');
+		$routes->add('save', 'User\Request::save');
+	});
+	$routes->group('transaction', function ($routes) {
+		$routes->add('', 'User\Transaction::index');
 	});
 });
 
