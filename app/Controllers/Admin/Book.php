@@ -199,9 +199,10 @@ class Book extends BaseController
         }
         $bookAmount = $this->request->getVar('book_amount');
         for ($i=0; $i < $bookAmount ; $i++) { 
+            $bookCode = strtoupper(uniqid('BK-'));
             $this->booksModel->save([
                 'book_data_id' => $bookDataId,
-                'book_code' => strtoupper(substr(uniqid('BK-'),0,10)),
+                'book_code' => $bookCode,
                 'source_book' => $this->request->getVar('source'),
                 'quality' => $this->request->getVar('quality'),
             ]);
