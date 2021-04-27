@@ -150,10 +150,13 @@ class Transaction extends BaseController
         if($book['buku_paket'] == 0){
             // Cek jumlah pinjaman buku regular
             $amountBorrow = $this->transactionModel->getAmountRegularBookByTransCode($trans['transaction_code']);
+            $returnDate = date("Y-m-d",strtotime("+7 day"));
             if($amountBorrow['amount_regular'] >= 2){
                 session()->setFlashdata('danger', 'Maaf anda telah melebihi jumlah maksimal peminjaman!');
                 return redirect()->to('/admin/transaction/');
             }
+        }else{
+            $returnDate = date("Y-m-d",strtotime("+365 day"));
         }
         date_default_timezone_set("Asia/Bangkok");
         $this->transDetailModel->save([
@@ -161,7 +164,7 @@ class Transaction extends BaseController
             'book_id' => $book['id'],
             'status' => 'Dipinjam',
             'borrow_date' => date("Y-m-d"),
-            'return_date' => date("Y-m-d",strtotime("+7 day"))
+            'return_date' => $returnDate
         ]);
 
         // ubah can borrow book
@@ -220,7 +223,7 @@ class Transaction extends BaseController
             $late = 0;
         }
         $fine = $this->fineModel->get()->getRowArray();
-        $amount_fine = $late * $fine['fine'];
+        $amount_fine = $detailBorrow['fine'] + ($late * $fine['fine']);
         $this->transDetailModel->save([
             'id' => $id,
             'return_date' => date("Y-m-d",strtotime("+7 day")),
@@ -232,6 +235,47 @@ class Transaction extends BaseController
         return redirect()->to('/admin/borrowing/detail/'.$detailBorrow['transaction_code']);
     }
 
+    public function lost($id)
+    {
+
+        $detail = $this->transDetailModel->getDetailBorrowById($id);
+        $book = $this->booksModel->getBookByCode($detail['book_code']);
+        $data = [
+            'title' => 'Form Kehilangan',
+            'bookData' => $book,
+            'detail' => $detail,
+            'userBorrowing' => $this->userModel->getUserById($detail['user_id']),
+            'fine' => $this->fineModel->get()->getRowArray(),
+            'menuActive' => 'admin borrowing',
+            'validation' => \Config\Services::validation(),
+
+        ];
+        // dd($data);
+        return view('admin/transaction/lost', $data);
+    }
+
+    public function lostbook()
+    {
+        $detail_id = $this->request->getVar('detail_id');
+        $book_id = $this->request->getVar('book_id');
+        $transCode =  $this->request->getVar('transaction_code');
+        // dd($transCode);
+        $this->transDetailModel->save([
+            'id' => $detail_id,
+            'status' => 'Hilang',
+            'return_date' => date("Y-m-d"),
+            'amount_late' => $this->request->getVar('late'),
+            'fine' => $this->request->getVar('fine')
+        ]);
+
+        $this->booksModel->save([
+            'id' => $book_id,
+            'can_borrow' => 0
+        ]);
+
+        session()->setFlashdata('message', 'Data Kehilangan berhasil disimpan!');
+        return redirect()->to('/admin/borrowing/detail/'.$transCode);
+    }
 
 
 }

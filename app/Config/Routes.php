@@ -104,6 +104,8 @@ $routes->group('admin', function ($routes) {
 		$routes->add('save', 'Admin\Transaction::save');
 		$routes->add('returnbook/(:num)', 'Admin\Transaction::returnBook/$1');
 		$routes->add('extend/(:num)', 'Admin\Transaction::extend/$1');
+		$routes->add('lost/(:num)', 'Admin\Transaction::lost/$1');
+		$routes->add('lostbook', 'Admin\Transaction::lostBook');
 		$routes->group('return', function ($routes) {
 			$routes->add('/', 'Admin\Transaction::return');
 			$routes->add('result', 'Admin\Transaction::returnResult');
