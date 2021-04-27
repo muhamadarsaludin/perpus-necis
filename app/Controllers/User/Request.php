@@ -47,6 +47,6 @@ class Request extends BaseController
             'publication_year' => $this->request->getVar('year'),
         ]);
         session()->setFlashdata('message', 'Request buku berhasil');
-        return redirect()->to('user');
+        return redirect()->to('/user/request');
     }
 }
