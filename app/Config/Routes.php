@@ -35,6 +35,7 @@ $routes->get('/', 'Auth::index');
 $routes->get('/login', 'Auth::login');
 $routes->get('/register', 'Auth::register');
 $routes->get('/logout', 'Auth::logout');
+$routes->get('/notification/item/get', 'Notification::getJsonItemInUserNotification');
 
 
 

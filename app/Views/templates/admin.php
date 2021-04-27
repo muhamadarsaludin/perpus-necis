@@ -78,6 +78,12 @@
     <?= $this->include('templates/_script.php'); ?>
     <script src="<?= base_url('js/jquery.dataTables.min.js'); ?>"></script>
     <script src="<?= base_url('js/dataTables.bootstrap4.min.js'); ?>"></script>
+    <script src="/js/notification.js"></script>
+    <script>
+    $(document).ready(function() {
+        getItemInUserNotificationLimit();
+    });
+</script>
     <?= $this->renderSection('script'); ?>
 </body>
 

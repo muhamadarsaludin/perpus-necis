@@ -43,6 +43,25 @@ $userData = $session->get('user');
             </div>
         </li>
 
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="nav-icon position-relative">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <!-- Counter - Alerts -->
+                    <span class="badge badge-danger badge-counter rounded-circle d-none js-count-notif-item">3</span>
+                </div>
+            </a>
+            <!-- Dropdown - Alerts -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                    Notification
+                </h6>
+                <div class="js-item-notification">
+                    <!-- Item in Notification -->
+                </div>
+                <a class="dropdown-item text-center small text-gray-500" href="/notification">Show All Notification</a>
+            </div>
+        </li>
       
 
         <div class="topbar-divider d-none d-sm-block"></div>
