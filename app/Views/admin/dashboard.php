@@ -17,7 +17,7 @@
                     <div class="col">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Jumlah User</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">200</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $userAmount; ?></div>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     <div class="col">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Jumlah Buku</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $bookAmount; ?></div>
                     </div>
                 </div>
             </div>
@@ -53,11 +53,11 @@
                     </div>
                     <div class="col">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                        Jumlah Peminjaman
+                        Jumlah Transaksi
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">20</span>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= $transAmount; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -78,10 +78,49 @@
                     <div class="col">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Total Denda </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rp<?= number_format($fineAmount['fine_amount'],0,',','.'); ?>,-</div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="content-frame bg-none">
+        <h1 class="main-product-title">Buku Terbaru</h1>
+        <p class="product-desc">Ayo pinjam sekarang jangan sampai Kehabisan</p>
+        <div class="row">
+            <?php foreach($latestBook as $book): ?>
+            <div class="col-3">
+                <a href="/admin/book/detail/<?= $book['id']; ?>">
+                    <div class="card card-product">
+                        <img src="/img/books/<?= $book['book_cover']; ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $book['book_title']; ?></h5>
+                            <p class="main-product-location"><?= $book['category']; ?></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <?php endforeach; ?>
+            
+        </div>
+
+        <h1 class="main-product-title">Ebook Terbaru</h1>
+        <p class="product-desc">Yuk baca ebook terbaru biar makin banya ilmu!</p>
+        <div class="row">
+        <?php foreach($latestEbook as $ebook): ?>
+            <div class="col-3">
+                <a href="/admin/ebook/detail/<?= $ebook['id']; ?>">
+                    <div class="card card-product">
+                        <img src="/img/books/<?= $ebook['book_cover']; ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $ebook['book_title']; ?></h5>
+                            <p class="main-product-location"><?= $book['category']; ?></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <?php endforeach; ?>
         </div>
     </div>
 </div>

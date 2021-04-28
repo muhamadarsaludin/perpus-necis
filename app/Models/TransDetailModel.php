@@ -76,4 +76,14 @@ class TransDetailModel extends Model
         ";
         return $this->db->query($query)->getResultArray();
     }
+
+
+    public function getFineAmount()
+    {
+        $query = "SELECT  SUM(`td`.`fine`) AS fine_amount
+        FROM `transaction_detail` AS `td`
+        ";
+        return $this->db->query($query)->getRowArray();
+        
+    }
 }

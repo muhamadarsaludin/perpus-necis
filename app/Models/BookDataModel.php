@@ -48,5 +48,34 @@ class BookDataModel extends Model
              return $this->db->query($query)->getResultArray();
      }   
 
+     public function getLatestBook()
+     {
+        $query = "SELECT `bd`.*, `bc`.`category`
+        FROM `books_data` AS `bd`
+        JOIN `books_category` AS `bc`
+        ON `bd`.`book_category_id` = `bc`.`id`
+        JOIN `books_type` AS `bt`
+        ON `bd`.`book_type_id` = `bt`.`id`
+        WHERE `bt`.`type` = 'cetak'
+        ORDER BY `bd`.`id`
+        LIMIT 4
+    ";
+        return $this->db->query($query)->getResultArray();   
+     }
+     public function getLatestEbook()
+     {
+        $query = "SELECT `bd`.*, `bc`.`category`
+        FROM `books_data` AS `bd`
+        JOIN `books_category` AS `bc`
+        ON `bd`.`book_category_id` = `bc`.`id`
+        JOIN `books_type` AS `bt`
+        ON `bd`.`book_type_id` = `bt`.`id`
+        WHERE `bt`.`type` = 'ebook'
+        ORDER BY `bd`.`id`
+        LIMIT 4
+    ";
+        return $this->db->query($query)->getResultArray();   
+     }
+
 
 }
