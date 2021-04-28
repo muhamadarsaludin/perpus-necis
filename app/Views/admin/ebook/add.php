@@ -98,8 +98,10 @@
                 <iframe src="" height="300" class="mt-2 w-100 d-none preview-pdf" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" frameborder="0"></iframe>
             </div>
         </div>
-        <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>
-        <a href="/admin/users/roles" class="btn btn-secondary btn-user btn-sm">Cancel</a>
+        <div class="text-right">
+            <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>
+            <a href="/admin/ebook" class="btn btn-secondary btn-user btn-sm">Cancel</a>
+        </div>
     </form>
 </div>
 <?= $this->endSection(); ?>

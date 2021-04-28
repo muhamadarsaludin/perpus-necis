@@ -82,7 +82,9 @@
                 <textarea class="form-control" id="alamat" name="alamat" rows="4" readonly><?= $officer['address']; ?></textarea>
             </div>
         </div>
-        <a href="/admin/officers/" class="btn btn-secondary btn-user btn-sm">Back</a>
+        <div class="text-right">
+            <a href="/admin/officers/" class="btn btn-secondary btn-user btn-sm">Back</a>
+        </div>
     </div>
     </form>
 <?= $this->endSection(); ?>

@@ -106,8 +106,10 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>
-        <a href="/admin/users/roles" class="btn btn-secondary btn-user btn-sm">Cancel</a>
+        <div class="text-right">
+            <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>
+            <a href="/admin/book" class="btn btn-secondary btn-user btn-sm">Cancel</a>
+        </div>
     </form>
 </div>
 <?= $this->endSection(); ?>

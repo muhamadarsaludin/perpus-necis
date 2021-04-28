@@ -25,7 +25,7 @@
 
             </tbody>
         </table>
-        <a href="/book" class="btn btn-secondary">Back</a>
+        <a href="/admin/ebook" class="btn btn-secondary">Back</a>
     </div>
 </div>
 <iframe src="/ebook/<?= $bookData['file_name']; ?>" height="500" class="w-100 preview-pdf mt-5" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" frameborder="0"></iframe>
