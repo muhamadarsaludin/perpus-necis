@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Apr 2021 pada 03.50
+-- Waktu pembuatan: 28 Apr 2021 pada 09.50
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -43,8 +43,12 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `book_data_id`, `book_code`, `quality`, `source_book`, `can_borrow`, `created_at`, `updated_at`) VALUES
-(33, 2, 'BK-608827292024A', 'Baik', 'Bantuan BOS', 1, '2021-04-27', '2021-04-27'),
-(36, 2, 'BK-299290199', 'Bagus', NULL, 1, '2021-04-27', '2021-04-27');
+(33, 2, 'BK-608827292024A', 'Baik', 'Bantuan BOS', 0, '2021-04-27', '2021-04-27'),
+(37, 2, 'BK-6088E9B193ACD', 'Baik', 'Bantuan BOS', 0, '2021-04-28', '2021-04-28'),
+(38, 2, 'BK-6088E9B19BC6B', 'Baik', 'Bantuan BOS', 1, '2021-04-28', '2021-04-28'),
+(39, 2, 'BK-6088E9B19FAF8', 'Baik', 'Bantuan BOS', 1, '2021-04-28', '2021-04-28'),
+(40, 2, 'BK-6088E9B1A0739', 'Baik', 'Bantuan BOS', 1, '2021-04-28', '2021-04-28'),
+(41, 2, 'BK-6088E9B1A1546', 'Baik', 'Bantuan BOS', 1, '2021-04-28', '2021-04-28');
 
 -- --------------------------------------------------------
 
@@ -198,8 +202,8 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`id`, `user_id`, `message`, `link`, `created_at`, `updated_at`) VALUES
-(3, 15, 'Ini notifikasi 1', NULL, '2021-04-27', '2021-04-27'),
-(4, 15, 'Ini notifikasi 2', NULL, '2021-04-27', '2021-04-27');
+(9, 15, 'Masa peminjaman buku Saat Kita Jatuh Cinta telah habis, harap melapor kepada petugas perpustakaan', NULL, '2021-04-28', '2021-04-28'),
+(10, 15, 'Masa peminjaman buku Saat Kita Jatuh Cinta akan habis, segera lakukan perpanjangan waktu sebelum tanggal 2021-04-29', NULL, '2021-04-28', '2021-04-28');
 
 -- --------------------------------------------------------
 
@@ -307,10 +311,19 @@ CREATE TABLE `transaction_detail` (
   `return_date` date NOT NULL,
   `amount_late` int(11) DEFAULT 0,
   `fine` int(11) NOT NULL DEFAULT 0,
-  `reminder` int(11) NOT NULL DEFAULT 0,
+  `reminder_notification` int(11) NOT NULL DEFAULT 0,
+  `late_notification` int(11) DEFAULT 0,
   `created_at` date NOT NULL DEFAULT current_timestamp(),
   `updated_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `transaction_detail`
+--
+
+INSERT INTO `transaction_detail` (`id`, `transaction_id`, `book_id`, `status`, `borrow_date`, `return_date`, `amount_late`, `fine`, `reminder_notification`, `late_notification`, `created_at`, `updated_at`) VALUES
+(10, 1, 33, 'Dipinjam', '2021-04-28', '2021-04-27', 0, 0, 0, 1, '2021-04-28', '2021-04-28'),
+(11, 1, 37, 'Dipinjam', '2021-04-28', '2021-04-29', 0, 0, 1, 0, '2021-04-28', '2021-04-28');
 
 -- --------------------------------------------------------
 
@@ -508,7 +521,7 @@ ALTER TABLE `users_role`
 -- AUTO_INCREMENT untuk tabel `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT untuk tabel `books_category`
@@ -550,7 +563,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT untuk tabel `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `officer`
@@ -580,7 +593,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT untuk tabel `transaction_detail`
 --
 ALTER TABLE `transaction_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
