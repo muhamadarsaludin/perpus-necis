@@ -51,8 +51,8 @@
                             <textarea class="form-control" id="address" rows="5" style="border-radius: 20px;" readonly><?= $user['address']; ?></textarea>
                         </div>
                         <div class="text-right">
-                            <a href="/user" class="btn btn-secondary btn-user btn-sm">Back</a>
                             <a href="/user/profile/edit/<?= $user['id']; ?>" class="btn btn-wild-watermelon btn-user btn-sm">Edit Profile</a>
+                            <a href="/user" class="btn btn-secondary btn-user btn-sm">Back</a>
                         </div>
                     </form>
                 </div>

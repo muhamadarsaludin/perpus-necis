@@ -22,7 +22,7 @@
 
                 </tbody>
             </table>
-            <a href="/admin/borrowing" class="btn btn-secondary">Back</a>
+            <!-- <a href="/admin/borrowing" class="btn btn-secondary">Back</a> -->
         </div>
     </div>
 

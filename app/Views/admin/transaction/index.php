@@ -42,7 +42,9 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>
+        </div>
     </form>
 </div>
 <?= $this->endSection(); ?>

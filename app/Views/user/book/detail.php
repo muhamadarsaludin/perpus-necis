@@ -26,7 +26,7 @@
 
             </tbody>
         </table>
-        <a href="/book" class="btn btn-secondary">Back</a>
+        <a href="/user/book" class="btn btn-secondary">Back</a>
     </div>
 </div>
 
