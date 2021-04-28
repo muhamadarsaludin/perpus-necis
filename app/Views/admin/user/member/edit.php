@@ -39,7 +39,7 @@
         </div>
           <!-- username -->
           <div class="form-group row">
-            <label for="nis" class="col-sm-2 col-form-label">NIP</label>
+            <label for="nis" class="col-sm-2 col-form-label">NIS</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control form-control-user <?= ($validation->hasError('nis') ? 'is-invalid' : ''); ?>" id="nis" name="nis" value="<?= (old('username'))? old('username'):$member['username']; ?>">
                 <div class="invalid-feedback">
@@ -154,7 +154,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>
-        <a href="/admin/users/roles" class="btn btn-secondary btn-user btn-sm">Cancel</a>
+        <a href="/admin/members" class="btn btn-secondary btn-user btn-sm">Cancel</a>
     </form>
 </div>
 <?= $this->endSection(); ?>

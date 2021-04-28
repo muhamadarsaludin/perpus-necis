@@ -75,7 +75,7 @@ $userData = $session->get('user');
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="/admin/users/profile/<?= $userData['id']; ?>">
+                <a class="dropdown-item" href="/user/profile/<?= $userData['id']; ?>">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     My Profile
                 </a>

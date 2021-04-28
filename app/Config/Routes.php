@@ -42,17 +42,13 @@ $routes->get('/notification/item/get', 'Notification::getJsonItemInUserNotificat
 $routes->group('admin', function ($routes) {
 	$routes->add('/', 'Admin\Dashboard::index');
 	$routes->add('dashboard', 'Admin\Dashboard::index');
-	// admin/users
-	$routes->group('users', function ($routes) {
-		$routes->add('/', 'Admin\User::index');
-		$routes->add('profile/(:num)', 'Admin\User::profile/$1');
-	});
 	// admin/member
 	$routes->group('members', function ($routes) {
 		$routes->add('/', 'Admin\Member::index');
 		$routes->add('add', 'Admin\Member::add');
 		$routes->add('save', 'Admin\Member::save');
 		$routes->add('edit/(:num)', 'Admin\Member::edit/$1');
+		$routes->add('detail/(:num)', 'Admin\Member::detail/$1');
 		$routes->add('update', 'Admin\Member::update');
 	});
 	$routes->group('officers', function ($routes) {
@@ -60,6 +56,7 @@ $routes->group('admin', function ($routes) {
 		$routes->add('add', 'Admin\Officer::add');
 		$routes->add('save', 'Admin\Officer::save');
 		$routes->add('edit/(:num)', 'Admin\Officer::edit/$1');
+		$routes->add('detail/(:num)', 'Admin\Officer::detail/$1');
 		$routes->add('update', 'Admin\Officer::update');
 	});
 	$routes->group('book', function ($routes) {
@@ -124,6 +121,11 @@ $routes->group('admin', function ($routes) {
 
 $routes->group('user', function ($routes) {
 	$routes->add('/', 'User\Dashboard::index');
+	$routes->group('profile', function ($routes) {
+		$routes->add('(:num)', 'User\Profile::index/$1');
+		$routes->add('edit/(:num)', 'User\Profile::edit/$1');
+		$routes->add('update', 'User\Profile::update');
+	});
 	$routes->group('book', function ($routes) {
 		$routes->add('/', 'User\Book::index');
 		$routes->add('detail/(:num)', 'User\Book::detail/$1');

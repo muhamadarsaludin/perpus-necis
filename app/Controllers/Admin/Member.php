@@ -168,7 +168,7 @@ class Member extends BaseController
         }
         $image = $this->request->getFile('image');
         if ($image->getError() == 4) {
-            $imageName = $this->request->getFile('old-image');
+            $imageName = $this->request->getVar('old_image');
         } else {   
             // pindahkan file 
             $image->move('img/users/profile');
@@ -179,10 +179,12 @@ class Member extends BaseController
                 unlink('img/users/profile/' . $oldImage);
             }
         }
-        $passwordHash = $this->request->getVar('old_password');
+        $oldPassword = $this->request->getVar('old_password');
         $password = $this->request->getVar('password');
-        if($password == ''){
+        if($password != ''){
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        }else{
+            $passwordHash = $oldPassword;
         }
         $this->userModel->save([
             'id' => $userId,
@@ -214,7 +216,7 @@ class Member extends BaseController
         ]);
         
         session()->setFlashdata('message', 'Data Anggota berhasil diedit');
-        return redirect()->to('/admin/users/profile/'.$userId);
+        return redirect()->to('/admin/members/detail/'.$userId);
     }
 
     public function delete($id)
@@ -228,6 +230,17 @@ class Member extends BaseController
         session()->setFlashdata('message', 'Petugas berhasil dihapus!');
         return redirect()->to('/admin/members');
 
+    }
+
+    public function detail($id)
+    {
+        $data = [
+            'title'  => 'Detail Anggota',
+            'member' => $this->userModel->getMemberByUserId($id),
+            'menuActive' => 'admin user'
+        ];
+        // dd($data);
+        return view('admin/user/member/detail', $data);
     }
 
 

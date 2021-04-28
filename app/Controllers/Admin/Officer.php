@@ -117,8 +117,8 @@ class Officer extends BaseController
     public function edit($id)
     {
         $data = [
+            'title'  => 'Edit Petugas',
             'officer' => $this->userModel->getUserById($id),
-            'title'  => 'Ubah Petugas',
             'roles' => $this->userRoleModel->getWhere(['role !=' => "Anggota"])->getResultArray(),
             'validation' => \Config\Services::validation(),
             'menuActive' => 'admin user'
@@ -132,7 +132,6 @@ class Officer extends BaseController
         $oldUsername = $this->request->getVar('old_username');
         $nip = $this->request->getVar('nip');
         $userId = $this->request->getVar('user_id');
-
         if($oldUsername == $nip){
             $nipRules = 'required';
         }else{
@@ -154,7 +153,7 @@ class Officer extends BaseController
         
         $image = $this->request->getFile('image');
         if ($image->getError() == 4) {
-            $imageName = $this->request->getFile('old-image');
+            $imageName = $this->request->getVar('old_image');
         } else {   
             // pindahkan file 
             $image->move('img/users/profile');
@@ -165,10 +164,12 @@ class Officer extends BaseController
                 unlink('img/users/profile/' . $oldImage);
             }
         }
-        $passwordHash = $this->request->getVar('old_password');
+        $oldPassword = $this->request->getVar('old_password');
         $password = $this->request->getVar('password');
-        if($password == ''){
+        if($password != ''){
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        }else{
+            $passwordHash = $oldPassword;
         }
 
         // dd($this->request->getVar('role'));
@@ -201,7 +202,7 @@ class Officer extends BaseController
         ]);
         
         session()->setFlashdata('message', 'Data Petugas berhasil diedit');
-        return redirect()->to('/admin/users/profile/'.$userId);
+        return redirect()->to('/admin/officers/detail/'.$userId);
     }
 
     public function delete($id)
@@ -214,5 +215,17 @@ class Officer extends BaseController
          $this->userModel->delete($id);
          session()->setFlashdata('message', 'Petugas berhasil dihapus!');
          return redirect()->to('/admin/officers');
+    }
+
+
+    public function detail($id)
+    {
+        $data = [
+            'title'  => 'Detail Petugas',
+            'officer' => $this->userModel->getUserById($id),
+            'menuActive' => 'admin user'
+        ];
+        // dd($data);
+        return view('admin/user/officer/detail', $data);
     }
 }
