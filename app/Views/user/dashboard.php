@@ -9,7 +9,7 @@
     
 <div class="content-frame bg-none">
         <h1 class="main-product-title">Buku Terbaru</h1>
-        <p class="product-desc">Ayo pinjam sekarang jangan sampai Kehabisan</p>
+        <p class="product-desc">Ayo pinjam sekarang jangan sampai kehabisan!</p>
         <div class="row">
             <?php foreach($latestBook as $book): ?>
             <div class="col-3">
@@ -28,7 +28,7 @@
         </div>
 
         <h1 class="main-product-title">Ebook Terbaru</h1>
-        <p class="product-desc">Yuk baca ebook terbaru biar makin banya ilmu!</p>
+        <p class="product-desc">Yuk baca ebook terbaru biar makin banyak ilmu!</p>
         <div class="row">
         <?php foreach($latestEbook as $ebook): ?>
             <div class="col-3">
