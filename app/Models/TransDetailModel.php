@@ -29,6 +29,7 @@ class TransDetailModel extends Model
         return $this->db->query($query)->getResultArray();
     }
 
+
     public function getDetailBorrowById($id)
     {
         $query = "SELECT  `td`.`id`,`u`.`id` AS `user_id`,`t`.`transaction_code`,`b`.`book_code`,`bd`.`book_title`,`bd`.`book_cover`,`td`.`borrow_date`,`td`.`status`,`td`.`return_date`,`td`.`amount_late`,`td`.`fine`

@@ -9,6 +9,8 @@ use App\Models\UserModel;
 use App\Models\BooksModel;
 use App\Models\BookDataModel;
 use App\Models\FineModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Transaction extends BaseController
 {
@@ -275,6 +277,36 @@ class Transaction extends BaseController
 
         session()->setFlashdata('message', 'Data Kehilangan berhasil disimpan!');
         return redirect()->to('/admin/borrowing/detail/'.$transCode);
+    }
+
+   
+    public function report_view()
+    {
+        $data = [
+            'title' => 'Laproan Transaksi',
+            'menuActive' => 'admin borrowing',
+            'date_min' => $this->transactionModel->getMinPaymentDate(true)
+        ];
+        // dd($data);
+        return view('/admin/transaction/report_view', $data);
+    }
+
+    
+    public function report_pdf($start_date, $end_date)
+    {
+        $data = [
+            'resultTrans' => $this->transactionModel->getTransactionBetweenDate($start_date, $end_date)
+        ];
+        $options = new Options();
+        $options->setIsHtml5ParserEnabled(true);
+        $options->isRemoteEnabled(true);
+        $options->setChroot('/');
+        $dompdf = new Dompdf();
+        $dompdf->setOptions($options);
+        $dompdf->loadHtml(view('/admin/transaction/report_pdf', $data));
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream('transaction.pdf', ["Attachment" => false]);
     }
 
 

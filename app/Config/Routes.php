@@ -116,7 +116,8 @@ $routes->group('admin', function ($routes) {
 			$routes->add('/', 'Admin\Transaction::return');
 			$routes->add('result', 'Admin\Transaction::returnResult');
 		});
-
+		$routes->add('report', 'Admin\Transaction::report_view');
+		$routes->add('report/(:any)/(:any)', 'Admin\Transaction::report_pdf/$1/$2');
 	});
 });
 

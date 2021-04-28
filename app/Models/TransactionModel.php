@@ -59,4 +59,40 @@ class TransactionModel extends Model
         ";
         return $this->db->query($query)->getRowArray();
     }
+
+    public function getMinPaymentDate()
+    {
+        $query = "SELECT min(`td`.`borrow_date`) as `min_date`
+        FROM `transaction_detail` as `td`
+        INNER JOIN `transaction` as `t`
+        ON `t`.id = `td`.`transaction_id`
+        INNER JOIN `books` as `b`
+        ON `b`.`id` = `td`.`book_id`";
+        $result = $this->db->query($query)->getRow();
+        return date('m/d/Y', strtotime($result->min_date));
+    }
+
+
+    public function getTransactionBetweenDate($start_date, $end_date)
+    {
+        $start_date = date('Y-m-d', strtotime($start_date));
+        $end_date = date('Y-m-d', strtotime($end_date));
+
+        $query = "SELECT  `td`.`id`,`t`.`transaction_code`,`b`.`book_code`,`bd`.`book_title`,`bd`.`book_cover`,`td`.`borrow_date`,`td`.`status`,`td`.`return_date`,`td`.`amount_late`,`td`.`fine`,`full_name`
+        FROM `transaction` AS `t`
+        JOIN `transaction_detail` AS `td`
+        ON `t`.`id` = `td`.`transaction_id`
+        JOIN `books` AS `b`
+        ON `td`.`book_id` = `b`.`id`
+        JOIN `books_data` AS `bd`
+        ON `bd`.`id` = `b`.`book_data_id`
+        JOIN `users` AS `u`
+        ON `t`.`user_id` = `u`.`id`
+        JOIN `users_profile` AS `up`
+        ON `u`.`id` = `up`.`user_id`
+        WHERE `td`.`borrow_date` BETWEEN '$start_date' AND '$end_date'
+        ";
+        return $this->db->query($query)->getResultArray();
+    }
+
 }

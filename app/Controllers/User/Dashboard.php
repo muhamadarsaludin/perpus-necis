@@ -16,7 +16,7 @@ class Dashboard extends BaseController
     }
     public function index()
     {
-        $data = [
+        $data = [                 
             'title' => 'Dashboard',
             'menuActive' => 'dashboard user',
             'latestBook' => $this->bookDataModel->getLatestBook(),
