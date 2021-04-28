@@ -79,8 +79,10 @@
     <script src="<?= base_url('js/jquery.dataTables.min.js'); ?>"></script>
     <script src="<?= base_url('js/dataTables.bootstrap4.min.js'); ?>"></script>
     <script src="/js/notification.js"></script>
+    <script src="/js/transaction.js"></script>
     <script>
     $(document).ready(function() {
+        getBorrowingDeadline();
         getItemInUserNotificationLimit();
     });
 </script>

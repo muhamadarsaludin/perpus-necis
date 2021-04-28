@@ -12,12 +12,12 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col-auto mr-3">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <i class="fas fa-user fa-2x text-gray-300"></i>
                     </div>
                     <div class="col">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Earnings (Annual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 103.000.000</div>
+                            Jumlah User</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">200</div>
                     </div>
                 </div>
             </div>
@@ -31,12 +31,12 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col-auto mr-3">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <i class="fas fa-book fa-2x text-gray-300"></i>
                     </div>
                     <div class="col">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Earnings (Annual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 103.000.000</div>
+                            Jumlah Buku</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
                     </div>
                 </div>
             </div>
@@ -49,10 +49,11 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col-auto mr-3">
-                        <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>
+                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     </div>
                     <div class="col">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Events
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                        Jumlah Peminjaman
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
@@ -72,11 +73,11 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col-auto mr-3">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                     </div>
                     <div class="col">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Pending Requests</div>
+                            Total Denda </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                     </div>
                 </div>

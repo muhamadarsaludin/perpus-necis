@@ -116,7 +116,6 @@
             <button type="submit" class="btn btn-wild-watermelon btn-user btn-sm">Save</button>
             <a href="/user/profile/<?= $user['id']; ?>" class="btn btn-secondary btn-user btn-sm">Cancel</a>
         </div>
-        
     </form>
 </div>
 <?= $this->endSection(); ?>
