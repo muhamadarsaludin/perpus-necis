@@ -7,6 +7,8 @@ use App\Models\BookDataModel;
 use App\Models\BooksModel;
 use App\Models\CategoryModel;
 use App\Models\TransDetailModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Book extends BaseController
 {
@@ -256,5 +258,23 @@ class Book extends BaseController
         session()->setFlashdata('message', 'Item buku berhasil diedit!');
         return redirect()->to('/admin/book/detail/'. $bookDataId);  
 
+    }
+
+    public function report()
+    {
+        $data = [    
+            'books'  => $this->bookDataModel->getBooksData(),
+        ];
+        // dd($data);
+        $options = new Options();
+        $options->setIsHtml5ParserEnabled(true);
+        $options->isRemoteEnabled(true);
+        $options->setChroot('/');
+        $dompdf = new Dompdf();
+        $dompdf->setOptions($options);
+        $dompdf->loadHtml(view('/admin/book/report_pdf', $data));
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream('Laporan_Buku.pdf', ["Attachment" => false]);
     }
 }

@@ -5,9 +5,12 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="content-heading mb-0 text-gray-800">Data Petugas</h1>
+        <div>
         <?php if($userData['role'] == "Admin") : ?>
         <a href="/admin/officers/add" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-plus-square mr-1"></i> Tambah Petugas</a>
         <?php endif; ?>
+        <a href="/admin/officers/report" target="_blink" class="d-block d-sm-inline-block btn rounded-pill btn-outline-wild-watermelon"><i class="fas fa-file-alt mr-1"></i>Laporan Petugas</a>
+        </div>
     </div>
     <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
 
@@ -24,8 +27,8 @@
                     <th>No</th>
                     <th>Nama Lengkap</th>
                     <th>NIP</th>
+                    <th>Jenis Kelamin</th>
                     <th>Status</th>
-                    <th>Active</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -34,8 +37,8 @@
                     <th>No</th>
                     <th>Nama Lengkap</th>
                     <th>NIP</th>
+                    <th>Jenis Kelamin</th>
                     <th>Status</th>
-                    <th>Active</th>
                     <th>Action</th>
                 </tr>
             </tfoot>
@@ -46,8 +49,8 @@
                         <td><?= $i++; ?></td>
                         <td><?= $user['full_name']; ?></td>
                         <td><?= $user['nip']; ?></td>
+                        <td><?= ($user['sex'] == 'L')?'Laki-Laki':'Perempuan'; ?></td>
                         <td><?= $user['officer_status']; ?></td>
-                        <td> <button type="button" class="btn <?= ($user['active'] == 1) ? 'btn-success' : 'btn-warning'; ?> btn-sm small"><?= ($user['active'] == 1) ? 'Active' : 'Disable'; ?></button></td>
                         <td class="text-center">
                             <a href="/admin/officers/detail/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
                             <?php if($userData['role'] == "Admin") : ?>

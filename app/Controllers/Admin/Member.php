@@ -10,6 +10,8 @@ use App\Models\UserRoleModel;
 use App\Models\UserProfileModel;
 use App\Models\MemberModel;
 use App\Models\TransactionModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Member extends BaseController
 {
@@ -241,6 +243,23 @@ class Member extends BaseController
         ];
         // dd($data);
         return view('admin/user/member/detail', $data);
+    }
+
+    public function report()
+    {
+        $data = [
+            'users' => $this->userModel->getUsersMember()
+        ];
+        $options = new Options();
+        $options->setIsHtml5ParserEnabled(true);
+        $options->isRemoteEnabled(true);
+        $options->setChroot('/');
+        $dompdf = new Dompdf();
+        $dompdf->setOptions($options);
+        $dompdf->loadHtml(view('/admin/user/member/report_pdf', $data));
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream('Laporan_anggota.pdf', ["Attachment" => false]);
     }
 
 

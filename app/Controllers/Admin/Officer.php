@@ -8,6 +8,8 @@ use App\Models\UserRoleModel;
 use App\Models\UserProfileModel;
 use App\Models\OfficerModel;
 use App\Models\TransactionModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Officer extends BaseController
 {
@@ -227,5 +229,22 @@ class Officer extends BaseController
         ];
         // dd($data);
         return view('admin/user/officer/detail', $data);
+    }
+
+    public function report()
+    {
+        $data = [
+            'users' => $this->userModel->getUsersOfficer()
+        ];
+        $options = new Options();
+        $options->setIsHtml5ParserEnabled(true);
+        $options->isRemoteEnabled(true);
+        $options->setChroot('/');
+        $dompdf = new Dompdf();
+        $dompdf->setOptions($options);
+        $dompdf->loadHtml(view('/admin/user/officer/report_pdf', $data));
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream('Laporan_Petugas.pdf', ["Attachment" => false]);
     }
 }

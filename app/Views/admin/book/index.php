@@ -5,7 +5,10 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="content-heading mb-0 text-gray-800">Daftar Buku</h1>
+        <div>
         <a href="/admin/book/add" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-plus-square mr-1"></i>Tambah Buku</a>
+        <a href="/admin/book/report" target="_blink" class="d-block d-sm-inline-block btn rounded-pill btn-outline-wild-watermelon"><i class="fas fa-file-alt mr-1"></i>Laporan Buku</a>
+        </div>
     </div>
     <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
 
@@ -20,7 +23,7 @@
                 <tr>
                     <th>No</th>
                     <th width='50px'>Sampul</th>
-                    <th>Nama Buku</th>
+                    <th>Judul Buku</th>
                     <th>Kategori</th>
                     <th>Tipe</th>
                     <th>Penulis</th>
@@ -33,7 +36,7 @@
                 <tr>
                     <th>No</th>
                     <th>Sampul</th>
-                    <th>Nama Buku</th>
+                    <th>Judul Buku</th>
                     <th>Kategori</th>
                     <th>Tipe</th>
                     <th>Penulis</th>

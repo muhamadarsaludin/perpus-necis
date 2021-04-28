@@ -44,9 +44,9 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Cover</th>
-                <th scope="col">Book Code</th>
-                <th scope="col">Book Title</th>
+                <th scope="col">Sampul</th>
+                <th scope="col">Kode Buku</th>
+                <th scope="col">Judul Bukku</th>
                 <th scope="col">Peminjam</th>
                 <th scope="col">Tanggal Pinjam</th>
                 <th scope="col">Tanggal Kembali</th>

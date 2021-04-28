@@ -4,6 +4,8 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\RequestModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Request extends BaseController
 {
@@ -25,5 +27,24 @@ class Request extends BaseController
         ];
         // dd($data);
         return view('admin/request/index', $data);
+    }
+
+    
+    public function report()
+    {
+        $data = [
+            'requests' => $this->requestModel->getRequests(),
+        ];
+        // dd($data);
+        $options = new Options();
+        $options->setIsHtml5ParserEnabled(true);
+        $options->isRemoteEnabled(true);
+        $options->setChroot('/');
+        $dompdf = new Dompdf();
+        $dompdf->setOptions($options);
+        $dompdf->loadHtml(view('/admin/request/report_pdf', $data));
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream('Laporan_Request_Buku.pdf', ["Attachment" => false]);
     }
 }

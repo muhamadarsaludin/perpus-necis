@@ -306,7 +306,7 @@ class Transaction extends BaseController
         $dompdf->loadHtml(view('/admin/transaction/report_pdf', $data));
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream('transaction.pdf', ["Attachment" => false]);
+        $dompdf->stream('Laporan_transaksi.pdf', ["Attachment" => false]);
     }
 
 

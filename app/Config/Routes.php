@@ -51,6 +51,7 @@ $routes->group('admin', function ($routes) {
 		$routes->add('edit/(:num)', 'Admin\Member::edit/$1');
 		$routes->add('detail/(:num)', 'Admin\Member::detail/$1');
 		$routes->add('update', 'Admin\Member::update');
+		$routes->add('report', 'Admin\Member::report');
 	});
 	$routes->group('officers', function ($routes) {
 		$routes->add('/', 'Admin\Officer::index');
@@ -59,6 +60,7 @@ $routes->group('admin', function ($routes) {
 		$routes->add('edit/(:num)', 'Admin\Officer::edit/$1');
 		$routes->add('detail/(:num)', 'Admin\Officer::detail/$1');
 		$routes->add('update', 'Admin\Officer::update');
+		$routes->add('report', 'Admin\Officer::report');
 	});
 	$routes->group('book', function ($routes) {
 		$routes->add('/', 'Admin\Book::index');
@@ -67,6 +69,7 @@ $routes->group('admin', function ($routes) {
 		$routes->add('detail/(:num)', 'Admin\Book::detail/$1');
 		$routes->add('edit/(:num)', 'Admin\Book::edit/$1');
 		$routes->add('update', 'Admin\Book::update');
+		$routes->add('report', 'Admin\Book::report');
 		$routes->group('item', function ($routes) {
 			$routes->add('add/(:num)', 'Admin\Book::addItem/$1');
 			$routes->add('save', 'Admin\Book::saveItem');
@@ -104,6 +107,10 @@ $routes->group('admin', function ($routes) {
 		$routes->add('/', 'Admin\Borrowing::index');
 		$routes->add('detail/(:any)', 'Admin\Borrowing::detail/$1');
 		$routes->add('history', 'Admin\Borrowing::history');
+	});
+	$routes->group('request', function ($routes) {
+		$routes->add('/', 'Admin\Request::index');
+		$routes->add('report', 'Admin\Request::report');
 	});
 	$routes->group('transaction', function ($routes) {
 		$routes->add('/', 'Admin\Transaction::index');
