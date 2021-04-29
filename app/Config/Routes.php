@@ -95,9 +95,19 @@ $routes->group('admin', function ($routes) {
 
 	$routes->group('kelas', function ($routes) {
 		$routes->add('/', 'Admin\Kelas::index');
+		$routes->add('save', 'Admin\Kelas::save');
+		$routes->add('detail/(:num)', 'Admin\Kelas::detail/$1');
+		$routes->add('detail/(:num)/(:num)', 'Admin\Kelas::detailClass/$1/$2');
+		$routes->add('update', 'Admin\Kelas::update');
+		$routes->add('geteditclass', 'Admin\Kelas::getEditClass');
+		$routes->add('report/(:num)/(:num)', 'Admin\Kelas::report/$1/$2');
 	});
 	$routes->group('rombel', function ($routes) {
 		$routes->add('/', 'Admin\Rombel::index');
+		$routes->add('save', 'Admin\Rombel::save');
+		$routes->add('detail/(:num)', 'Admin\Rombel::detail/$1');
+		$routes->add('update', 'Admin\Rombel::update');
+		$routes->add('geteditrombel', 'Admin\Rombel::getEditRombel');
 	});
 	$routes->group('fine', function ($routes) {
 		$routes->add('/', 'Admin\Fine::index');
@@ -160,6 +170,9 @@ $routes->delete('/member/(:num)', 'Admin\Member::delete/$1');
 $routes->delete('/book/(:num)', 'Admin\Book::delete/$1');
 $routes->delete('/book/item/(:num)', 'Admin\Book::deleteItem/$1');
 $routes->delete('/ebook/(:num)', 'Admin\Ebook::delete/$1');
+$routes->delete('/rombel/(:num)', 'Admin\Rombel::delete/$1');
+$routes->delete('/kelas/(:num)', 'Admin\Kelas::delete/$1');
+$routes->delete('/kelas/detail/(:num)/(:num)', 'Admin\Kelas::deleteDetail/$1/$2');
 $routes->delete('/admin/book/category/(:num)', 'Admin\Category::delete/$1');
 /*
  * --------------------------------------------------------------------

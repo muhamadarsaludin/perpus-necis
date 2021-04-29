@@ -28,7 +28,8 @@
                     <th>Nama Lengkap</th>
                     <th>NIP</th>
                     <th>Jenis Kelamin</th>
-                    <th>Status</th>
+                    <th>Role</th>
+                    <th>Jumlah Pinjaman</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -38,7 +39,8 @@
                     <th>Nama Lengkap</th>
                     <th>NIP</th>
                     <th>Jenis Kelamin</th>
-                    <th>Status</th>
+                    <th>Role</th>
+                    <th>Jumlah Pinjaman</th>
                     <th>Action</th>
                 </tr>
             </tfoot>
@@ -50,7 +52,8 @@
                         <td><?= $user['full_name']; ?></td>
                         <td><?= $user['nip']; ?></td>
                         <td><?= ($user['sex'] == 'L')?'Laki-Laki':'Perempuan'; ?></td>
-                        <td><?= $user['officer_status']; ?></td>
+                        <td><?= $user['role']; ?></td>
+                        <td><?= $user['borrowing_amount']; ?> Buku</td>
                         <td class="text-center">
                             <a href="/admin/officers/detail/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
                             <?php if($userData['role'] == "Admin") : ?>

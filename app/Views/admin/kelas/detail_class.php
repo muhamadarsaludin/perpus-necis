@@ -4,10 +4,9 @@
 <div class="container-fluid content-frame mb-5">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="content-heading mb-0 text-gray-800">Data Anggota</h1>
+        <h1 class="content-heading mb-0 text-gray-800">Detail Kelas <?= $class['class']; ?> <?= $rombel['rombel']; ?></h1>
         <div>
-        <a href="/admin/members/add" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon"><i class="fas fa-plus-square mr-1"></i> Tambah Anggota</a>
-        <a href="/admin/members/report" target="_blink" class="d-block d-sm-inline-block btn rounded-pill btn-outline-wild-watermelon"><i class="fas fa-file-alt mr-1"></i>Laporan Anggota</a>
+        <a href="/admin/kelas/report/<?= $class['id']; ?>/<?= $rombel['id']; ?>" target="_blink" class="d-block d-sm-inline-block btn rounded-pill btn-outline-wild-watermelon"><i class="fas fa-file-alt mr-1"></i>Laporan Anggota</a>
         </div>
     </div>
     <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
@@ -43,18 +42,18 @@
             </tfoot>
             <tbody>
                 <?php $i = 1; ?>
-                <?php foreach ($users as $user) : ?>
+                <?php foreach ($detail as $d) : ?>
                     <tr>
                         <td><?= $i++; ?></td>
-                        <td><?= $user['full_name']; ?></td>
-                        <td><?= $user['nis']; ?></td>
-                        <td><?= $user['class']; ?> <?= $user['rombel']; ?></td>
-                        <td><?= ($user['sex']=='L')?"Laki-Laki":'Perempuan'; ?></td>
-                        <td><?= $user['borrowing_amount']; ?> Buku</td>
+                        <td><?= $d['full_name']; ?></td>
+                        <td><?= $d['nis']; ?></td>
+                        <td><?= $d['class']; ?> <?= $d['rombel']; ?></td>
+                        <td><?= ($d['sex']=='L')?"Laki-Laki":'Perempuan'; ?></td>
+                        <td><?= $d['borrowing_amount']; ?> Buku</td>
                         <td class="text-center">
-                            <a href="/admin/members/detail/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
-                            <a href="/admin/members/edit/<?= $user['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
-                            <form action="/member/<?= $user['id']; ?>" method="POST" class="d-inline form-delete">
+                            <a href="/admin/members/detail/<?= $d['user_id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Detail</span></a>
+                            <a href="/admin/members/edit/<?= $d['user_id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Edit</span></a>
+                            <form action="/member/<?= $d['user_id']; ?>" method="POST" class="d-inline form-delete">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-action btn-sm small mb-1 btn-delete"><span class="d-lg-none fa fa-trash"></span><span class="d-sm-none d-lg-inline">Delete</span></span></button>

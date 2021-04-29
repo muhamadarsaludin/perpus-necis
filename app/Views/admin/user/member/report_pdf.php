@@ -50,6 +50,7 @@
                     <th>Jenis Kelamin</th>
                     <th>Tempat Lahir</th>
                     <th>Tanggal Lahir</th>
+                    <th>Jumlah Pinjaman</th>
                 </tr>
         </thead>
         <tbody>
@@ -63,12 +64,13 @@
                         <td><?= ($user['sex'] == 'L')?'Laki-Laki':'Perempuan'; ?></td>
                         <td><?= $user['place_of_birth']; ?></td>
                         <td><?= $user['date_of_birth']; ?></td>
+                        <td><?= $user['borrowing_amount']; ?></td>
                     </tr>
             <?php endforeach; ?>
         </tbody>
             <tfoot>
                 <tr>
-                    <th scope="col" colspan="6">Jumlah Anggota</th>
+                    <th scope="col" colspan="7">Jumlah Anggota</th>
                     <th scope="col"><?= $total; ?> Orang</th>
                 </tr>
             </tfoot>

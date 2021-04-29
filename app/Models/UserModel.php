@@ -56,7 +56,7 @@ class UserModel extends Model
     
     public function getUsersMember()
     {
-        $query = "SELECT `u`.`id`,`u`.`username`,`u`.`active`,`ur`.`role`, `up`.`full_name`, `up`.`user_image`, `up`.`sex`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`, `c`.`class`, `r`.`rombel`, `m`.`nis`
+        $query = "SELECT `u`.`id`,`u`.`username`,`u`.`active`,`ur`.`role`, `up`.`full_name`, `up`.`user_image`, `up`.`sex`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`, `c`.`class`, `r`.`rombel`, `m`.`nis`, COUNT(IF(`td`.`status` = 'Dipinjam', `td`.`id`, null)) AS `borrowing_amount`
         FROM `users` AS `u`
         JOIN `users_profile` AS `up`
         ON `u`.id = `up`.`user_id`
@@ -68,13 +68,18 @@ class UserModel extends Model
         ON `m`.`class_id` = `c`.`id`
         JOIN `rombel` AS `r`
         ON `m`.`rombel_id` = `r`.`id`
+        LEFT JOIN `transaction` AS `t`
+        ON `t`.`user_id` = `u`.`id`
+        LEFT JOIN `transaction_detail` AS `td`
+        ON `t`.`id` = `td`.`transaction_id`
         WHERE `ur`.`role` = 'Anggota'
+        GROUP BY `u`.`id`
     ";
     return $this->db->query($query)->getResultArray(); 
     }
     public function getUsersOfficer()
     {
-        $query = "SELECT `u`.`id`,`u`.`username`,`u`.`active`,`ur`.`role`, `up`.`full_name`, `up`.`user_image`, `up`.`sex`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`, `o`.`nip`, `o`.`officer_status` 
+        $query = "SELECT `u`.`id`,`u`.`username`,`u`.`active`,`ur`.`role`, `up`.`full_name`, `up`.`user_image`, `up`.`sex`,`up`.`place_of_birth`,`up`.`date_of_birth`, `up`.`contact`,`up`.`email`, `up`.`address`, `o`.`nip`, `o`.`officer_status`,COUNT(IF(`td`.`status` = 'Dipinjam', `td`.`id`, null)) AS `borrowing_amount`
         FROM `users` AS `u`
         JOIN `users_profile` AS `up`
         ON `u`.id = `up`.`user_id`
@@ -82,7 +87,12 @@ class UserModel extends Model
         ON `u`.`role_id` = `ur`.`id`
         JOIN `officer` AS `o`
         ON `u`.`id` = `o`.`user_id`
+        LEFT JOIN `transaction` AS `t`
+        ON `t`.`user_id` = `u`.`id`
+        LEFT JOIN `transaction_detail` AS `td`
+        ON `t`.`id` = `td`.`transaction_id`
         WHERE `ur`.`role` = 'Admin' OR `ur`.`role` = 'Petugas'
+        GROUP BY `u`.`id`
     ";
     return $this->db->query($query)->getResultArray(); 
     }
