@@ -35,6 +35,7 @@ $routes->get('/', 'Auth::index');
 $routes->get('/login', 'Auth::login');
 $routes->get('/register', 'Auth::register');
 $routes->get('/logout', 'Auth::logout');
+$routes->get('/notification', 'Notification::index');
 $routes->get('/notification/item/get', 'Notification::getJsonItemInUserNotification');
 $routes->get('/transaction/deadline/get', 'Transaction::getTransactionDeadline');
 
@@ -165,6 +166,7 @@ $routes->group('user', function ($routes) {
 
 
 // $routes->delete('/admin/user/(:num)', 'Admin\User::delete/$1');
+$routes->delete('/notification/(:num)', 'Notification::delete/$1');
 $routes->delete('/officer/(:num)', 'Admin\Officer::delete/$1');
 $routes->delete('/member/(:num)', 'Admin\Member::delete/$1');
 $routes->delete('/book/(:num)', 'Admin\Book::delete/$1');

@@ -23,6 +23,24 @@ class Notification extends BaseController
         helper('date');
     }
 
+    public function index()
+    {
+        $user = session()->get('user');
+        $data = [
+            'menuActive' => false,
+            'title' => 'My Notification',
+            'notification' => $this->notificationModel->getWhere(['user_id' =>$user['id']])->getResultArray(),       
+         ];
+         return view('user/notification', $data);
+        //  dd($data);
+    }
+
+   
+    public function delete($id)
+    {
+        $this->notificationModel->delete($id);
+        return redirect()->to('/notification');  
+    }
 
     public function getItemInUserNotification()
     {
