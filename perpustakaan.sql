@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Apr 2021 pada 09.50
+-- Waktu pembuatan: 29 Apr 2021 pada 06.30
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -130,18 +130,17 @@ INSERT INTO `books_type` (`id`, `type`, `description`) VALUES
 
 CREATE TABLE `class` (
   `id` int(11) NOT NULL,
-  `class` varchar(128) NOT NULL,
-  `description` varchar(255) DEFAULT NULL
+  `class` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `class`
 --
 
-INSERT INTO `class` (`id`, `class`, `description`) VALUES
-(1, '7', NULL),
-(2, '8', NULL),
-(3, '9', NULL);
+INSERT INTO `class` (`id`, `class`) VALUES
+(1, '7'),
+(2, '8'),
+(3, '9');
 
 -- --------------------------------------------------------
 
@@ -180,7 +179,12 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `user_id`, `nis`, `class_id`, `rombel_id`) VALUES
-(10, 53, '098', 1, 1);
+(13, 56, '4321', 1, 1),
+(14, 57, '4322', 1, 1),
+(15, 58, '4323', 1, 2),
+(16, 59, '4324', 2, 1),
+(17, 60, '4325', 2, 2),
+(18, 61, '4326', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -258,22 +262,21 @@ INSERT INTO `request` (`id`, `user_id`, `title`, `author`, `publisher`, `publica
 
 CREATE TABLE `rombel` (
   `id` int(11) NOT NULL,
-  `rombel` varchar(128) NOT NULL,
-  `description` varchar(255) NOT NULL
+  `rombel` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `rombel`
 --
 
-INSERT INTO `rombel` (`id`, `rombel`, `description`) VALUES
-(1, 'A', ''),
-(2, 'B', ''),
-(3, 'C', ''),
-(4, 'D', ''),
-(5, 'E', ''),
-(6, 'F', ''),
-(7, 'G', '');
+INSERT INTO `rombel` (`id`, `rombel`) VALUES
+(1, 'A'),
+(2, 'B'),
+(3, 'C'),
+(4, 'D'),
+(5, 'E'),
+(6, 'F'),
+(7, 'G');
 
 -- --------------------------------------------------------
 
@@ -348,7 +351,12 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `active`, `created_at`, `updated_at`) VALUES
 (15, 1, 'tiya', '$2y$10$SvHfJMkxCONwUnIhPlfOY.MZju9Yp3JkL/XuyTexPdQIuuGr/zaei', 1, '2021-03-07 02:19:31', '2021-03-07 02:19:31'),
 (52, 1, '123', '$2y$10$yz4r3zYYfG4gvlSIe6jl3OQV/jkyG3xcdSoZd0YwomPMtoiS9DdYu', 1, '2021-04-27 19:52:15', '2021-04-27 20:00:12'),
-(53, 3, '098', '$2y$10$ks7BJjzvGfzwgMEHN/21P.oMaDMf7DXTeia7eHBPbKw8YfF5Zawr2', 1, '2021-04-27 20:11:36', '2021-04-27 20:11:36');
+(56, 3, '4321', '$2y$10$Q7g3idd6hJwizIwSlFX6F.Zw0kjIXucy8uO0hFj9MHeUTD0RrqF8i', 1, '2021-04-28 22:45:00', '2021-04-28 22:45:00'),
+(57, 3, '4322', '$2y$10$ylHR88edfF5dpgaGKzU0tuP7qPS2gHMT.S9HPqHsao4qH9yrkegDO', 1, '2021-04-28 22:45:50', '2021-04-28 22:45:50'),
+(58, 3, '4323', '$2y$10$oA61W8kwT/qrmtqEZiKyOud7S1iS9YoqHi00Z5PAMR8qyvKPHTndi', 1, '2021-04-28 22:46:31', '2021-04-28 22:46:31'),
+(59, 3, '4324', '$2y$10$.nqVRigl7xC/ug8TdLv09.b3wGMTOtIs1zi4V01NEPxZ1JyNXR6Mu', 1, '2021-04-28 22:47:30', '2021-04-28 22:47:30'),
+(60, 3, '4325', '$2y$10$34/oEl6DSKmkuyAhLIPUS.TfZg9xxAZ9P4TuwYqaOatGgiWGGsmvm', 1, '2021-04-28 22:48:17', '2021-04-28 22:48:17'),
+(61, 3, '4326', '$2y$10$tRA6rvVjQz3ezPekCB4CbuEL7AzkO9qq7E68Gh3NBm9lSSngN62oi', 1, '2021-04-28 22:49:30', '2021-04-28 22:49:30');
 
 -- --------------------------------------------------------
 
@@ -376,7 +384,12 @@ CREATE TABLE `users_profile` (
 INSERT INTO `users_profile` (`id`, `user_id`, `full_name`, `user_image`, `sex`, `place_of_birth`, `date_of_birth`, `contact`, `email`, `address`) VALUES
 (1, 15, 'Tiya Fatmalia', 'default.svg', 'P', 'Tasikmalaya', '2000-02-02', '081292040869', 'tiyafatmalia02@gmail.com', 'Kp. Nagarawangi RT/RW. 002/004 Nusawangi Kec. Cisayong Kab. Tasikmalaya'),
 (33, 52, 'Winda ', 'default.svg', 'P', 'tasikmalaya', '2021-04-28', '08297197289', 'winda@gmail.com', 'fafaf'),
-(34, 53, 'Arsal', 'default.svg', 'L', 'tasikmalaya', '2021-04-28', '08297197289', 'arsal@gmail.com', 'kjhkhl');
+(37, 56, 'Arsal', 'default.svg', 'L', 'Tasikmalaya', '2021-04-29', '08297197289', 'arsal@gmail.com', 'fafafadf'),
+(38, 57, 'Firdha', 'default.svg', 'P', 'Tasikmalaya', '2021-04-29', '0851234567890', 'firda@gmail.com', 'afadfa'),
+(39, 58, 'Cahya', 'default.svg', 'L', 'Tasikmalaya', '2021-04-29', '0851234567890', 'cah@gmail.com', 'vavadc'),
+(40, 59, 'Asep Yusril', 'default.svg', 'L', 'Tasikmalaya', '2021-04-29', '0867288872', 'sep@gmail.com', 'fadfadfaf'),
+(41, 60, 'Rizky', 'default.svg', 'L', 'Tasikmalaya', '2021-04-29', '0817383737', 'rizky@gmail.com', 'vaafafvav'),
+(42, 61, 'Wina', 'default.svg', 'P', 'Tasikmalaya', '2021-04-29', '08297197289', 'wina@gmail.com', 'fafafa');
 
 -- --------------------------------------------------------
 
@@ -545,7 +558,7 @@ ALTER TABLE `books_type`
 -- AUTO_INCREMENT untuk tabel `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `fine`
@@ -557,7 +570,7 @@ ALTER TABLE `fine`
 -- AUTO_INCREMENT untuk tabel `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `notification`
@@ -581,7 +594,7 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT untuk tabel `rombel`
 --
 ALTER TABLE `rombel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaction`
@@ -599,13 +612,13 @@ ALTER TABLE `transaction_detail`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT untuk tabel `users_profile`
 --
 ALTER TABLE `users_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT untuk tabel `users_role`
