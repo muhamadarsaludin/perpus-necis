@@ -32,7 +32,7 @@ class TransactionModel extends Model
         
         $query = "SELECT  `t`.`id`,`t`.`transaction_code`,`u`.`username`,`up`.`full_name`, COUNT(IF(`td`.`status` = 'Dipinjam', `td`.`id`, null)) AS `borrowing_amount`
         FROM `transaction` AS `t`
-        JOIN `transaction_detail` AS `td`
+        LEFT JOIN `transaction_detail` AS `td`
         ON `t`.`id` = `td`.`transaction_id`
         JOIN `users` AS `u`
         ON `t`.`user_id` = `u`.`id`

@@ -49,7 +49,6 @@
                     <th>Terlambat</th>
                     <th>Denda</th>
                     <th>Status</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tfoot>
@@ -63,7 +62,6 @@
                     <th>Terlambat</th>
                     <th>Denda</th>
                     <th>Status</th>
-                    <th>Action</th>
                 </tr>
             </tfoot>
             <tbody>
@@ -101,11 +99,6 @@
                     }
                     ?>
                     <td><span class="badge badge-<?= $color; ?>"><?= $d['status']; ?></span></td>
-                    <td class="text-center">
-                        <a href="/admin/transaction/returnbook/<?= $d['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-eye"></span><span class="d-sm-none d-lg-inline">Kembalikan</span></a>
-                        <a href="/admin/transaction/extend/<?= $d['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Perpanjang</span></a>
-                        <a href="/admin/transaction/lost/<?= $d['id']; ?>" class="btn btn-action btn-sm small mb-1"><span class="d-lg-none fa fa-pencil-alt"></span><span class="d-sm-none d-lg-inline">Kehilangan</span></a>
-                    </td>
                 </tr>
                 <?php endif; ?>
             <?php endforeach; ?>    
@@ -128,7 +121,6 @@
                     <th>Terlambat</th>
                     <th>Denda</th>
                     <th>Status</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tfoot>
@@ -142,7 +134,6 @@
                     <th>Terlambat</th>
                     <th>Denda</th>
                     <th>Status</th>
-                    <th>Action</th>
                 </tr>
             </tfoot>
             <tbody>

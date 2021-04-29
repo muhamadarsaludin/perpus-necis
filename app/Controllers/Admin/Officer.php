@@ -112,6 +112,12 @@ class Officer extends BaseController
             'nip' => $this->request->getVar('nip'),
             'officer_status' => $this->request->getVar('officer_status'),
         ]);
+
+        $this->transactionModel->save([
+            'user_id' => $user['id'],
+            'transaction_code' =>strtoupper(substr(uniqid('TRA-'),0,12))
+        ]);
+        
         session()->setFlashdata('message', 'Petugas baru berhasil ditambahkan');
         return redirect()->to('/admin/officers/');
     }

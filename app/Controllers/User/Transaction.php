@@ -34,7 +34,6 @@ class Transaction extends BaseController
             'fine' => $this->fineModel->get()->getRowArray(),
             'menuActive' => 'user borrowing'
         ];
-        // dd($data);
         return view('user/borrow/index', $data);
     }
 }
