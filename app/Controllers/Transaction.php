@@ -51,7 +51,9 @@ class Transaction extends BaseController
                     // kirim notif
                     $this->notificationModel->save([
                         'user_id' => $user['id'],
-                        'message' => $message
+                        'message' => $message,
+                        'link' => '/user/transaction'
+
                     ]);
                     // update status reminder notif
                     $this->transDetailModel->save([
@@ -66,7 +68,8 @@ class Transaction extends BaseController
                     // kirim notif
                     $this->notificationModel->save([
                         'user_id' => $user['id'],
-                        'message' => $message
+                        'message' => $message,
+                        'link' => '/user/transaction'
                     ]);
                     // update status reminder notif
                     $this->transDetailModel->save([

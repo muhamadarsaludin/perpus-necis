@@ -42,9 +42,6 @@
         <?= session()->getFlashdata('failed'); ?>
     </div>
 <?php endif; ?>
-    <div class="d-flex">
-        <a href="/admin/book/item/add/<?= $bookData['id']; ?>" class="d-block d-sm-inline-block btn rounded-pill btn-wild-watermelon ml-auto my-3"><i class="fas fa-plus-square mr-1"></i>Tambah Buku</a>
-    </div>
     <div class="table-responsive">
         <table class="table table-bordered td-align-middle" id="dataVendors" width="100%" cellspacing="0">
             <thead>
