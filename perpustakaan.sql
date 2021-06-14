@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 29 Apr 2021 pada 06.30
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.4.11
+-- Host: localhost:3306
+-- Waktu pembuatan: 14 Jun 2021 pada 07.42
+-- Versi server: 10.3.16-MariaDB
+-- Versi PHP: 7.3.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `perpustakaan`
+-- Database: `id16716850_perpustakaan`
 --
 
 -- --------------------------------------------------------
@@ -43,12 +44,132 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `book_data_id`, `book_code`, `quality`, `source_book`, `can_borrow`, `created_at`, `updated_at`) VALUES
-(33, 2, 'BK-608827292024A', 'Baik', 'Bantuan BOS', 0, '2021-04-27', '2021-04-27'),
+(33, 2, 'BK-608827292024A', 'Baik', 'Bantuan BOS', 1, '2021-04-27', '2021-04-27'),
 (37, 2, 'BK-6088E9B193ACD', 'Baik', 'Bantuan BOS', 0, '2021-04-28', '2021-04-28'),
 (38, 2, 'BK-6088E9B19BC6B', 'Baik', 'Bantuan BOS', 1, '2021-04-28', '2021-04-28'),
 (39, 2, 'BK-6088E9B19FAF8', 'Baik', 'Bantuan BOS', 1, '2021-04-28', '2021-04-28'),
 (40, 2, 'BK-6088E9B1A0739', 'Baik', 'Bantuan BOS', 1, '2021-04-28', '2021-04-28'),
-(41, 2, 'BK-6088E9B1A1546', 'Baik', 'Bantuan BOS', 1, '2021-04-28', '2021-04-28');
+(41, 2, 'BK-6088E9B1A1546', 'Baik', 'Bantuan BOS', 1, '2021-04-28', '2021-04-28'),
+(42, 9, 'BK-608B8C26903D2', 'Baik', 'Donasi', 1, '2021-04-30', '2021-04-30'),
+(43, 9, 'BK-608B8C2698C89', 'Baik', 'Donasi', 1, '2021-04-30', '2021-04-30'),
+(45, 10, 'BK-608B949E06A43', 'Baik', 'Donasi', 1, '2021-04-30', '2021-04-30'),
+(46, 12, 'BK-608B987A86D09', 'Baik', 'BOS', 0, '2021-04-30', '2021-04-30'),
+(47, 12, 'BK-608B987A8B5A7', 'Baik', 'BOS', 0, '2021-04-30', '2021-04-30'),
+(48, 12, 'BK-608B987A8BF75', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(49, 12, 'BK-608B987A8C391', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(50, 12, 'BK-608B987A8C7AE', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(51, 12, 'BK-608B987A8CBFF', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(52, 12, 'BK-608B987A8CF9A', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(53, 12, 'BK-608B987A8D34F', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(54, 12, 'BK-608B987A8D757', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(55, 12, 'BK-608B987A8DAC1', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(56, 12, 'BK-608B987A8DE0E', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(57, 12, 'BK-608B987A8E128', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(58, 12, 'BK-608B987A8E47A', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(59, 12, 'BK-608B987A8E757', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(60, 12, 'BK-608B987A8EAD0', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(61, 12, 'BK-608B987A8EE96', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(62, 12, 'BK-608B987A8F254', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(63, 12, 'BK-608B987A8F621', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(64, 12, 'BK-608B987A8F94A', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(65, 12, 'BK-608B987A8FC1C', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(66, 12, 'BK-608B987A8FEB2', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(67, 12, 'BK-608B987A90173', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(68, 12, 'BK-608B987A90531', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(69, 12, 'BK-608B987A90849', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(70, 12, 'BK-608B987A90B91', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(71, 12, 'BK-608B987A90E4A', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(72, 12, 'BK-608B987A91134', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(73, 12, 'BK-608B987A91408', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(74, 12, 'BK-608B987A9172D', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(75, 12, 'BK-608B987A919E8', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(76, 12, 'BK-608B987A91D33', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(77, 12, 'BK-608B987A920F9', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(78, 12, 'BK-608B987A9241A', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(79, 12, 'BK-608B987A92768', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(80, 12, 'BK-608B987A92AF8', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(81, 12, 'BK-608B987A92D92', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(82, 12, 'BK-608B987A93056', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(83, 12, 'BK-608B987A93336', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(84, 12, 'BK-608B987A93631', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(85, 12, 'BK-608B987A938E7', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(86, 12, 'BK-608B987A93C1F', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(87, 12, 'BK-608B987A93F40', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(88, 12, 'BK-608B987A942C3', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(89, 12, 'BK-608B987A945CC', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(90, 12, 'BK-608B987A94914', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(91, 12, 'BK-608B987A94CA9', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(92, 12, 'BK-608B987A94FEF', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(93, 12, 'BK-608B987A952E7', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(94, 12, 'BK-608B987A955C8', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(95, 12, 'BK-608B987A95870', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(96, 12, 'BK-608B987A95BED', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(97, 12, 'BK-608B987A95F4D', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(98, 12, 'BK-608B987A962DE', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(99, 12, 'BK-608B987A96622', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(100, 12, 'BK-608B987A96922', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(101, 12, 'BK-608B987A96C4C', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(102, 12, 'BK-608B987A96F84', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(103, 12, 'BK-608B987A97351', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(104, 12, 'BK-608B987A976E8', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(105, 12, 'BK-608B987A97A69', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(106, 12, 'BK-608B987A97E38', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(107, 12, 'BK-608B987A98214', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(108, 12, 'BK-608B987A98587', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(109, 12, 'BK-608B987A98940', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(110, 12, 'BK-608B987A98C84', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(111, 12, 'BK-608B987A98F4F', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(112, 12, 'BK-608B987A9923A', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(113, 12, 'BK-608B987A99650', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(114, 12, 'BK-608B987A99A0C', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(115, 12, 'BK-608B987A99E0F', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(116, 12, 'BK-608B987A9A1C7', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(117, 12, 'BK-608B987A9A80F', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(118, 12, 'BK-608B987A9ABFF', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(119, 12, 'BK-608B987A9AF6D', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(120, 12, 'BK-608B987A9B2AB', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(121, 12, 'BK-608B987A9B6B8', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(122, 12, 'BK-608B987A9BA3D', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(123, 12, 'BK-608B987A9BE14', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(124, 12, 'BK-608B987A9E6B7', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(125, 12, 'BK-608B987A9EAE1', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(126, 12, 'BK-608B987A9EE85', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(127, 12, 'BK-608B987A9F1E2', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(128, 12, 'BK-608B987A9F52A', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(129, 12, 'BK-608B987A9F889', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(130, 12, 'BK-608B987A9FBF2', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(131, 12, 'BK-608B987A9FF67', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(132, 12, 'BK-608B987AA02AA', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(133, 12, 'BK-608B987AA071C', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(134, 12, 'BK-608B987AA0AD1', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(135, 12, 'BK-608B987AA0E7F', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(136, 12, 'BK-608B987AA1246', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(137, 12, 'BK-608B987AA16AD', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(138, 12, 'BK-608B987AA1A60', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(139, 12, 'BK-608B987AA1D67', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(140, 12, 'BK-608B987AA20A3', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(141, 12, 'BK-608B987AA23BE', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(142, 12, 'BK-608B987AA27E8', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(143, 12, 'BK-608B987AA2B04', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(144, 12, 'BK-608B987AA2E9F', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(145, 12, 'BK-608B987AA31BD', 'Baik', 'BOS', 1, '2021-04-30', '2021-04-30'),
+(146, 14, 'BK-608B9D60D199B', 'Baik', 'Donasi', 1, '2021-04-30', '2021-04-30'),
+(147, 16, 'BK-60B5EEF2E3A8A', 'Baik', 'Beli', 1, '2021-06-01', '2021-06-01'),
+(148, 16, 'BK-60B5EEF2E981E', 'Baik', 'Beli', 1, '2021-06-01', '2021-06-01'),
+(149, 16, 'BK-60B5EEF2E9BA1', 'Baik', 'Beli', 1, '2021-06-01', '2021-06-01'),
+(150, 16, 'BK-60B5EEF2E9E2B', 'Baik', 'Beli', 1, '2021-06-01', '2021-06-01'),
+(151, 16, 'BK-60B5EEF2EA0A5', 'Baik', 'Beli', 1, '2021-06-01', '2021-06-01'),
+(152, 17, 'BK-60B74B0A215BE', 'Baik', 'Beli', 1, '2021-06-02', '2021-06-02'),
+(153, 17, 'BK-60B74B0A27C63', 'Baik', 'Beli', 1, '2021-06-02', '2021-06-02'),
+(154, 17, 'BK-60B74B0A27F73', 'Baik', 'Beli', 1, '2021-06-02', '2021-06-02'),
+(155, 18, 'BK-60B74B93496A1', 'Baik', 'Beli', 1, '2021-06-02', '2021-06-02'),
+(156, 18, 'BK-60B74B935064B', 'Tentukan Kualitas Buku', 'Beli', 1, '2021-06-02', '2021-06-02'),
+(157, 3, 'BK-60B7A1BF876B1', 'Baik', 'Beli', 1, '2021-06-02', '2021-06-02'),
+(158, 3, 'BK-60B7A1BF8E277', 'Baik', 'Beli', 1, '2021-06-02', '2021-06-02'),
+(159, 15, 'BK-60B7A1EA27805', 'Baik', 'Beli', 1, '2021-06-02', '2021-06-02'),
+(160, 15, 'BK-60B7A1EA3178A', 'Baik', 'Beli', 1, '2021-06-02', '2021-06-02'),
+(161, 3, 'BK-60B8510428A3A', 'Baik', 'Beli', 1, '2021-06-03', '2021-06-03'),
+(162, 3, 'BK-60B851042C9CF', 'Baik', 'Beli', 1, '2021-06-03', '2021-06-03');
 
 -- --------------------------------------------------------
 
@@ -69,7 +190,8 @@ CREATE TABLE `books_category` (
 INSERT INTO `books_category` (`id`, `category`, `description`) VALUES
 (1, 'Novel', ''),
 (2, 'Dongeng', ''),
-(4, 'Komik', '');
+(4, 'Komik', ''),
+(5, 'Umum', 'Buku bacaan umum');
 
 -- --------------------------------------------------------
 
@@ -99,8 +221,17 @@ CREATE TABLE `books_data` (
 
 INSERT INTO `books_data` (`id`, `book_title`, `book_cover`, `buku_paket`, `book_category_id`, `book_type_id`, `author`, `publisher`, `publication_year`, `file_name`, `price`, `created_at`, `updated_at`) VALUES
 (2, 'Saat Kita Jatuh Cinta', 'cover-buku-cerita-fabel.jpg', 0, 1, 1, 'AIU AHRA', 'Gramedia', 2017, NULL, 80000, '2021-04-13 01:28:02', '2021-04-13 01:28:02'),
-(3, 'Promise', 'default.png', 1, 1, 1, 'Dwitasari', 'Gramedia', 2016, NULL, 80000, '2021-04-13 19:01:10', '2021-04-25 11:54:42'),
-(4, 'Senja Pagi', 'Screen Shot 2019-06-09 at 11.19.57 AM_2.png', 0, 2, 2, 'Alffi Rev', 'REV Team', 2017, '2350-4878-2-PB.pdf', NULL, '2021-04-13 21:05:22', '2021-04-13 22:07:52');
+(3, 'Promise', 'default.png', 0, 1, 1, 'Dwitasari', 'Gramedia', 2016, NULL, 80000, '2021-04-13 19:01:10', '2021-04-30 02:57:01'),
+(9, 'Dilan-Dia Adalah Dilanku Tahun 1990', 'Dilan 1 by Pidi Baiq_3.jpg', 0, 1, 1, 'Pidi Baiq', 'Dar! Mizan', 2014, NULL, 79000, '2021-04-29 23:47:52', '2021-04-29 23:47:52'),
+(10, 'Imperfect', 'nHBfsgAA0AAAABoADcUU4QABUMo.jpg', 0, 5, 1, 'Meira Anastasia', 'Gramedia', 2018, NULL, 115000, '2021-04-30 00:20:06', '2021-04-30 00:24:12'),
+(11, 'Imperfect-', 'nHBfsgAA0AAAABoADcUU4QABUMo_1.jpg', 0, 5, 2, 'Meira Anastasia', 'Gramedia', 2018, 'Imperfect by Meira Anastasia.pdf', NULL, '2021-04-30 00:27:38', '2021-04-30 00:27:38'),
+(12, 'Ilmu Pengetahuan Sosial SMP/MTSn Kelas VII', 'bse-a_59f978c490b17318000180.jpg', 1, 5, 1, 'Iwan Setiawan, S.Pd.,M.Si', 'KEMENDIKBUD', 2016, NULL, 55000, '2021-04-30 00:40:52', '2021-04-30 00:40:52'),
+(13, '5 cm', '5 cm by Donny Dhirgantoro.jpg', 0, 1, 2, 'Donny Dhirgantoro', 'PT Grasindo', 2010, '5 cm by Donny Dhirgantoro √.pdf', NULL, '2021-04-30 00:50:59', '2021-04-30 00:50:59'),
+(14, 'Ayah ', 'novel-ayah-andrea-hirata.jpg', 0, 1, 1, 'Andrea Hirata', 'Bentang Pustaka', 2015, NULL, 99000, '2021-04-30 01:01:47', '2021-04-30 01:03:00'),
+(15, 'Smart Math', 'default.png', 0, 5, 1, 'Optima Team', 'CV. Putra Pratama', 2011, NULL, 50000, '2021-06-01 03:03:20', '2021-06-01 03:03:20'),
+(16, 'Sains Dalam Al-Quran', 'default.png', 0, 5, 1, 'Dr.Nadiah Thayyarah', 'Zaman', 2013, NULL, 95500, '2021-06-01 03:06:00', '2021-06-01 03:06:00'),
+(17, 'Dunia Cecilia : Kisah Indah Dialog Surga dan Bumi', 'default.png', 0, 1, 1, 'Jostein Gaarder', 'Mizan', 2016, NULL, 79000, '2021-06-02 04:10:17', '2021-06-02 04:10:17'),
+(18, 'Putri Sirkus dan Lelaki Penjual Dongeng', 'default.png', 0, 1, 1, 'Jostein Gaarder', 'Mizan', 2016, NULL, 85000, '2021-06-02 04:12:28', '2021-06-02 04:12:28');
 
 -- --------------------------------------------------------
 
@@ -179,12 +310,11 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `user_id`, `nis`, `class_id`, `rombel_id`) VALUES
-(13, 56, '4321', 1, 1),
-(14, 57, '4322', 1, 1),
-(15, 58, '4323', 1, 2),
-(16, 59, '4324', 2, 1),
-(17, 60, '4325', 2, 2),
-(18, 61, '4326', 3, 1);
+(20, 67, '432002', 1, 1),
+(21, 68, '432001', 3, 4),
+(22, 70, '432003', 2, 2),
+(23, 71, '432004', 2, 2),
+(24, 72, '432005', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -206,8 +336,7 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`id`, `user_id`, `message`, `link`, `created_at`, `updated_at`) VALUES
-(9, 15, 'Masa peminjaman buku Saat Kita Jatuh Cinta telah habis, harap melapor kepada petugas perpustakaan', NULL, '2021-04-28', '2021-04-28'),
-(10, 15, 'Masa peminjaman buku Saat Kita Jatuh Cinta akan habis, segera lakukan perpanjangan waktu sebelum tanggal 2021-04-29', NULL, '2021-04-28', '2021-04-28');
+(14, 68, 'Masa peminjaman buku Saat Kita Jatuh Cinta telah habis, harap melapor kepada petugas perpustakaan', '/user/transaction', '2021-06-01', '2021-06-01');
 
 -- --------------------------------------------------------
 
@@ -227,8 +356,10 @@ CREATE TABLE `officer` (
 --
 
 INSERT INTO `officer` (`id`, `user_id`, `nip`, `officer_status`) VALUES
-(1, 15, '3282819299299', 'Kepala Perpustakaan'),
-(16, 52, '123', '');
+(1, 15, '432007006180222', ''),
+(17, 62, '432007006180000', 'Petugas'),
+(18, 69, '432007006180103', 'Petugas'),
+(19, 73, '432007006180105', 'Petugas');
 
 -- --------------------------------------------------------
 
@@ -252,7 +383,8 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`id`, `user_id`, `title`, `author`, `publisher`, `publication_year`, `created_at`, `updated_at`) VALUES
-(1, 15, 'Senja Pagi', 'Alffi Rev', 'Gramedia', 2018, '2021-04-19 11:47:01', '2021-04-19 11:47:01');
+(2, 68, 'Boyman Ragam Latih Pramuka', 'Andri Bob Sunardi', 'Darma Utama', 2016, '2021-06-02 10:26:29', '2021-06-02 10:26:29'),
+(4, 71, 'Bulan', 'Tere Liye', 'PT. Gramedia Pustaka', 2018, '2021-06-02 10:30:15', '2021-06-02 10:30:15');
 
 -- --------------------------------------------------------
 
@@ -297,7 +429,15 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id`, `transaction_code`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'TRA-12050401', 15, '2021-04-21', '2021-04-21');
+(1, 'TRA-12050401', 15, '2021-04-21', '2021-04-21'),
+(12, 'TRA-608B73C8', 62, '2021-04-29', '2021-04-29'),
+(14, 'TRA-608B7851', 67, '2021-04-29', '2021-04-29'),
+(15, 'TRA-608B7A3C', 68, '2021-04-29', '2021-04-29'),
+(16, 'TRA-608B8373', 69, '2021-04-29', '2021-04-29'),
+(17, 'TRA-608B83DE', 70, '2021-04-29', '2021-04-29'),
+(18, 'TRA-608B846A', 71, '2021-04-29', '2021-04-29'),
+(19, 'TRA-608B853A', 72, '2021-04-29', '2021-04-29'),
+(20, 'TRA-60B85017', 73, '2021-06-02', '2021-06-02');
 
 -- --------------------------------------------------------
 
@@ -325,8 +465,11 @@ CREATE TABLE `transaction_detail` (
 --
 
 INSERT INTO `transaction_detail` (`id`, `transaction_id`, `book_id`, `status`, `borrow_date`, `return_date`, `amount_late`, `fine`, `reminder_notification`, `late_notification`, `created_at`, `updated_at`) VALUES
-(10, 1, 33, 'Dipinjam', '2021-04-28', '2021-04-27', 0, 0, 0, 1, '2021-04-28', '2021-04-28'),
-(11, 1, 37, 'Dipinjam', '2021-04-28', '2021-04-29', 0, 0, 1, 0, '2021-04-28', '2021-04-28');
+(12, 1, 33, 'Dikembalikan', '2021-04-30', '2021-06-01', 26, 13000, 1, 1, '2021-04-30', '2021-06-01'),
+(14, 15, 38, 'Dikembalikan', '2021-04-30', '2021-06-03', 28, 14000, 0, 1, '2021-04-30', '2021-06-03'),
+(15, 18, 46, 'Dipinjam', '2021-06-01', '2022-06-01', 0, 0, 0, 0, '2021-06-01', '2021-06-01'),
+(16, 14, 155, 'Dikembalikan', '2021-06-02', '2021-06-03', 0, 0, 0, 0, '2021-06-02', '2021-06-03'),
+(17, 17, 47, 'Dipinjam', '2021-06-02', '2022-06-02', 0, 0, 0, 0, '2021-06-02', '2021-06-02');
 
 -- --------------------------------------------------------
 
@@ -349,14 +492,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `active`, `created_at`, `updated_at`) VALUES
-(15, 1, 'tiya', '$2y$10$SvHfJMkxCONwUnIhPlfOY.MZju9Yp3JkL/XuyTexPdQIuuGr/zaei', 1, '2021-03-07 02:19:31', '2021-03-07 02:19:31'),
-(52, 1, '123', '$2y$10$yz4r3zYYfG4gvlSIe6jl3OQV/jkyG3xcdSoZd0YwomPMtoiS9DdYu', 1, '2021-04-27 19:52:15', '2021-04-27 20:00:12'),
-(56, 3, '4321', '$2y$10$Q7g3idd6hJwizIwSlFX6F.Zw0kjIXucy8uO0hFj9MHeUTD0RrqF8i', 1, '2021-04-28 22:45:00', '2021-04-28 22:45:00'),
-(57, 3, '4322', '$2y$10$ylHR88edfF5dpgaGKzU0tuP7qPS2gHMT.S9HPqHsao4qH9yrkegDO', 1, '2021-04-28 22:45:50', '2021-04-28 22:45:50'),
-(58, 3, '4323', '$2y$10$oA61W8kwT/qrmtqEZiKyOud7S1iS9YoqHi00Z5PAMR8qyvKPHTndi', 1, '2021-04-28 22:46:31', '2021-04-28 22:46:31'),
-(59, 3, '4324', '$2y$10$.nqVRigl7xC/ug8TdLv09.b3wGMTOtIs1zi4V01NEPxZ1JyNXR6Mu', 1, '2021-04-28 22:47:30', '2021-04-28 22:47:30'),
-(60, 3, '4325', '$2y$10$34/oEl6DSKmkuyAhLIPUS.TfZg9xxAZ9P4TuwYqaOatGgiWGGsmvm', 1, '2021-04-28 22:48:17', '2021-04-28 22:48:17'),
-(61, 3, '4326', '$2y$10$tRA6rvVjQz3ezPekCB4CbuEL7AzkO9qq7E68Gh3NBm9lSSngN62oi', 1, '2021-04-28 22:49:30', '2021-04-28 22:49:30');
+(15, 1, '432007006180222', '$2y$10$YFHi.I3GXo.TEGc8m2T6EeteOeRkAfUJLs/t.ST0Ujr.E/2sUO7pG', 1, '2021-03-07 02:19:31', '2021-04-29 23:09:30'),
+(62, 1, '432007006180000', '$2y$10$J8et9QIFKvL.WtJ.oFlvhuvfVzwuylmgmrSbitXlkc/y6vcTE2pRC', 1, '2021-04-29 22:04:40', '2021-04-29 22:04:40'),
+(67, 3, '432002', '$2y$10$xIijudjBRZ9KzrSbglOzFuk.bPnv5sdetEU/6axIg/FD9gvj/S1me', 1, '2021-04-29 22:24:01', '2021-04-29 22:24:01'),
+(68, 3, '432001', '$2y$10$DX6FncTWEUpMKZSLwVWIVekRKNRYPgnk.NOwMAN5CAnXIw6AX3CgK', 1, '2021-04-29 22:32:12', '2021-04-29 22:32:12'),
+(69, 2, '432007006180103', '$2y$10$vPJjxFQL19YwZ2HHFkPKeO92EUq9ADFtY4Gp3r9ojhOXkgBAMYNBu', 1, '2021-04-29 23:11:31', '2021-04-29 23:11:31'),
+(70, 3, '432003', '$2y$10$tsBs3R3FmjRAC6avD5zZLeySAbte5UC6n9/tGWqOtNT6eH/AdAlIW', 1, '2021-04-29 23:13:18', '2021-04-29 23:13:18'),
+(71, 3, '432004', '$2y$10$ReGgcGRIY.i1zkC1dQ82F.nlKhgm0cd6oKotSR38Cm0WyAVR6YT1e', 1, '2021-04-29 23:15:38', '2021-04-29 23:15:38'),
+(72, 3, '432005', '$2y$10$bMxILL/feW2s8JkrKKngfuGE1p5A0R4dnsY9Gab1gjkLpZ4f8rSau', 1, '2021-04-29 23:19:06', '2021-04-29 23:19:06'),
+(73, 2, '432007006180105', '$2y$10$k49dkMLKMJ3oRRlMKy/diui540omZ5JOD09IrgoCFZIpNpNccZ1ba', 1, '2021-06-02 22:44:23', '2021-06-02 22:44:23');
 
 -- --------------------------------------------------------
 
@@ -372,7 +516,7 @@ CREATE TABLE `users_profile` (
   `sex` varchar(1) NOT NULL,
   `place_of_birth` varchar(128) NOT NULL,
   `date_of_birth` date NOT NULL,
-  `contact` varchar(13) NOT NULL,
+  `contact` varchar(255) NOT NULL,
   `email` varchar(128) NOT NULL,
   `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -382,14 +526,15 @@ CREATE TABLE `users_profile` (
 --
 
 INSERT INTO `users_profile` (`id`, `user_id`, `full_name`, `user_image`, `sex`, `place_of_birth`, `date_of_birth`, `contact`, `email`, `address`) VALUES
-(1, 15, 'Tiya Fatmalia', 'default.svg', 'P', 'Tasikmalaya', '2000-02-02', '081292040869', 'tiyafatmalia02@gmail.com', 'Kp. Nagarawangi RT/RW. 002/004 Nusawangi Kec. Cisayong Kab. Tasikmalaya'),
-(33, 52, 'Winda ', 'default.svg', 'P', 'tasikmalaya', '2021-04-28', '08297197289', 'winda@gmail.com', 'fafaf'),
-(37, 56, 'Arsal', 'default.svg', 'L', 'Tasikmalaya', '2021-04-29', '08297197289', 'arsal@gmail.com', 'fafafadf'),
-(38, 57, 'Firdha', 'default.svg', 'P', 'Tasikmalaya', '2021-04-29', '0851234567890', 'firda@gmail.com', 'afadfa'),
-(39, 58, 'Cahya', 'default.svg', 'L', 'Tasikmalaya', '2021-04-29', '0851234567890', 'cah@gmail.com', 'vavadc'),
-(40, 59, 'Asep Yusril', 'default.svg', 'L', 'Tasikmalaya', '2021-04-29', '0867288872', 'sep@gmail.com', 'fadfadfaf'),
-(41, 60, 'Rizky', 'default.svg', 'L', 'Tasikmalaya', '2021-04-29', '0817383737', 'rizky@gmail.com', 'vaafafvav'),
-(42, 61, 'Wina', 'default.svg', 'P', 'Tasikmalaya', '2021-04-29', '08297197289', 'wina@gmail.com', 'fafafa');
+(1, 15, 'Tiya Fatmalia', 'default.svg', 'P', 'Tasikmalaya', '2000-02-02', '081292040869', 'tiyafatmalia02@gmail.com', 'Kp. Bongkor Rt.09 Rw.02 Desa Indrajaya Kecamatan Sukaratu Kabupaten Tasikmalaya'),
+(43, 62, 'Nanang Suciyono', 'default.svg', 'L', 'Tasikmalaya', '2021-04-30', '085227669419', 'nanangsuciyono@gmail.com', 'Tasikmalaya'),
+(45, 67, 'Firdha', 'default.svg', 'P', 'Tasikmalaya', '2021-04-30', '08297197289', 'firda@gmail.com', 'Tasikmalaya'),
+(46, 68, 'Rika Nurjanah', 'default.svg', 'P', 'Tasikmalaya', '1999-12-31', '0877085685252', 'rikanurjanah@gmail.com', 'Sukaratu'),
+(47, 69, 'Winda Andriani', 'default.svg', 'P', 'Tasikmalaya', '2000-05-27', '085283831275', 'windadr27@gmail.com', 'Indihiang'),
+(48, 70, 'Ita Fatimah', 'default.svg', 'P', 'Tasikmalaya', '1999-05-15', '082217489827', 'itafatimah@gmail.com', 'Rajapolah'),
+(49, 71, 'Fitria Nurjihaan', 'default.svg', 'P', 'Tasikmalaya', '2000-01-07', '082310779624', 'fitrianurjihaan@gmail.com', 'Ciamis'),
+(50, 72, 'Desty Mustika', 'default.svg', 'P', 'Tasikmalaya', '1999-12-22', '0881024199908', 'destymustika@gmail.com', 'Indihiang'),
+(51, 73, 'Dini', 'default.svg', 'P', 'Tasikmalaya', '2021-06-03', '087708567890', 'dini@gmail.com', 'Tasikmalaya');
 
 -- --------------------------------------------------------
 
@@ -534,19 +679,19 @@ ALTER TABLE `users_role`
 -- AUTO_INCREMENT untuk tabel `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
 -- AUTO_INCREMENT untuk tabel `books_category`
 --
 ALTER TABLE `books_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `books_data`
 --
 ALTER TABLE `books_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `books_type`
@@ -570,55 +715,55 @@ ALTER TABLE `fine`
 -- AUTO_INCREMENT untuk tabel `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `officer`
 --
 ALTER TABLE `officer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `rombel`
 --
 ALTER TABLE `rombel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaction_detail`
 --
 ALTER TABLE `transaction_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT untuk tabel `users_profile`
 --
 ALTER TABLE `users_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT untuk tabel `users_role`
