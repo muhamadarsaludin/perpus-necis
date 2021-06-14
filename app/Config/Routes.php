@@ -92,6 +92,7 @@ $routes->group('admin', function ($routes) {
 		$routes->add('detail/(:num)', 'Admin\Ebook::detail/$1');
 		$routes->add('edit/(:num)', 'Admin\Ebook::edit/$1');
 		$routes->add('update', 'Admin\Ebook::update');
+		$routes->add('report', 'Admin\Ebook::report');
 	});
 
 	$routes->group('kelas', function ($routes) {
@@ -176,6 +177,7 @@ $routes->delete('/rombel/(:num)', 'Admin\Rombel::delete/$1');
 $routes->delete('/kelas/(:num)', 'Admin\Kelas::delete/$1');
 $routes->delete('/kelas/detail/(:num)/(:num)', 'Admin\Kelas::deleteDetail/$1/$2');
 $routes->delete('/admin/book/category/(:num)', 'Admin\Category::delete/$1');
+$routes->delete('/admin/request/(:num)', 'Admin\Request::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

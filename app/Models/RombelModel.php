@@ -13,7 +13,7 @@ class RombelModel extends Model
 
     public function getAllRombel()
     {
-        $query = "SELECT `R`.*, COUNT(DISTINCT `c`.`id`) AS 'class_amount', COUNT(`m`.`id`) AS `member_amount`
+        $query = "SELECT `r`.*, COUNT(DISTINCT `c`.`id`) AS 'class_amount', COUNT(`m`.`id`) AS `member_amount`
         FROM `rombel` AS `r`
         LEFT JOIN `member` AS `m`
         ON `r`.`id` = `m`.`rombel_id`

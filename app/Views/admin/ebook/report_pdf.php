@@ -51,12 +51,11 @@
                 <th>Penulis</th>
                 <th>Penerbit</th>
                 <th>Tahun Terbit</th>
-                <th>Banyak Buku</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($books as $bookIndex => $book) : ?>
-                <?php $total += $book['amount']; ?>
+                <?php $total += $bookIndex; ?>
                 <tr>
                     <th scope="row"><?= ++$bookIndex; ?></th>
                     <td><img src="img/books/<?= $book['book_cover']; ?>" alt="" width="50px"></td>
@@ -66,14 +65,13 @@
                     <td><?= $book['author']; ?></td>
                     <td><?= $book['publisher']; ?></td>
                     <td><?= $book['publication_year']; ?></td>
-                    <td><?= $book['amount']; ?> Buku</td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
             <tfoot>
                 <tr>
-                    <th scope="col" colspan="8">Jumlah Buku</th>
-                    <th scope="col"><?= $total; ?> Buku</th>
+                    <th scope="col" colspan="7">Jumlah Buku</th>
+                    <th scope="col"><?= $total; ?> Ebook</th>
                 </tr>
             </tfoot>
     </table>

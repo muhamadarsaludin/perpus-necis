@@ -300,7 +300,7 @@ class Transaction extends BaseController
         $options = new Options();
         $options->setIsHtml5ParserEnabled(true);
         $options->isRemoteEnabled(true);
-        $options->setChroot('/');
+        $options->setChroot("./");
         $dompdf = new Dompdf();
         $dompdf->setOptions($options);
         $dompdf->loadHtml(view('/admin/transaction/report_pdf', $data));

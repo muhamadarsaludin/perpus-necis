@@ -51,7 +51,7 @@
                     <td><?= $request['publisher']; ?></td>
                     <td><?= $request['publication_year']; ?></td>
                     <td class="text-center">
-                        <form action="/request/<?= $request['id']; ?>" method="POST" class="d-inline form-delete">
+                        <form action="/admin/request/<?= $request['id']; ?>" method="POST" class="d-inline form-delete">
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class="btn btn-action btn-sm small mb-1 btn-delete"><span class="d-lg-none fa fa-trash"></span><span class="d-sm-none d-lg-inline">Delete</span></span></button>

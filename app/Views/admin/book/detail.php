@@ -51,6 +51,7 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Buku</th>
+                    <th>Tanggal</th>
                     <th>Sumber</th>
                     <th>kualitas</th>
                     <th>Status</th>
@@ -61,6 +62,7 @@
                 <tr>
                     <th>No</th>
                     <th>Kode Buku</th>
+                    <th>Tanggal</th>
                     <th>Sumber</th>
                     <th>kualitas</th>
                     <th>Status</th>
@@ -73,6 +75,7 @@
                 <tr>
                     <td><?= $i++; ?></td>
                     <td><?= $book['book_code']; ?></td>
+                    <td><?= $book['created_at']; ?></td>
                     <td><?= $book['source_book']; ?></td>
                     <td><?= $book['quality']; ?></td>
                     

@@ -7,6 +7,8 @@ use App\Models\UserModel;
 use App\Models\BookDataModel;
 use App\Models\BooksModel;
 use App\Models\CategoryModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Ebook extends BaseController
 {
@@ -195,5 +197,22 @@ class Ebook extends BaseController
         session()->setFlashdata('message', 'Data ebuku berhasil dihapus!');
         return redirect()->to('/admin/ebook');
         
+    }
+     public function report()
+    {
+        $data = [    
+            'books'  => $this->bookDataModel->getEbooksData(),
+        ];
+        //dd($data);
+        $options = new Options();
+        $options->setIsHtml5ParserEnabled(true);
+        $options->isRemoteEnabled(true);
+        $options->setChroot('./');
+        $dompdf = new Dompdf();
+        $dompdf->setOptions($options);
+        $dompdf->loadHtml(view('/admin/ebook/report_pdf', $data));
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream('Laporan_Ebook.pdf', ["Attachment" => false]);
     }
 }

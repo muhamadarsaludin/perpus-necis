@@ -28,6 +28,13 @@ class Request extends BaseController
         // dd($data);
         return view('admin/request/index', $data);
     }
+    
+     public function delete($id)
+    {
+        $this->requestModel->delete($id);
+        session()->setFlashdata('message', 'Request berhasil dihapus!');
+        return redirect()->to('/admin/request');  
+    }
 
     
     public function report()

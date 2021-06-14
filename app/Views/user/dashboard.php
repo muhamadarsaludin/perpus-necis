@@ -12,7 +12,7 @@
         <p class="product-desc">Ayo pinjam sekarang jangan sampai kehabisan!</p>
         <div class="row">
             <?php foreach($latestBook as $book): ?>
-            <div class="col-3">
+            <div class="col-xl-3 col-md-6">
                 <a href="/user/book/detail/<?= $book['id']; ?>">
                     <div class="card card-product">
                         <img src="/img/books/<?= $book['book_cover']; ?>" class="card-img-top" alt="...">
@@ -31,7 +31,7 @@
         <p class="product-desc">Yuk baca ebook terbaru biar makin banyak ilmu!</p>
         <div class="row">
         <?php foreach($latestEbook as $ebook): ?>
-            <div class="col-3">
+            <div class="col-xl-3 col-md-6">
                 <a href="/user/ebook/detail/<?= $ebook['id']; ?>">
                     <div class="card card-product">
                         <img src="/img/books/<?= $ebook['book_cover']; ?>" class="card-img-top" alt="...">

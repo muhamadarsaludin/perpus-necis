@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="text-right">
-                <a href="/admin/transaction/returnbook/<?= $detail['id']; ?>" class="btn btn-wild-watermelon btn-user btn-sm">Kemabalikan</a>
+                <a href="/admin/transaction/returnbook/<?= $detail['id']; ?>" class="btn btn-wild-watermelon btn-user btn-sm">Kembalikan</a>
                 <a href="/admin/transaction/extend/<?= $detail['id']; ?>" class="btn btn-outline-wild-watermelon btn-user btn-sm">Perpanjang</a>
             </div>
             
